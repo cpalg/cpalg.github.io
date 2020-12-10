@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Đường đi ngắn nhất on CP notebook</title>
+    <link>https://cpalg.github.io/tags/%C4%91%C6%B0%E1%BB%9Dng-%C4%91i-ng%E1%BA%AFn-nh%E1%BA%A5t/</link>
+    <description>Recent content in Đường đi ngắn nhất on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Thu, 24 Sep 2020 07:55:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/%C4%91%C6%B0%E1%BB%9Dng-%C4%91i-ng%E1%BA%AFn-nh%E1%BA%A5t/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CJ tới San Fierro - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-cjsanfierro/</link>
+      <pubDate>Thu, 24 Sep 2020 07:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-cjsanfierro/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjsanfierro.  Hướng dẫn:  Đầu tiên ta tìm tuyến đường có độ cao cho phép lớn nhất, có thể tìm bằng nhiều cách: Dijkstra, DFS kết hợp với tìm nhị phân, xây dựng cây khung nhỏ nhất.. Giả sử độ cao tối đa là H, để tìm kiếm con đường có độ cao H và ngắn nhất, thì ta chỉ xét những con đường có độ cao &amp;gt;= H (Những con đường còn lại sẽ làm cho độ cao nhỏ hơn H), Dijkstra tìm đường đi ngắn nhất trên tập cạnh mới này, ta thu được kết quả bài toán.</description>
+    </item>
+    
+    <item>
+      <title>CJ và Catalina - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-cjandcatalina/</link>
+      <pubDate>Thu, 24 Sep 2020 07:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-cjandcatalina/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjandcatalina.  Hướng dẫn:  Đầu tiên ta dùng thuật toán Dijkstra để tìm đường đi ngắn nhất giữa mọi cặp đỉnh trong k cặp đề bài cho. (\( k &amp;lt;=20 \)). Sử dụng quy hoạch động trạng thái:  Gọi f[mask][i] là đường đi ngắn nhất đi qua tất cả các đỉnh thuộc trạng thái mask, và kết thúc tại đỉnh i Trạng thái ban đầu: f[1 &amp;lt;&amp;lt; i][i] = 0 Ta xét mỗi trạng thái và cập nhật trạng thái như sau: f[j][newmask] = min(f[j][newmask], f[i][mask] + d[i][j])    Code mẫu: #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
+  </channel>
+</rss>

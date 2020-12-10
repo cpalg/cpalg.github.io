@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Cách đếm số hoán vị mà không có phần tử nào nằm đúng vị trí. - Lý thuyết </title>
+  <meta name="description" content="Trang web mình lưu trữ lại các kiến thức lập trình mình đã học.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Cách đếm số hoán vị mà không có phần tử nào nằm đúng vị trí. - Lý thuyết" />
+<meta property="og:description" content="Bài toán:  Cho môt dãy n phần tử gồm các hoán vị của dãy từ 1 tới n, đếm số hoán vị mà trong các phần tử, không có phần tử nào nằm đúng vị trí.
+ Cách làm:  Gọi C[i] là số hoán vị gồm i phần tử mà không có phần tử đúng vị trí. Ta có: C[i] = (i-1) * (C[i-1] &#43; C[i-2]) . Với C[1] = 0, C[2] = 1  Chứng minh: Giả sử ta đã tạo được dãy hoán vị với i-1 phần tử, giờ ta sẽ đặt phần tử thứ i vào tập có tất cả n-1 cách thêm phần tử i:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cpalg.github.io/posts/2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri/" />
+<meta property="article:published_time" content="2020-09-22T05:56:54+00:00" />
+<meta property="article:modified_time" content="2020-09-22T05:56:54+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Cách đếm số hoán vị mà không có phần tử nào nằm đúng vị trí. - Lý thuyết"/>
+<meta name="twitter:description" content="Bài toán:  Cho môt dãy n phần tử gồm các hoán vị của dãy từ 1 tới n, đếm số hoán vị mà trong các phần tử, không có phần tử nào nằm đúng vị trí.
+ Cách làm:  Gọi C[i] là số hoán vị gồm i phần tử mà không có phần tử đúng vị trí. Ta có: C[i] = (i-1) * (C[i-1] &#43; C[i-2]) . Với C[1] = 0, C[2] = 1  Chứng minh: Giả sử ta đã tạo được dãy hoán vị với i-1 phần tử, giờ ta sẽ đặt phần tử thứ i vào tập có tất cả n-1 cách thêm phần tử i:"/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://cpalg.github.io/css/style-white.css">
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://cpalg.github.io/images/favicon.ico" />
+
+  
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://cpalg.github.io/about/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://cpalg.github.io/posts/2020-09-23-bao-loi/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&text=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&is_video=false&description=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&name=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft&description=B%c3%a0i%20to%c3%a1n%3a%20%20Cho%20m%c3%b4t%20d%c3%a3y%20n%20ph%e1%ba%a7n%20t%e1%bb%ad%20g%e1%bb%93m%20c%c3%a1c%20ho%c3%a1n%20v%e1%bb%8b%20c%e1%bb%a7a%20d%c3%a3y%20t%e1%bb%ab%201%20t%e1%bb%9bi%20n%2c%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20trong%20c%c3%a1c%20ph%e1%ba%a7n%20t%e1%bb%ad%2c%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%0a%20C%c3%a1ch%20l%c3%a0m%3a%20%20G%e1%bb%8di%20C%5bi%5d%20l%c3%a0%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20g%e1%bb%93m%20i%20ph%e1%ba%a7n%20t%e1%bb%ad%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20Ta%20c%c3%b3%3a%20C%5bi%5d%20%3d%20%28i-1%29%20%2a%20%28C%5bi-1%5d%20%2b%20C%5bi-2%5d%29%20.%20V%e1%bb%9bi%20C%5b1%5d%20%3d%200%2c%20C%5b2%5d%20%3d%201%20%20Ch%e1%bb%a9ng%20minh%3a%20Gi%e1%ba%a3%20s%e1%bb%ad%20ta%20%c4%91%c3%a3%20t%e1%ba%a1o%20%c4%91%c6%b0%e1%bb%a3c%20d%c3%a3y%20ho%c3%a1n%20v%e1%bb%8b%20v%e1%bb%9bi%20i-1%20ph%e1%ba%a7n%20t%e1%bb%ad%2c%20gi%e1%bb%9d%20ta%20s%e1%ba%bd%20%c4%91%e1%ba%b7t%20ph%e1%ba%a7n%20t%e1%bb%ad%20th%e1%bb%a9%20i%20v%c3%a0o%20t%e1%ba%adp%20c%c3%b3%20t%e1%ba%a5t%20c%e1%ba%a3%20n-1%20c%c3%a1ch%20th%c3%aam%20ph%e1%ba%a7n%20t%e1%bb%ad%20i%3a">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&t=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#bài-toán">Bài toán:</a>
+      <ul>
+        <li><a href="#cách-làm">Cách làm:</a></li>
+        <li><a href="#chứng-minh">Chứng minh:</a></li>
+      </ul>
+    </li>
+    <li><a href="#áp-dụng">Áp dụng:</a>
+      <ul>
+        <li><a href="#hướng-dẫn">Hướng dẫn:</a></li>
+      </ul>
+    </li>
+    <li><a href="#code-mẫu">Code mẫu:</a></li>
+    <li><a href="#tham-khảo">Tham khảo:</a></li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Cách đếm số hoán vị mà không có phần tử nào nằm đúng vị trí. - Lý thuyết
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2020-09-22 05:56:54 &#43;0000 UTC" itemprop="datePublished">2020-09-22</time>
+          
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/to%C3%A1n" rel="tag">Toán</a>
+            
+            
+            <a class="tag-link" href="/tags/t%E1%BB%95-h%E1%BB%A3p-x%C3%A1c-xu%E1%BA%A5t" rel="tag">Tổ hợp, xác Xuất</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/l%C3%BD-thuy%E1%BA%BFt" rel="tag">Lý thuyết</a>
+            
+        </div> 
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <h2 id="bài-toán">Bài toán:</h2>
+<blockquote>
+<p>Cho môt dãy n phần tử gồm các hoán vị của dãy từ 1 tới n, đếm số hoán vị mà trong các phần tử, không có phần tử nào nằm đúng vị trí.</p>
+</blockquote>
+<h3 id="cách-làm">Cách làm:</h3>
+<ul>
+<li>Gọi C[i] là số hoán vị gồm i phần tử mà không có phần tử đúng vị trí.</li>
+<li>Ta có: <code>C[i] = (i-1) * (C[i-1] + C[i-2])</code> . <code>Với C[1] = 0, C[2] = 1</code></li>
+</ul>
+<h3 id="chứng-minh">Chứng minh:</h3>
+<p>Giả sử ta đã tạo được dãy hoán vị với i-1 phần tử, giờ ta sẽ đặt phần tử thứ i vào tập có tất cả n-1 cách thêm phần tử i:</p>
+<ol>
+<li>Phần tử i được đặt vào một vị trí j nào đó và phần tử j lại được đặt vào vị trí i, có <code>(n-2)</code> cách chọn.</li>
+<li>Phần tử i được đặt vào một ví trí j mà j đặt khác vị trí của i, có <code>(n-1)</code> cách chọn.</li>
+</ol>
+<blockquote>
+<p>Có tất cả <code>C[i] = (i-1) * (C[i-1] + C[i-2])</code> cách chọn.</p>
+</blockquote>
+<p><img src="/images/contents/derg.png" alt="Hình ảnh chỉ mang tính chất minh họa."></p>
+<h2 id="áp-dụng">Áp dụng:</h2>
+<ul>
+<li>Ta có thể áp dụng để làm bài tập này: <a href="http://lqdoj.edu.vn/problem/leuthi">Lều thi</a>.</li>
+</ul>
+<h3 id="hướng-dẫn">Hướng dẫn:</h3>
+<ul>
+<li>Để đếm số cách chọn có đúng k đội may mắn, ta sẽ chọn ra trước k đội, còn lại n-k đội, ta sẽ áp dụng bài toán trên để tìm số các hoán vị của k-1 phần tử mà không có phần tử nào nằm đúng vị trí. Kết quả sẽ là <code>C(n,k) *  D[n-k]</code></li>
+</ul>
+<h2 id="code-mẫu">Code mẫu:</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;bits/stdc++.h&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#define READFILE freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin)
+</span><span style="color:#ff79c6">#define ll long long
+</span><span style="color:#ff79c6"></span><span style="color:#ff79c6">using</span> <span style="color:#ff79c6">namespace</span> std;
+
+<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int</span> MAX<span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1e5</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">6</span>;
+<span style="color:#ff79c6">const</span> ll BASE <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1e9</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>;
+
+ll n, k, gt[MAX], gtNg[MAX], D[MAX];
+
+ll <span style="color:#50fa7b">C</span>(<span style="color:#8be9fd">int</span> k, <span style="color:#8be9fd">int</span> n){
+    <span style="color:#ff79c6">return</span> ((gt[n] <span style="color:#ff79c6">*</span> gtNg[k]) <span style="color:#ff79c6">%</span> BASE <span style="color:#ff79c6">*</span> gtNg[n<span style="color:#ff79c6">-</span>k]) <span style="color:#ff79c6">%</span> BASE;
+}
+
+ll <span style="color:#50fa7b">Pow</span>(ll a, ll b){
+    <span style="color:#ff79c6">if</span> (b<span style="color:#ff79c6">==</span><span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">return</span> a;
+    ll x <span style="color:#ff79c6">=</span> Pow(a,b<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>);
+    x <span style="color:#ff79c6">=</span> (x<span style="color:#ff79c6">*</span>x) <span style="color:#ff79c6">%</span> BASE;
+    <span style="color:#ff79c6">if</span> (b<span style="color:#ff79c6">&amp;</span><span style="color:#bd93f9">1</span>) x<span style="color:#ff79c6">=</span>(x<span style="color:#ff79c6">*</span>a)<span style="color:#ff79c6">%</span> BASE;
+    <span style="color:#ff79c6">return</span> x;
+}
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>()
+{
+    <span style="color:#ff79c6">#ifndef ONLINE_JUDGE
+</span><span style="color:#ff79c6"></span>        READFILE;
+    <span style="color:#ff79c6">#endif
+</span><span style="color:#ff79c6"></span>
+ 	cin <span style="color:#ff79c6">&gt;&gt;</span> n <span style="color:#ff79c6">&gt;&gt;</span> k;
+ 	gt[<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+ 	<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>n; i<span style="color:#ff79c6">++</span>) {
+        gt[i] <span style="color:#ff79c6">=</span> (gt[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">*</span>i) <span style="color:#ff79c6">%</span> BASE;
+        gtNg[i] <span style="color:#ff79c6">=</span> Pow(gt[i], BASE<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>);
+    }
+    D[<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; D[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; D[<span style="color:#bd93f9">2</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">3</span>; i<span style="color:#ff79c6">&lt;=</span>n; i<span style="color:#ff79c6">++</span>){
+        D[i] <span style="color:#ff79c6">=</span> (i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">*</span> (D[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> D[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>]) <span style="color:#ff79c6">%</span> BASE;
+    }
+    ll res <span style="color:#ff79c6">=</span> (D[n<span style="color:#ff79c6">-</span>k] <span style="color:#ff79c6">*</span> C(k,n)) <span style="color:#ff79c6">%</span> BASE ;
+    cout <span style="color:#ff79c6">&lt;&lt;</span> res;
+    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+}
+</code></pre></div><h2 id="tham-khảo">Tham khảo:</h2>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/count-derangements-permutation-such-that-no-element-appears-in-its-original-position">https://www.geeksforgeeks.org/count-derangements-permutation-such-that-no-element-appears-in-its-original-position</a></li>
+<li><a href="http://oeis.org/wiki/Number_of_derangements">http://oeis.org/wiki/Number_of_derangements</a></li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'v4ngtr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#bài-toán">Bài toán:</a>
+      <ul>
+        <li><a href="#cách-làm">Cách làm:</a></li>
+        <li><a href="#chứng-minh">Chứng minh:</a></li>
+      </ul>
+    </li>
+    <li><a href="#áp-dụng">Áp dụng:</a>
+      <ul>
+        <li><a href="#hướng-dẫn">Hướng dẫn:</a></li>
+      </ul>
+    </li>
+    <li><a href="#code-mẫu">Code mẫu:</a></li>
+    <li><a href="#tham-khảo">Tham khảo:</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&text=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&is_video=false&description=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&title=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&name=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft&description=B%c3%a0i%20to%c3%a1n%3a%20%20Cho%20m%c3%b4t%20d%c3%a3y%20n%20ph%e1%ba%a7n%20t%e1%bb%ad%20g%e1%bb%93m%20c%c3%a1c%20ho%c3%a1n%20v%e1%bb%8b%20c%e1%bb%a7a%20d%c3%a3y%20t%e1%bb%ab%201%20t%e1%bb%9bi%20n%2c%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20trong%20c%c3%a1c%20ph%e1%ba%a7n%20t%e1%bb%ad%2c%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%0a%20C%c3%a1ch%20l%c3%a0m%3a%20%20G%e1%bb%8di%20C%5bi%5d%20l%c3%a0%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20g%e1%bb%93m%20i%20ph%e1%ba%a7n%20t%e1%bb%ad%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20Ta%20c%c3%b3%3a%20C%5bi%5d%20%3d%20%28i-1%29%20%2a%20%28C%5bi-1%5d%20%2b%20C%5bi-2%5d%29%20.%20V%e1%bb%9bi%20C%5b1%5d%20%3d%200%2c%20C%5b2%5d%20%3d%201%20%20Ch%e1%bb%a9ng%20minh%3a%20Gi%e1%ba%a3%20s%e1%bb%ad%20ta%20%c4%91%c3%a3%20t%e1%ba%a1o%20%c4%91%c6%b0%e1%bb%a3c%20d%c3%a3y%20ho%c3%a1n%20v%e1%bb%8b%20v%e1%bb%9bi%20i-1%20ph%e1%ba%a7n%20t%e1%bb%ad%2c%20gi%e1%bb%9d%20ta%20s%e1%ba%bd%20%c4%91%e1%ba%b7t%20ph%e1%ba%a7n%20t%e1%bb%ad%20th%e1%bb%a9%20i%20v%c3%a0o%20t%e1%ba%adp%20c%c3%b3%20t%e1%ba%a5t%20c%e1%ba%a3%20n-1%20c%c3%a1ch%20th%c3%aam%20ph%e1%ba%a7n%20t%e1%bb%ad%20i%3a">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri%2f&t=C%c3%a1ch%20%c4%91%e1%ba%bfm%20s%e1%bb%91%20ho%c3%a1n%20v%e1%bb%8b%20m%c3%a0%20kh%c3%b4ng%20c%c3%b3%20ph%e1%ba%a7n%20t%e1%bb%ad%20n%c3%a0o%20n%e1%ba%b1m%20%c4%91%c3%bang%20v%e1%bb%8b%20tr%c3%ad.%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2020  v4ngtr 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+  
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</html>

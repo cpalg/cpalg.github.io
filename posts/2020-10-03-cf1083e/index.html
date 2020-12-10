@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> The Fair Nut and Rectangles - Codeforces </title>
+  <meta name="description" content="Trang web mình lưu trữ lại các kiến thức lập trình mình đã học.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="The Fair Nut and Rectangles - Codeforces" />
+<meta property="og:description" content="Link đề bài:  https://codeforces.com/contest/1083/problem/E/.  Hướng dẫn:  Đầu tiên ta sắp xếp các hình chữ nhật theo chiều dài tăng dần, mà đề nói không có hình chữ nhật nào chứa hình khác \(-&gt;\) Chiều rộng các hình chữ nhật sau khi sắp xếp sẽ giảm dần. Gọi f[i] là cách chọn tối ưu để chọn một số hình chữ nhật từ 1 tới i:  Ta có: f[i] = max(f[j] &#43; h[i]*w[i] - h[i]*w[j] - a[i]) \((0 &lt;j &lt; i)\) (hcn thứ \(j\) là hình cuối cùng ta chọn trước khi chọn hcn thứ \(i\))." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cpalg.github.io/posts/2020-10-03-cf1083e/" />
+<meta property="article:published_time" content="2020-10-03T02:36:54+00:00" />
+<meta property="article:modified_time" content="2020-10-03T02:36:54+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The Fair Nut and Rectangles - Codeforces"/>
+<meta name="twitter:description" content="Link đề bài:  https://codeforces.com/contest/1083/problem/E/.  Hướng dẫn:  Đầu tiên ta sắp xếp các hình chữ nhật theo chiều dài tăng dần, mà đề nói không có hình chữ nhật nào chứa hình khác \(-&gt;\) Chiều rộng các hình chữ nhật sau khi sắp xếp sẽ giảm dần. Gọi f[i] là cách chọn tối ưu để chọn một số hình chữ nhật từ 1 tới i:  Ta có: f[i] = max(f[j] &#43; h[i]*w[i] - h[i]*w[j] - a[i]) \((0 &lt;j &lt; i)\) (hcn thứ \(j\) là hình cuối cùng ta chọn trước khi chọn hcn thứ \(i\))."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://cpalg.github.io/css/style-white.css">
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://cpalg.github.io/images/favicon.ico" />
+
+  
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://cpalg.github.io/posts/2020-10-03-acquire/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://cpalg.github.io/posts/2020-10-04-cf631e/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&text=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&is_video=false&description=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&name=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces&description=Link%20%c4%91%e1%bb%81%20b%c3%a0i%3a%20%20https%3a%2f%2fcodeforces.com%2fcontest%2f1083%2fproblem%2fE%2f.%20%20H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%3a%20%20%c4%90%e1%ba%a7u%20ti%c3%aan%20ta%20s%e1%ba%afp%20x%e1%ba%bfp%20c%c3%a1c%20h%c3%acnh%20ch%e1%bb%af%20nh%e1%ba%adt%20theo%20chi%e1%bb%81u%20d%c3%a0i%20t%c4%83ng%20d%e1%ba%a7n%2c%20m%c3%a0%20%c4%91%e1%bb%81%20n%c3%b3i%20kh%c3%b4ng%20c%c3%b3%20h%c3%acnh%20ch%e1%bb%af%20nh%e1%ba%adt%20n%c3%a0o%20ch%e1%bb%a9a%20h%c3%acnh%20kh%c3%a1c%20%5c%28-%26gt%3b%5c%29%20Chi%e1%bb%81u%20r%e1%bb%99ng%20c%c3%a1c%20h%c3%acnh%20ch%e1%bb%af%20nh%e1%ba%adt%20sau%20khi%20s%e1%ba%afp%20x%e1%ba%bfp%20s%e1%ba%bd%20gi%e1%ba%a3m%20d%e1%ba%a7n.%20G%e1%bb%8di%20f%5bi%5d%20l%c3%a0%20c%c3%a1ch%20ch%e1%bb%8dn%20t%e1%bb%91i%20%c6%b0u%20%c4%91%e1%bb%83%20ch%e1%bb%8dn%20m%e1%bb%99t%20s%e1%bb%91%20h%c3%acnh%20ch%e1%bb%af%20nh%e1%ba%adt%20t%e1%bb%ab%201%20t%e1%bb%9bi%20i%3a%20%20Ta%20c%c3%b3%3a%20f%5bi%5d%20%3d%20max%28f%5bj%5d%20%2b%20h%5bi%5d%2aw%5bi%5d%20-%20h%5bi%5d%2aw%5bj%5d%20-%20a%5bi%5d%29%20%5c%28%280%20%26lt%3bj%20%26lt%3b%20i%29%5c%29%20%28hcn%20th%e1%bb%a9%20%5c%28j%5c%29%20l%c3%a0%20h%c3%acnh%20cu%e1%bb%91i%20c%c3%b9ng%20ta%20ch%e1%bb%8dn%20tr%c6%b0%e1%bb%9bc%20khi%20ch%e1%bb%8dn%20hcn%20th%e1%bb%a9%20%5c%28i%5c%29%29.">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&t=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#link-đề-bài">Link đề bài:</a></li>
+    <li><a href="#hướng-dẫn">Hướng dẫn:</a></li>
+    <li><a href="#code-mẫu">Code mẫu:</a></li>
+    <li><a href="#tham-khảo">Tham khảo:</a></li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        The Fair Nut and Rectangles - Codeforces
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2020-10-03 02:36:54 &#43;0000 UTC" itemprop="datePublished">2020-10-03</time>
+          
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng-bao-l%E1%BB%93i" rel="tag">Quy hoạch động bao lồi</a>
+            
+            
+            <a class="tag-link" href="/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng" rel="tag">Quy hoạch động</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/codeforces" rel="tag">Codeforces</a>
+            
+        </div> 
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <h2 id="link-đề-bài">Link đề bài:</h2>
+<ul>
+<li><a href="https://codeforces.com/contest/1083/problem/E/">https://codeforces.com/contest/1083/problem/E/</a>.</li>
+</ul>
+<h2 id="hướng-dẫn">Hướng dẫn:</h2>
+<ul>
+<li>Đầu tiên ta sắp xếp các hình chữ nhật theo chiều dài tăng dần, mà đề nói không có hình chữ nhật nào chứa hình khác \(-&gt;\) Chiều rộng các hình chữ nhật sau khi sắp xếp sẽ giảm dần.</li>
+<li>Gọi f[i] là cách chọn tối ưu để chọn một số hình chữ nhật từ 1 tới i:
+<ul>
+<li>Ta có: <code>f[i] = max(f[j] + h[i]*w[i] - h[i]*w[j] - a[i])</code> \((0 &lt;j &lt; i)\)
+(hcn thứ \(j\) là hình cuối cùng ta chọn trước khi chọn hcn thứ \(i\)).</li>
+</ul>
+</li>
+<li>Để giảm độ phức tạp của bài toán ta có thể dùng qhd bao lồi.</li>
+</ul>
+<h2 id="code-mẫu">Code mẫu:</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;bits/stdc++.h&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#define pb push_back
+</span><span style="color:#ff79c6">#define FOR(i, a, b) for(int i = int(a); i &lt;= int(b); i++)
+</span><span style="color:#ff79c6">#define FORD(i, a, b) for(int i = int(a); i &gt;= int(b); i--)
+</span><span style="color:#ff79c6">#define REP(i, r) for(int i = 0; i &lt; r; i++)
+</span><span style="color:#ff79c6">#define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+</span><span style="color:#ff79c6">#define READFILE freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin)
+</span><span style="color:#ff79c6">#define WRITEFILE freopen(&#34;output.txt&#34;, &#34;w&#34;, stdout);
+</span><span style="color:#ff79c6">#define ll long long
+</span><span style="color:#ff79c6">#define ii pair&lt;ll, ll&gt;
+</span><span style="color:#ff79c6">#define fi first
+</span><span style="color:#ff79c6">#define se second
+</span><span style="color:#ff79c6"></span><span style="color:#ff79c6">using</span> <span style="color:#ff79c6">namespace</span> std;
+
+<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int</span> MAX<span style="color:#ff79c6">=-</span><span style="color:#bd93f9">1</span>;
+
+<span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Rect</span>
+{
+	ll x, y, cost;
+	Rect(ll _x<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>, ll _y<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>, ll _cost <span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>) {x<span style="color:#ff79c6">=</span> _x; y <span style="color:#ff79c6">=</span>_y; cost <span style="color:#ff79c6">=</span> _cost;}
+};
+
+<span style="color:#8be9fd">bool</span> <span style="color:#ff79c6">operator</span> <span style="color:#ff79c6">&lt;</span> (Rect a, Rect b){
+	<span style="color:#ff79c6">if</span> (a.x <span style="color:#ff79c6">==</span> b.x) <span style="color:#ff79c6">return</span> a.y <span style="color:#ff79c6">&lt;</span> b.y;
+	<span style="color:#ff79c6">return</span> a.x <span style="color:#ff79c6">&lt;</span> b.x;
+}
+
+std<span style="color:#ff79c6">::</span>vector<span style="color:#ff79c6">&lt;</span>Rect<span style="color:#ff79c6">&gt;</span> a;
+std<span style="color:#ff79c6">::</span>vector<span style="color:#ff79c6">&lt;</span>ll<span style="color:#ff79c6">&gt;</span> A;
+std<span style="color:#ff79c6">::</span>vector<span style="color:#ff79c6">&lt;</span>ll<span style="color:#ff79c6">&gt;</span> B;
+
+<span style="color:#8be9fd">int</span> n, pt;
+
+<span style="color:#8be9fd">bool</span> <span style="color:#50fa7b">Bad</span>(<span style="color:#8be9fd">int</span> l1, <span style="color:#8be9fd">int</span> l2, <span style="color:#8be9fd">int</span> l3){
+	<span style="color:#ff79c6">return</span> (<span style="color:#bd93f9">1ll</span><span style="color:#ff79c6">*</span>B[l3]<span style="color:#ff79c6">-</span>B[l1])<span style="color:#ff79c6">*</span>(A[l1]<span style="color:#ff79c6">-</span>A[l2])<span style="color:#ff79c6">&gt;</span><span style="color:#bd93f9">1ll</span><span style="color:#ff79c6">*</span>(B[l2]<span style="color:#ff79c6">-</span>B[l1])<span style="color:#ff79c6">*</span>(A[l1]<span style="color:#ff79c6">-</span>A[l3]);
+}
+
+<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">Add</span>(ll a, ll b){
+	A.push_back(a);
+	B.push_back(b);
+	<span style="color:#ff79c6">while</span> (A.size() <span style="color:#ff79c6">&gt;=</span><span style="color:#bd93f9">3</span> <span style="color:#ff79c6">&amp;&amp;</span> Bad(A.size()<span style="color:#ff79c6">-</span><span style="color:#bd93f9">3</span>, A.size()<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>, A.size()<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)){
+		A.erase(A.end()<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>);
+		B.erase(B.end()<span style="color:#ff79c6">-</span><span style="color:#bd93f9">2</span>);
+	}
+}
+
+ll <span style="color:#50fa7b">Query</span>(ll x){
+	<span style="color:#ff79c6">if</span> (pt <span style="color:#ff79c6">&gt;=</span> A.size()) pt <span style="color:#ff79c6">=</span> A.size() <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+	<span style="color:#ff79c6">while</span> (pt <span style="color:#ff79c6">&lt;</span> A.size()<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">&amp;&amp;</span> A[pt]<span style="color:#ff79c6">*</span>x <span style="color:#ff79c6">+</span> B[pt] <span style="color:#ff79c6">&lt;</span> A[pt<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>]<span style="color:#ff79c6">*</span>x <span style="color:#ff79c6">+</span> B[pt<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>]) pt<span style="color:#ff79c6">++</span>;
+	<span style="color:#ff79c6">return</span> A[pt]<span style="color:#ff79c6">*</span>x <span style="color:#ff79c6">+</span> B[pt];
+}
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>(<span style="color:#8be9fd">int</span> argc, <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">const</span> <span style="color:#ff79c6">*</span>argv[])
+{
+	FAST;
+	<span style="color:#6272a4">// freopen(&#34;input.txt&#34;,&#34;r&#34;,stdin);
+</span><span style="color:#6272a4"></span>	cin <span style="color:#ff79c6">&gt;&gt;</span> n;
+	a.resize(n<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>);
+	<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>n; i<span style="color:#ff79c6">++</span>){
+		cin <span style="color:#ff79c6">&gt;&gt;</span> a[i].x <span style="color:#ff79c6">&gt;&gt;</span> a[i].y <span style="color:#ff79c6">&gt;&gt;</span> a[i].cost;
+	}
+	sort(a.begin()<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, a.begin()<span style="color:#ff79c6">+</span>n<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>);<span style="color:#6272a4">// x tang -&gt; y giam 
+</span><span style="color:#6272a4"></span>	Add(<span style="color:#bd93f9">0</span>,<span style="color:#bd93f9">0</span>);
+	ll Ans <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+	<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>n; i<span style="color:#ff79c6">++</span>){
+		ll tmp <span style="color:#ff79c6">=</span> Query(a[i].y) <span style="color:#ff79c6">-</span> a[i].cost ;
+		tmp<span style="color:#ff79c6">+=</span>a[i].x <span style="color:#ff79c6">*</span> a[i].y;
+		Ans <span style="color:#ff79c6">=</span> max(Ans, tmp);
+		Add(<span style="color:#ff79c6">-</span>a[i].x, tmp);
+	}
+	cout <span style="color:#ff79c6">&lt;&lt;</span> Ans;
+	<span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+}
+</code></pre></div><h2 id="tham-khảo">Tham khảo:</h2>
+<ul>
+<li><a href="https://codeforces.com/blog/entry/63823">https://codeforces.com/blog/entry/63823</a>.</li>
+<li><a href="https://vnoi.info/wiki/translate/wcipeg/Convex-Hull-Trick.md">https://vnoi.info/wiki/translate/wcipeg/Convex-Hull-Trick.md</a>.</li>
+<li><a href="https://anh-ngu-yen.github.io/posts/2020-10-02-qhd-bao-loi/">https://anh-ngu-yen.github.io/posts/2020-10-02-qhd-bao-loi/</a>.</li>
+<li><a href="https://vnoi.info/wiki/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong.md#3-bao-l%E1%BB%93i-%C4%91%C6%B0%E1%BB%9Dng-th%E1%BA%B3ng">https://vnoi.info/wiki/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong.md#3-bao-l%E1%BB%93i-%C4%91%C6%B0%E1%BB%9Dng-th%E1%BA%B3ng</a>.</li>
+<li><a href="https://github.com/t3nsor/SPOJ/blob/master/acquire.cpp">https://github.com/t3nsor/SPOJ/blob/master/acquire.cpp</a>.</li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'v4ngtr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#link-đề-bài">Link đề bài:</a></li>
+    <li><a href="#hướng-dẫn">Hướng dẫn:</a></li>
+    <li><a href="#code-mẫu">Code mẫu:</a></li>
+    <li><a href="#tham-khảo">Tham khảo:</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&text=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&is_video=false&description=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&title=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&name=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces&description=Link%20%c4%91%e1%bb%81%20b%c3%a0i%3a%20%20https%3a%2f%2fcodeforces.com%2fcontest%2f1083%2fproblem%2fE%2f.%20%20H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%3a%20%20%c4%90%e1%ba%a7u%20ti%c3%aan%20ta%20s%e1%ba%afp%20x%e1%ba%bfp%20c%c3%a1c%20h%c3%acnh%20ch%e1%bb%af%20nh%e1%ba%adt%20theo%20chi%e1%bb%81u%20d%c3%a0i%20t%c4%83ng%20d%e1%ba%a7n%2c%20m%c3%a0%20%c4%91%e1%bb%81%20n%c3%b3i%20kh%c3%b4ng%20c%c3%b3%20h%c3%acnh%20ch%e1%bb%af%20nh%e1%ba%adt%20n%c3%a0o%20ch%e1%bb%a9a%20h%c3%acnh%20kh%c3%a1c%20%5c%28-%26gt%3b%5c%29%20Chi%e1%bb%81u%20r%e1%bb%99ng%20c%c3%a1c%20h%c3%acnh%20ch%e1%bb%af%20nh%e1%ba%adt%20sau%20khi%20s%e1%ba%afp%20x%e1%ba%bfp%20s%e1%ba%bd%20gi%e1%ba%a3m%20d%e1%ba%a7n.%20G%e1%bb%8di%20f%5bi%5d%20l%c3%a0%20c%c3%a1ch%20ch%e1%bb%8dn%20t%e1%bb%91i%20%c6%b0u%20%c4%91%e1%bb%83%20ch%e1%bb%8dn%20m%e1%bb%99t%20s%e1%bb%91%20h%c3%acnh%20ch%e1%bb%af%20nh%e1%ba%adt%20t%e1%bb%ab%201%20t%e1%bb%9bi%20i%3a%20%20Ta%20c%c3%b3%3a%20f%5bi%5d%20%3d%20max%28f%5bj%5d%20%2b%20h%5bi%5d%2aw%5bi%5d%20-%20h%5bi%5d%2aw%5bj%5d%20-%20a%5bi%5d%29%20%5c%28%280%20%26lt%3bj%20%26lt%3b%20i%29%5c%29%20%28hcn%20th%e1%bb%a9%20%5c%28j%5c%29%20l%c3%a0%20h%c3%acnh%20cu%e1%bb%91i%20c%c3%b9ng%20ta%20ch%e1%bb%8dn%20tr%c6%b0%e1%bb%9bc%20khi%20ch%e1%bb%8dn%20hcn%20th%e1%bb%a9%20%5c%28i%5c%29%29.">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-03-cf1083e%2f&t=The%20Fair%20Nut%20and%20Rectangles%20-%20Codeforces">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2020  v4ngtr 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+  
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</html>

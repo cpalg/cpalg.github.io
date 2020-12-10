@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Toán on CP notebook</title>
+    <link>https://cpalg.github.io/tags/to%C3%A1n/</link>
+    <description>Recent content in Toán on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Thu, 29 Oct 2020 07:02:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/to%C3%A1n/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bội số chung nhỏ nhất - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-29-ctnown/</link>
+      <pubDate>Thu, 29 Oct 2020 07:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-29-ctnown/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/FINDNUM/.  Hướng dẫn: Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;string.h&amp;gt;#define int unsigned long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 355; int n, Prime[MAX], f[MAX][MAX], r[MAX], T; std::vector&amp;lt;int&amp;gt; pr; void Eratos(){ memset(Prime, 1, sizeof Prime); Prime[0] = Prime[1] = 0; for(int i=2; i*i &amp;lt; MAX; i++){ if (Prime[i]) for(int j=i*2; j&amp;lt;MAX; j+=i){ Prime[j] = false; } } pr.</description>
+    </item>
+    
+    <item>
+      <title>Tìm số - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-29-findnum/</link>
+      <pubDate>Thu, 29 Oct 2020 06:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-29-findnum/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/FINDNUM/.  Hướng dẫn:  Gọi f[i][j] là số nhỏ nhất có i ước, tạo từ j số nguyên tố đầu tiên, Số có 1000 ước ta chỉ xét khoảng 10 số nguyên tố đầu tiên là đủ. Ta có thể phân tích số tự nhiên x thành dãy x1^k1 * x2^k2 * ... *xn^kn. Với mỗi xi có (ki+1) cách chọn. Từ nhận xét trên, ta có công thức qhđ: f[i][j] = min(f[i/(k+1)][j-1] * prime[j]^k, f[i][j-1]).</description>
+    </item>
+    
+    <item>
+      <title>Quy hoạch động bao lồi - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-10-02-qhd-bao-loi/</link>
+      <pubDate>Fri, 02 Oct 2020 02:35:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-02-qhd-bao-loi/</guid>
+      <description>Kĩ thuật qhd bao lồi là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với thuật toán bao lồi của hình học tính toán. Ngoài ra có một kĩ thuật liên quan đến kĩ thuật bao lồi là IT đoạn thẳng.</description>
+    </item>
+    
+    <item>
+      <title>Tìm bao lồi trong mặt phẳng - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-09-23-bao-loi/</link>
+      <pubDate>Wed, 23 Sep 2020 07:35:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-23-bao-loi/</guid>
+      <description>Định nghĩa:  Trong hình học tính toán (computational geometry), bao lồi (convex hull) của một tập điểm là tập lồi nhỏ nhất (theo diện tích, thể tích, …) mà tất cả các điểm đều nằm trong tập đó.
+ Thuật toán tìm bao lồi trong mặt phẳng: Thuật toán Graham:   Chọn đỉnh dưới trái cùng làm gốc, đỉnh này chắc chắn thuộc bao lồi.
+  Sắp xếp các đỉnh còn lại theo chiều kim đồng hồ tính từ đỉnh đó ( các đỉnh nằm trong một nửa mặt phẳng) (Nếu 2 đỉnh này cùng một tạo một góc so với đỉnh trái cùng thì ta xếp theo xa dần).</description>
+    </item>
+    
+    <item>
+      <title>Cách đếm số hoán vị mà không có phần tử nào nằm đúng vị trí. - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri/</link>
+      <pubDate>Tue, 22 Sep 2020 05:56:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri/</guid>
+      <description>Bài toán:  Cho môt dãy n phần tử gồm các hoán vị của dãy từ 1 tới n, đếm số hoán vị mà trong các phần tử, không có phần tử nào nằm đúng vị trí.
+ Cách làm:  Gọi C[i] là số hoán vị gồm i phần tử mà không có phần tử đúng vị trí. Ta có: C[i] = (i-1) * (C[i-1] + C[i-2]) . Với C[1] = 0, C[2] = 1  Chứng minh: Giả sử ta đã tạo được dãy hoán vị với i-1 phần tử, giờ ta sẽ đặt phần tử thứ i vào tập có tất cả n-1 cách thêm phần tử i:</description>
+    </item>
+    
+  </channel>
+</rss>

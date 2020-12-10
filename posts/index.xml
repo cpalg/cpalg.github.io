@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on CP notebook</title>
+    <link>https://cpalg.github.io/posts/</link>
+    <description>Recent content in Posts on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Wed, 18 Nov 2020 07:05:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2d Segment tree</title>
+      <link>https://cpalg.github.io/posts/2020-11-19-it2d/</link>
+      <pubDate>Wed, 18 Nov 2020 07:05:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-11-19-it2d/</guid>
+      <description>#include &amp;lt;bits/stdc++.h&amp;gt;#define ii vector&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 1111; int n, m, a[MAX][MAX], t[MAX*4][MAX*4], s[MAX][MAX], Q; void BuildY(int idX, int lX, int rX, int idY, int lY, int rY){ if (lY==rY){ if (lX==rX){ t[idX][idY] = a[lX][lY]; } else{ t[idX][idY] = max(t[idX*2][idY], t[idX*2+1][idY]); } return; } int mid = (lY+rY)/2; BuildY(idX, lX, rX, idY*2, lY, mid); BuildY(idX, lX, rX, idY*2+1, mid+1, rY); t[idX][idY] = max(t[idX][idY*2], t[idX][idY*2+1]); } void BuildX(int id, int l, int r){ if (l==r){ BuildY(id,l,r,1,1,m); return; } int mid = (l+r)/2; BuildX(id*2, l, mid); BuildX(id*2+1, mid+1, r); BuildY(id,l,r,1,1,m); } int QueryY(int idX, int id, int l, int r, int L, int R){ if (r&amp;lt;L || R&amp;lt;l) return -1; if (L&amp;lt;=l &amp;amp;&amp;amp; r&amp;lt;=R){ return t[idX][id]; } int mid = (l+r)/2; return max(QueryY(idX,id*2, l, mid, L, R), QueryY(idX, id*2+1, mid+1, r, L, R)); } int Query(int id, int l, int r, int L, int R, int lY, int rY){ if (r &amp;lt; L || R &amp;lt; l) return -1; if (L&amp;lt;=l &amp;amp;&amp;amp; r &amp;lt;=R){ return QueryY(id, 1, 1, m, lY, rY); } int mid = (l+r)/2; return max(Query(id*2, l, mid, L, R, lY, rY), Query(id*2+1, mid+1, r, L, R, lY, rY)); } int Sum(int x, int y, int u, int v){ return s[u][v] - s[u][y-1] - s[x-1][v] + s[x-1][y-1]; } int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+    <item>
+      <title>Tập huấn Hưng Yên - Ngày 1</title>
+      <link>https://cpalg.github.io/posts/2020-11-09-hung-yen-ngay-1/</link>
+      <pubDate>Wed, 11 Nov 2020 01:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-11-09-hung-yen-ngay-1/</guid>
+      <description>Đề bài ngày 1:  Đề 1: Link Đề 2: Link  Đề 1: Bài 1: Tìm kiếm tam phân.
+#include &amp;lt;bits/stdc++.h&amp;gt;#define ii vector&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 3e5+6; long long a[MAX], b[MAX], n; long long Cal(long long x){ long long ret = abs(x - a[n/2+1]) + abs(x - b[n/2+1]); int cnt = 0; for(int i=n/2; i&amp;gt;0; i--){ cnt++; ret+= abs(a[i] - x - cnt) + abs(b[i] - x - cnt); } cnt = 0; for(int i=n/2+2; i&amp;lt;n+1; i++){ cnt++; ret+= abs(a[i] - x - cnt) + abs(b[i] - x - cnt); } return ret; } int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+    <item>
+      <title>Chia quà - ntucoder</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-divide/</link>
+      <pubDate>Fri, 30 Oct 2020 01:03:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-divide/</guid>
+      <description>Link đề bài:  http://ntucoder.net/Problem/Details/4414.  Hướng dẫn:  Gọi f[i][j] là số cách chia các món quà từ 1 tới i món quà, vào j túi. Nếu chia món quà thứ i vào một túi mới thì f[i][j] = f[i-1][j-1] Nếu bỏ món quà đó vào các túi sẵn có f[i][j] = f[i-1][j] * j  Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define JN Jonasngyn #define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+    <item>
+      <title>MULBIG - ntucoder</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-mulbig/</link>
+      <pubDate>Fri, 30 Oct 2020 01:03:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-mulbig/</guid>
+      <description>Link đề bài:  http://ntucoder.net/Problem/Details/5683.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define JN Jonasngyn #define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; typedef vector&amp;lt;ll&amp;gt; bigNum; const int MOD=1e9; bigNum a, b; bool Neg=0; bigNum toBig(int a) { bigNum ret; ret.</description>
+    </item>
+    
+    <item>
+      <title>Chia kẹo - LQDOJ</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-chiakeo/</link>
+      <pubDate>Fri, 30 Oct 2020 01:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-chiakeo/</guid>
+      <description>Link đề bài:  https://lqdoj.edu.vn/problem/sharecandies/.  Hướng dẫn:  Gọi f[i][j] là số cách chia kẹo cho i người, và đã chia được j viên kẹo.  Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;string.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 1e5+6; const int MOD = 1e9+7; int n, k, f[101][MAX], a[MAX]; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.tie(0); cout.</description>
+    </item>
+    
+    <item>
+      <title>SGAME8 - LQDOJ</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-sgame8/</link>
+      <pubDate>Fri, 30 Oct 2020 01:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-sgame8/</guid>
+      <description>Link đề bài:  https://lqdoj.edu.vn/problem/sgame8/.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; typedef vector&amp;lt;int&amp;gt; bigNum; const int MAX = -1; const int BASE = 1000000000; bigNum Fix(bigNum a){ a.push_back(0); for(int i=0; i&amp;lt;(int)a.size(); i++){ a[i+1]+= a[i]/BASE; a[i]%= BASE; while (a[i] &amp;lt; 0) a[i]+= BASE, a[i+1]--; } while (a.size()&amp;gt;1 &amp;amp;&amp;amp; a.back()==0) a.pop_back(); return a; } void Print(bigNum a){ printf(&amp;#34;%d&amp;#34;, a.back()); for(int i=a.</description>
+    </item>
+    
+    <item>
+      <title>Bội số chung nhỏ nhất - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-29-ctnown/</link>
+      <pubDate>Thu, 29 Oct 2020 07:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-29-ctnown/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/FINDNUM/.  Hướng dẫn: Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;string.h&amp;gt;#define int unsigned long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 355; int n, Prime[MAX], f[MAX][MAX], r[MAX], T; std::vector&amp;lt;int&amp;gt; pr; void Eratos(){ memset(Prime, 1, sizeof Prime); Prime[0] = Prime[1] = 0; for(int i=2; i*i &amp;lt; MAX; i++){ if (Prime[i]) for(int j=i*2; j&amp;lt;MAX; j+=i){ Prime[j] = false; } } pr.</description>
+    </item>
+    
+    <item>
+      <title>Tìm số - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-29-findnum/</link>
+      <pubDate>Thu, 29 Oct 2020 06:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-29-findnum/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/FINDNUM/.  Hướng dẫn:  Gọi f[i][j] là số nhỏ nhất có i ước, tạo từ j số nguyên tố đầu tiên, Số có 1000 ước ta chỉ xét khoảng 10 số nguyên tố đầu tiên là đủ. Ta có thể phân tích số tự nhiên x thành dãy x1^k1 * x2^k2 * ... *xn^kn. Với mỗi xi có (ki+1) cách chọn. Từ nhận xét trên, ta có công thức qhđ: f[i][j] = min(f[i/(k+1)][j-1] * prime[j]^k, f[i][j-1]).</description>
+    </item>
+    
+    <item>
+      <title>Thuật toán KMP - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-10-17-kmp/</link>
+      <pubDate>Sat, 17 Oct 2020 07:05:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-17-kmp/</guid>
+      <description>#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;using namespace std; string s, t; int p[2000005]; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); cin &amp;gt;&amp;gt; s; cin &amp;gt;&amp;gt; t; s= &amp;#39;#&amp;#39; + t + &amp;#34;#&amp;#34; + s; //kmp 	int k = 0; for(int i=2; i&amp;lt;(int)s.size(); i++){ while (k &amp;amp;&amp;amp; s[i]!= s[k+1]) k = p[k]; if (s[i] == s[k+1]) k++; p[i] = k; } // 	int res = 0; for(int i=1; i&amp;lt;(int) s.</description>
+    </item>
+    
+    <item>
+      <title>Thuật toán Z - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-10-17-thuat-toan-z/</link>
+      <pubDate>Sat, 17 Oct 2020 07:05:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-17-thuat-toan-z/</guid>
+      <description>cp handbook
+#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;using namespace std; string s; std::vector&amp;lt;int&amp;gt; z; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #ifndef ONLINE_JUDGE 	// freopen(&amp;#34;input.txt&amp;#34;,&amp;#34;r&amp;#34;,stdin); 	#endif 	cin &amp;gt;&amp;gt; s; int n = s.size(); z.resize(n,0); z[0] = n; int l =0, r= 0 ; for(int i=1; i&amp;lt;n; i++){ int x = max(0, min(r-i+1, z[i-l])); while (i+x &amp;lt; n &amp;amp;&amp;amp; s[x] == s[i+x]) x++; z[i] = x; if (x + i -1&amp;gt; r){ l = i; r = i + x -1; } } for(int i=1; i&amp;lt; n; i++){ if (z[i] + i == n) cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#34; &amp;#34;; } cout &amp;lt;&amp;lt; n; return 0; } </description>
+    </item>
+    
+    <item>
+      <title>Edge Directions - CSES</title>
+      <link>https://cpalg.github.io/posts/2020-10-17-graph-directions-copy/</link>
+      <pubDate>Sat, 17 Oct 2020 03:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-17-graph-directions-copy/</guid>
+      <description>Link đề bài:  https://cses.fi/problemset/task/1756/.  Hướng dẫn: Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 2e5+6; int n, m, vs[MAX], t[MAX]; std::vector&amp;lt;int&amp;gt; g[MAX]; std::vector&amp;lt;ii&amp;gt; res; void DFS(int u, int par = 0){ vs[u] = 1; for(int v: g[u]){ if (v == par) continue; if (vs[v] == 1) continue; if (!vs[v]){ res.push_back(ii(u, v)); DFS(v, u); } else{ res.</description>
+    </item>
+    
+    <item>
+      <title>Swap Game - CSES</title>
+      <link>https://cpalg.github.io/posts/2020-10-17-swap-game/</link>
+      <pubDate>Sat, 17 Oct 2020 03:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-17-swap-game/</guid>
+      <description>Link đề bài:  https://cses.fi/problemset/task/1670/.  Hướng dẫn:  Tạo đồ thị mỗi đỉnh chính là mỗi trạng thái của bảng, có 9! trạng thái, mỗi cạnh chính là một bước di chuyển 2 ô kề nhau. Sau đó BFS từ đỉnh gốc đề bài cho đến đỉnh đích (123456789).  Code mẫu: #include &amp;lt;unordered_map&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;string.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; string s; std::vector&amp;lt;ii&amp;gt; g; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+    <item>
+      <title>Tập huấn bình dương ngày 1</title>
+      <link>https://cpalg.github.io/posts/2020-10-11-binh-duong-ngay-1/</link>
+      <pubDate>Sun, 11 Oct 2020 03:37:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-11-binh-duong-ngay-1/</guid>
+      <description>Lockdown  Đề bài: lockdown.pdf. Solution: Để phong tỏa 1 con đường mà số con đường bị tăng khoảng cách li&#39; &amp;gt; li là lớn nhất, ta sẽ ưu tiên phong tỏa các con đường đi qua đỉnh 1. Ta thử phong tỏa các con đường đó, sử dụng Dijkstra để đếm xem có bao nhiêu con đường bị tăng khoảng cách. Code mẫu:  #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+    <item>
+      <title>Đề bài tập huấn bình dương</title>
+      <link>https://cpalg.github.io/posts/2020-10-11-tap-huan-binh-duong/</link>
+      <pubDate>Sun, 11 Oct 2020 03:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-11-tap-huan-binh-duong/</guid>
+      <description> BINH_DUONG_NGAY_1.zip. BINH_DUONG_NGAY_2.zip. BINH_DUONG_NGAY_3.zip.  </description>
+    </item>
+    
+    <item>
+      <title>Query on a tree - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-07-qtree/</link>
+      <pubDate>Wed, 07 Oct 2020 03:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-07-qtree/</guid>
+      <description>Link đề bài:  https://www.spoj.com/problems/QTREE/.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 2e4+6; int n, T, cnt, Pos[MAX], Par[MAX], Deep[MAX]; int t[MAX*4], nChild[MAX], Head[MAX]; std::vector&amp;lt;ii&amp;gt; g[MAX]; ii Edges[MAX]; void Update(int id, int l, int r, int pos, int val){ if (l==r){ t[id] = val; return; }	int mid = (l+r)/2; if (pos &amp;lt;= mid) Update(id*2, l , mid, pos, val); else Update(id*2+1, mid+1, r, pos, val); t[id] = max(t[id*2], t[id*2+1]); } int ITQuery(int id, int l, int r, int L, int R){ if (R&amp;lt;l || r&amp;lt;L) return -999999; if (L&amp;lt;=l &amp;amp;&amp;amp; r&amp;lt;=R){ return t[id]; } int mid =(l+r)/2; return max(ITQuery(id*2, l, mid, L,R), ITQuery(id*2+1, mid+1, r, L, R)); } int Query(int u, int v){ int res = -999999; // di len toi khi nao cung mot nhanh 	while (Head[u]!</description>
+    </item>
+    
+    <item>
+      <title>Pictures with Kittens - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-06-cf1077f2/</link>
+      <pubDate>Tue, 06 Oct 2020 03:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-06-cf1077f2/</guid>
+      <description>Link đề bài:  https://codeforces.com/contest/1077/problem/F2.  Hướng dẫn: Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;queue&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX= 5005; ll n, k, x, a[MAX], f[MAX][MAX]; deque&amp;lt;int&amp;gt; pq; void Insert(int col, int row){ while (pq.</description>
+    </item>
+    
+    <item>
+      <title>Boredom - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-06-cf445a/</link>
+      <pubDate>Tue, 06 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-06-cf445a/</guid>
+      <description>Link đề bài:  https://codeforces.com/contest/455/problem/A.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX= 1e5+6; ll n, a[MAX], Mx, cnt[MAX], f[MAX], pi; int main() { #ifndef ONLINE_JUDGE  READFILE; #endif  FAST; cin &amp;gt;&amp;gt; n; for(int i=1; i&amp;lt;=n; i++) cin &amp;gt;&amp;gt; a[i]; for(int i=1; i&amp;lt;=n; i++){ cnt[a[i]]++; Mx = max(Mx, a[i]); } for(int i=1; i&amp;lt;=Mx; i++){ f[i] = max(f[i-1], f[pi] + cnt[i]*i); if (f[i-1] &amp;gt; f[pi]) pi = i-1; } cout&amp;lt;&amp;lt; f[Mx]; return 0; } Tham khảo:  https://robert1003.</description>
+    </item>
+    
+    <item>
+      <title>Cats Transport - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-05-cf185b/</link>
+      <pubDate>Mon, 05 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-05-cf185b/</guid>
+      <description>Link đề bài:  https://codeforces.com/contest/311/problem/B.  Hướng dẫn: Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;algorithm&amp;gt;#define ll long long #define ii pair&amp;lt;ll, ll&amp;gt; #define fi first #define se second using namespace std; const int MAX = 1e5+6; std::vector&amp;lt;ll&amp;gt; A; std::vector&amp;lt;ll&amp;gt; B; int n, m, k, pt; ll a[MAX], c[MAX], f[MAX][123], s[MAX]; ii b[MAX]; bool Bad(int l1, int l2, int l3){ return (B[l3] - B[l1]) * (A[l1] - A[l2]) &amp;lt; (B[l2] - B[l1]) * (A[l1] - A[l3]); } void Add(ll a, ll b){ A.</description>
+    </item>
+    
+    <item>
+      <title>Bear and Bowling 4 - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-04-cf660f/</link>
+      <pubDate>Sun, 04 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-04-cf660f/</guid>
+      <description>Link đề bài:  https://codeforces.com/problemset/problem/660/F.  Hướng dẫn:  Gọi:  \(dp_i\) là giá trị lớn nhất tạo được khi ta chọn dãy kết thúc tại vị trí \(i\). \(s_i\) là \(\sum\limits_{x = 1}^i {a_x * x}\). \(p_i\) là \(\sum\limits_{x = 1}^i {a_x}\).   Ta có công thức quy hoạch động: \(dp_i = s_i - j * p_i + s_j - j * p_j\) Hàm có dạng \(a*x+b\) nên dùng qhd bao lồi.</description>
+    </item>
+    
+    <item>
+      <title>Product Sum - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-04-cf631e/</link>
+      <pubDate>Sun, 04 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-04-cf631e/</guid>
+      <description>Link đề bài:  https://codeforces.com/problemset/problem/631/E.  Hướng dẫn:  Ta xét 2 trường hợp:   TH1: Di chuyển một khối từ vị trí \(i\) tới vị trí \(j\) \((i &amp;lt; j)\).
+ Tất cả các khối ở vị trí thứ \(k\) \((i+1 &amp;lt;= k &amp;lt;= j)\) sẽ bị giảm đi \(a_k\). Giá trị của khối \(i\) sẽ tăng từ \(i * a_i\) lên thành \(j * a_j\). Ta có công thức qhđ: \(dp_j = c - \sum\limits_{k = i+1}^j {a_k} + j * a_i - i * a_i\).</description>
+    </item>
+    
+    <item>
+      <title>The Fair Nut and Rectangles - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-03-cf1083e/</link>
+      <pubDate>Sat, 03 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-03-cf1083e/</guid>
+      <description>Link đề bài:  https://codeforces.com/contest/1083/problem/E/.  Hướng dẫn:  Đầu tiên ta sắp xếp các hình chữ nhật theo chiều dài tăng dần, mà đề nói không có hình chữ nhật nào chứa hình khác \(-&amp;gt;\) Chiều rộng các hình chữ nhật sau khi sắp xếp sẽ giảm dần. Gọi f[i] là cách chọn tối ưu để chọn một số hình chữ nhật từ 1 tới i:  Ta có: f[i] = max(f[j] + h[i]*w[i] - h[i]*w[j] - a[i]) \((0 &amp;lt;j &amp;lt; i)\) (hcn thứ \(j\) là hình cuối cùng ta chọn trước khi chọn hcn thứ \(i\)).</description>
+    </item>
+    
+    <item>
+      <title>Land Acquisition - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-03-acquire/</link>
+      <pubDate>Sat, 03 Oct 2020 02:35:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-03-acquire/</guid>
+      <description>Link đề bài:  https://www.spoj.com/problems/ACQUIRE/.  Hướng dẫn:  Ta có một nhận xét rằng: Giả sử tồn tại hai hình chữ nhật với kích thước \((a,b)\) và \((x,y)\). nếu \(a&amp;lt;=x\) và \(b&amp;lt;=y \) thì ta có thể bỏ luôn hình chữ nhật kích thước \((a,b)\) bởi vì chỉ cần gộp hình chữ nhật kích thước \((a,b)\) vào hình chữ nhật kích thước \((x,y)\) thì sẽ không mất phí, do đó ta loại bỏ tất cả các hình chữ nhật thừa.</description>
+    </item>
+    
+    <item>
+      <title>Quy hoạch động bao lồi - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-10-02-qhd-bao-loi/</link>
+      <pubDate>Fri, 02 Oct 2020 02:35:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-02-qhd-bao-loi/</guid>
+      <description>Kĩ thuật qhd bao lồi là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với thuật toán bao lồi của hình học tính toán. Ngoài ra có một kĩ thuật liên quan đến kĩ thuật bao lồi là IT đoạn thẳng.</description>
+    </item>
+    
+    <item>
+      <title>Sửa cầu - VNOI.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-kbuild/</link>
+      <pubDate>Sun, 27 Sep 2020 07:06:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-kbuild/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/KBUILD/.  Hướng dẫn:  Để giải quyết bài toán này ta đặt ra 2 vấn đề chính:  Làm thế nào để tìm đường đi giữa q cặp đỉnh (u, v) (Tìm đường đi từ u tới LCA(u,v) và đường đi từ v tới LCA(u,v))/ Làm thế nào để câp nhật các đường đi từ u tới v trong đpt &amp;lt; log2(n).   Để giải quyết hai vấn đề trên ta dùng Heavy-Light Decomposition để phân rã cây thành các chuỗi thẳng từ đó áp dụng segment tree cập nhật đoạn và tìm LCA giữa các cặp đỉnh (u, v).</description>
+    </item>
+    
+    <item>
+      <title>Heavy-Light Decomposition - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-heavy-light-decomposition/</link>
+      <pubDate>Sun, 27 Sep 2020 07:05:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-heavy-light-decomposition/</guid>
+      <description>Heavy-light decomposition (HLD) là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
+ Thuật toán phân tách cây Trước hết, chúng ta có các định nghĩa như sau:</description>
+    </item>
+    
+    <item>
+      <title>Trò chơi với những viên đá - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-stones/</link>
+      <pubDate>Sun, 27 Sep 2020 06:58:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-stones/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/stones.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second #define ENDL &amp;#34;\n&amp;#34; using namespace std; const int MAX= 111; const int MAXK = 1e5+6; int a[MAX], n, k; int f[MAXK][2]; int DP(int len, bool player){ if (len &amp;lt; 0) return 0; if (f[len][player]!</description>
+    </item>
+    
+    <item>
+      <title>Phép toán với ngăn xếp hai đầu - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-deque/</link>
+      <pubDate>Sun, 27 Sep 2020 06:45:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-deque/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/deque.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second #define ENDL &amp;#34;\n&amp;#34; using namespace std; const int MAX= 3003; long long a[MAX], n, f[MAX][MAX]; long long DP(int l, int r){ if (l &amp;gt; r) return 0; if (f[l][r] !</description>
+    </item>
+    
+    <item>
+      <title>SGAME6 - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-sgame6/</link>
+      <pubDate>Sun, 27 Sep 2020 06:45:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-sgame6/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/sgame6.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second #define ENDL &amp;#34;\n&amp;#34; using namespace std; const int MAX= 311; int f[MAX][MAX], a[MAX], n, sum; int DP(int l, int r){ if (r-l+1 &amp;gt;= n) return 0; if (f[l][r]!</description>
+    </item>
+    
+    <item>
+      <title>Làm quen bạn mới - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-fselect/</link>
+      <pubDate>Thu, 24 Sep 2020 09:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-fselect/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/FSELECT/.  Hướng dẫn:  Để tính khoảng cách giữa 2 đỉnh bất kỳ trong cây ta có thể sử dụng công thức: Distance(u, v) = d[u] + d[v] - 2*d[LCA(u,v)]. Để tìm khoảng cách xa nhất giữa 2 trong k đỉnh bất kỳ trong k ta áp dụng thuật toán sau (tương tự thuật toán tìm đường kính của cây):  Chọn một đỉnh bât kỳ làm gốc, sau đó tìm đỉnh có khoảng cách xa nhất từ đỉnh gốc, lấy đỉnh xa nhất này làm gốc mới.</description>
+    </item>
+    
+    <item>
+      <title>SGAME7 - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-sgame7/</link>
+      <pubDate>Thu, 24 Sep 2020 08:58:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-sgame7/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/sgame7.  Hướng dẫn: Có 2 vấn đề cân sử lý:
+1. Đếm số các số có tổng bằng k trong đoạn từ A tới B  Ta sử dụng phương pháp quy hoạch động chữ số để giải quyết bài toán này (Xài top down cho nhanh):  Gọi DP(S, id, sum, prefixMatch) là số cách tạo ra tổng sum từ id chữ số đầu nhỏ hơn hoặc bằng số S(Dạng string), và prefixMatch = true nếu tiền tố của số đang xét tới vị trí id khớp với tiền tố của S.</description>
+    </item>
+    
+    <item>
+      <title>CJ tới San Fierro - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-cjsanfierro/</link>
+      <pubDate>Thu, 24 Sep 2020 07:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-cjsanfierro/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjsanfierro.  Hướng dẫn:  Đầu tiên ta tìm tuyến đường có độ cao cho phép lớn nhất, có thể tìm bằng nhiều cách: Dijkstra, DFS kết hợp với tìm nhị phân, xây dựng cây khung nhỏ nhất.. Giả sử độ cao tối đa là H, để tìm kiếm con đường có độ cao H và ngắn nhất, thì ta chỉ xét những con đường có độ cao &amp;gt;= H (Những con đường còn lại sẽ làm cho độ cao nhỏ hơn H), Dijkstra tìm đường đi ngắn nhất trên tập cạnh mới này, ta thu được kết quả bài toán.</description>
+    </item>
+    
+    <item>
+      <title>CJ và Catalina - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-cjandcatalina/</link>
+      <pubDate>Thu, 24 Sep 2020 07:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-cjandcatalina/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjandcatalina.  Hướng dẫn:  Đầu tiên ta dùng thuật toán Dijkstra để tìm đường đi ngắn nhất giữa mọi cặp đỉnh trong k cặp đề bài cho. (\( k &amp;lt;=20 \)). Sử dụng quy hoạch động trạng thái:  Gọi f[mask][i] là đường đi ngắn nhất đi qua tất cả các đỉnh thuộc trạng thái mask, và kết thúc tại đỉnh i Trạng thái ban đầu: f[1 &amp;lt;&amp;lt; i][i] = 0 Ta xét mỗi trạng thái và cập nhật trạng thái như sau: f[j][newmask] = min(f[j][newmask], f[i][mask] + d[i][j])    Code mẫu: #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
+    <item>
+      <title>CJ dự tiệc - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjdutiec/</link>
+      <pubDate>Wed, 23 Sep 2020 11:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjdutiec/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjdutiec.  Hướng dẫn:  Bài toán tìm đường đi ngắn nhất cơ bản.  Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define int long long #define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.</description>
+    </item>
+    
+    <item>
+      <title>CJ và Denise - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjandenise/</link>
+      <pubDate>Wed, 23 Sep 2020 11:50:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjandenise/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjanddenise.  Hướng dẫn:   Bài toán trên là định nghĩa về chu trình Euler: Chu trình Euler là chu trình mà xuất phát từ một đỉnh bất kì, đi qua tất cả các cạnh của đồ thị và trở về đỉnh ban đầu.
+  Một đồ thị là một chu trình Euler khi và chỉ khi nó liên thông và tất cả các đỉnh của nó đều bậc chẵn.</description>
+    </item>
+    
+    <item>
+      <title>CJ và vùng đất mới - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjvungdatmoi/</link>
+      <pubDate>Wed, 23 Sep 2020 11:48:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjvungdatmoi/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjvungdatmoi.  Hướng dẫn:  Đây là bài toán tìm thành phần song liên thông (biconnected component). Thành phần song liên thông là một thành phần liên thông mà khi ta bỏ một đỉnh bất kì nào, thì các đỉnh còn lại vẫn cùng thuộc một thành phần liên thông. Ta có một nhận xét là các thành phần song liên thông được nối với nhau bằng các khớp.</description>
+    </item>
+    
+    <item>
+      <title>CJ Phản công - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-23-cjphancong/</link>
+      <pubDate>Wed, 23 Sep 2020 08:06:00 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-23-cjphancong/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjxaydung.  Hướng dẫn:  Đây là bài toán tìm khớp cơ bản. Xét 2 trường hợp:  u là không gốc:  Nếu có một nhánh con v không lên được trên đỉnh u thì u là khớp (Nếu xóa u thì v và các con của nhánh con này không kết nối được với những đỉnh trên u).   u là gốc:  Nếu đồ thị có trên 2 nhánh con v&#39; và v&#39;&#39;, &amp;hellip; thì u là khớp.</description>
+    </item>
+    
+    <item>
+      <title>Xây dựng vùng LS Vagos - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-23-cjxaydung/</link>
+      <pubDate>Wed, 23 Sep 2020 07:56:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-23-cjxaydung/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjxaydung.  Hướng dẫn:  Đây là bài toán tìm cầu cơ bản, với mỗi cạnh u,v ta đang xét với u là cha của v, nếu từ v chỉ đi được các đỉnh thấp hơn u thì (u,v) là cầu.   Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+    <item>
+      <title>Tìm bao lồi trong mặt phẳng - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-09-23-bao-loi/</link>
+      <pubDate>Wed, 23 Sep 2020 07:35:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-23-bao-loi/</guid>
+      <description>Định nghĩa:  Trong hình học tính toán (computational geometry), bao lồi (convex hull) của một tập điểm là tập lồi nhỏ nhất (theo diện tích, thể tích, …) mà tất cả các điểm đều nằm trong tập đó.
+ Thuật toán tìm bao lồi trong mặt phẳng: Thuật toán Graham:   Chọn đỉnh dưới trái cùng làm gốc, đỉnh này chắc chắn thuộc bao lồi.
+  Sắp xếp các đỉnh còn lại theo chiều kim đồng hồ tính từ đỉnh đó ( các đỉnh nằm trong một nửa mặt phẳng) (Nếu 2 đỉnh này cùng một tạo một góc so với đỉnh trái cùng thì ta xếp theo xa dần).</description>
+    </item>
+    
+    <item>
+      <title>Cách đếm số hoán vị mà không có phần tử nào nằm đúng vị trí. - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri/</link>
+      <pubDate>Tue, 22 Sep 2020 05:56:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri/</guid>
+      <description>Bài toán:  Cho môt dãy n phần tử gồm các hoán vị của dãy từ 1 tới n, đếm số hoán vị mà trong các phần tử, không có phần tử nào nằm đúng vị trí.
+ Cách làm:  Gọi C[i] là số hoán vị gồm i phần tử mà không có phần tử đúng vị trí. Ta có: C[i] = (i-1) * (C[i-1] + C[i-2]) . Với C[1] = 0, C[2] = 1  Chứng minh: Giả sử ta đã tạo được dãy hoán vị với i-1 phần tử, giờ ta sẽ đặt phần tử thứ i vào tập có tất cả n-1 cách thêm phần tử i:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> 2d Segment tree </title>
+  <meta name="description" content="Trang web mình lưu trữ lại các kiến thức lập trình mình đã học.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="2d Segment tree" />
+<meta property="og:description" content="#include &lt;bits/stdc&#43;&#43;.h&gt;#define ii vector&lt;int, int&gt; #define fi first #define se second using namespace std; const int MAX = 1111; int n, m, a[MAX][MAX], t[MAX*4][MAX*4], s[MAX][MAX], Q; void BuildY(int idX, int lX, int rX, int idY, int lY, int rY){ if (lY==rY){ if (lX==rX){ t[idX][idY] = a[lX][lY]; } else{ t[idX][idY] = max(t[idX*2][idY], t[idX*2&#43;1][idY]); } return; } int mid = (lY&#43;rY)/2; BuildY(idX, lX, rX, idY*2, lY, mid); BuildY(idX, lX, rX, idY*2&#43;1, mid&#43;1, rY); t[idX][idY] = max(t[idX][idY*2], t[idX][idY*2&#43;1]); } void BuildX(int id, int l, int r){ if (l==r){ BuildY(id,l,r,1,1,m); return; } int mid = (l&#43;r)/2; BuildX(id*2, l, mid); BuildX(id*2&#43;1, mid&#43;1, r); BuildY(id,l,r,1,1,m); } int QueryY(int idX, int id, int l, int r, int L, int R){ if (r&lt;L || R&lt;l) return -1; if (L&lt;=l &amp;&amp; r&lt;=R){ return t[idX][id]; } int mid = (l&#43;r)/2; return max(QueryY(idX,id*2, l, mid, L, R), QueryY(idX, id*2&#43;1, mid&#43;1, r, L, R)); } int Query(int id, int l, int r, int L, int R, int lY, int rY){ if (r &lt; L || R &lt; l) return -1; if (L&lt;=l &amp;&amp; r &lt;=R){ return QueryY(id, 1, 1, m, lY, rY); } int mid = (l&#43;r)/2; return max(Query(id*2, l, mid, L, R, lY, rY), Query(id*2&#43;1, mid&#43;1, r, L, R, lY, rY)); } int Sum(int x, int y, int u, int v){ return s[u][v] - s[u][y-1] - s[x-1][v] &#43; s[x-1][y-1]; } int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cpalg.github.io/posts/2020-11-19-it2d/" />
+<meta property="article:published_time" content="2020-11-18T07:05:22+00:00" />
+<meta property="article:modified_time" content="2020-11-18T07:05:22+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2d Segment tree"/>
+<meta name="twitter:description" content="#include &lt;bits/stdc&#43;&#43;.h&gt;#define ii vector&lt;int, int&gt; #define fi first #define se second using namespace std; const int MAX = 1111; int n, m, a[MAX][MAX], t[MAX*4][MAX*4], s[MAX][MAX], Q; void BuildY(int idX, int lX, int rX, int idY, int lY, int rY){ if (lY==rY){ if (lX==rX){ t[idX][idY] = a[lX][lY]; } else{ t[idX][idY] = max(t[idX*2][idY], t[idX*2&#43;1][idY]); } return; } int mid = (lY&#43;rY)/2; BuildY(idX, lX, rX, idY*2, lY, mid); BuildY(idX, lX, rX, idY*2&#43;1, mid&#43;1, rY); t[idX][idY] = max(t[idX][idY*2], t[idX][idY*2&#43;1]); } void BuildX(int id, int l, int r){ if (l==r){ BuildY(id,l,r,1,1,m); return; } int mid = (l&#43;r)/2; BuildX(id*2, l, mid); BuildX(id*2&#43;1, mid&#43;1, r); BuildY(id,l,r,1,1,m); } int QueryY(int idX, int id, int l, int r, int L, int R){ if (r&lt;L || R&lt;l) return -1; if (L&lt;=l &amp;&amp; r&lt;=R){ return t[idX][id]; } int mid = (l&#43;r)/2; return max(QueryY(idX,id*2, l, mid, L, R), QueryY(idX, id*2&#43;1, mid&#43;1, r, L, R)); } int Query(int id, int l, int r, int L, int R, int lY, int rY){ if (r &lt; L || R &lt; l) return -1; if (L&lt;=l &amp;&amp; r &lt;=R){ return QueryY(id, 1, 1, m, lY, rY); } int mid = (l&#43;r)/2; return max(Query(id*2, l, mid, L, R, lY, rY), Query(id*2&#43;1, mid&#43;1, r, L, R, lY, rY)); } int Sum(int x, int y, int u, int v){ return s[u][v] - s[u][y-1] - s[x-1][v] &#43; s[x-1][y-1]; } int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://cpalg.github.io/css/style-white.css">
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://cpalg.github.io/images/favicon.ico" />
+
+  
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://cpalg.github.io/posts/2020-11-09-hung-yen-ngay-1/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&text=2d%20Segment%20tree">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&is_video=false&description=2d%20Segment%20tree">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=2d%20Segment%20tree&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&name=2d%20Segment%20tree&description=%23include%20%26lt%3bbits%2fstdc%2b%2b.h%26gt%3b%23define%20ii%20vector%26lt%3bint%2c%20int%26gt%3b%20%23define%20fi%20first%20%23define%20se%20second%20using%20namespace%20std%3b%20const%20int%20MAX%20%3d%201111%3b%20int%20n%2c%20m%2c%20a%5bMAX%5d%5bMAX%5d%2c%20t%5bMAX%2a4%5d%5bMAX%2a4%5d%2c%20s%5bMAX%5d%5bMAX%5d%2c%20Q%3b%20void%20BuildY%28int%20idX%2c%20int%20lX%2c%20int%20rX%2c%20int%20idY%2c%20int%20lY%2c%20int%20rY%29%7b%20if%20%28lY%3d%3drY%29%7b%20if%20%28lX%3d%3drX%29%7b%20t%5bidX%5d%5bidY%5d%20%3d%20a%5blX%5d%5blY%5d%3b%20%7d%20else%7b%20t%5bidX%5d%5bidY%5d%20%3d%20max%28t%5bidX%2a2%5d%5bidY%5d%2c%20t%5bidX%2a2%2b1%5d%5bidY%5d%29%3b%20%7d%20return%3b%20%7d%20int%20mid%20%3d%20%28lY%2brY%29%2f2%3b%20BuildY%28idX%2c%20lX%2c%20rX%2c%20idY%2a2%2c%20lY%2c%20mid%29%3b%20BuildY%28idX%2c%20lX%2c%20rX%2c%20idY%2a2%2b1%2c%20mid%2b1%2c%20rY%29%3b%20t%5bidX%5d%5bidY%5d%20%3d%20max%28t%5bidX%5d%5bidY%2a2%5d%2c%20t%5bidX%5d%5bidY%2a2%2b1%5d%29%3b%20%7d%20void%20BuildX%28int%20id%2c%20int%20l%2c%20int%20r%29%7b%20if%20%28l%3d%3dr%29%7b%20BuildY%28id%2cl%2cr%2c1%2c1%2cm%29%3b%20return%3b%20%7d%20int%20mid%20%3d%20%28l%2br%29%2f2%3b%20BuildX%28id%2a2%2c%20l%2c%20mid%29%3b%20BuildX%28id%2a2%2b1%2c%20mid%2b1%2c%20r%29%3b%20BuildY%28id%2cl%2cr%2c1%2c1%2cm%29%3b%20%7d%20int%20QueryY%28int%20idX%2c%20int%20id%2c%20int%20l%2c%20int%20r%2c%20int%20L%2c%20int%20R%29%7b%20if%20%28r%26lt%3bL%20%7c%7c%20R%26lt%3bl%29%20return%20-1%3b%20if%20%28L%26lt%3b%3dl%20%26amp%3b%26amp%3b%20r%26lt%3b%3dR%29%7b%20return%20t%5bidX%5d%5bid%5d%3b%20%7d%20int%20mid%20%3d%20%28l%2br%29%2f2%3b%20return%20max%28QueryY%28idX%2cid%2a2%2c%20l%2c%20mid%2c%20L%2c%20R%29%2c%20QueryY%28idX%2c%20id%2a2%2b1%2c%20mid%2b1%2c%20r%2c%20L%2c%20R%29%29%3b%20%7d%20int%20Query%28int%20id%2c%20int%20l%2c%20int%20r%2c%20int%20L%2c%20int%20R%2c%20int%20lY%2c%20int%20rY%29%7b%20if%20%28r%20%26lt%3b%20L%20%7c%7c%20R%20%26lt%3b%20l%29%20return%20-1%3b%20if%20%28L%26lt%3b%3dl%20%26amp%3b%26amp%3b%20r%20%26lt%3b%3dR%29%7b%20return%20QueryY%28id%2c%201%2c%201%2c%20m%2c%20lY%2c%20rY%29%3b%20%7d%20int%20mid%20%3d%20%28l%2br%29%2f2%3b%20return%20max%28Query%28id%2a2%2c%20l%2c%20mid%2c%20L%2c%20R%2c%20lY%2c%20rY%29%2c%20Query%28id%2a2%2b1%2c%20mid%2b1%2c%20r%2c%20L%2c%20R%2c%20lY%2c%20rY%29%29%3b%20%7d%20int%20Sum%28int%20x%2c%20int%20y%2c%20int%20u%2c%20int%20v%29%7b%20return%20s%5bu%5d%5bv%5d%20-%20s%5bu%5d%5by-1%5d%20-%20s%5bx-1%5d%5bv%5d%20%2b%20s%5bx-1%5d%5by-1%5d%3b%20%7d%20int%20main%28int%20argc%2c%20char%20const%20%2aargv%5b%5d%29%20%7b%20ios_base%3a%3async_with_stdio%280%29%3b%20cin.">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&t=2d%20Segment%20tree">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tham-khảo">Tham khảo</a></li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        2d Segment tree
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2020-11-18 07:05:22 &#43;0000 UTC" itemprop="datePublished">2020-11-18</time>
+          
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/l%C3%BD-thuy%E1%BA%BFt" rel="tag">Lý thuyết</a>
+            
+            
+            <a class="tag-link" href="/tags/it-2d" rel="tag">IT 2d</a>
+            
+        </div> 
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;bits/stdc++.h&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#define ii vector&lt;int, int&gt;
+</span><span style="color:#ff79c6">#define fi first
+</span><span style="color:#ff79c6">#define se second
+</span><span style="color:#ff79c6"></span><span style="color:#ff79c6">using</span> <span style="color:#ff79c6">namespace</span> std;
+
+<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int</span> MAX <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1111</span>;
+
+<span style="color:#8be9fd">int</span> n, m, a[MAX][MAX], t[MAX<span style="color:#ff79c6">*</span><span style="color:#bd93f9">4</span>][MAX<span style="color:#ff79c6">*</span><span style="color:#bd93f9">4</span>], s[MAX][MAX], Q;
+
+<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">BuildY</span>(<span style="color:#8be9fd">int</span> idX, <span style="color:#8be9fd">int</span> lX, <span style="color:#8be9fd">int</span> rX, <span style="color:#8be9fd">int</span> idY, <span style="color:#8be9fd">int</span> lY, <span style="color:#8be9fd">int</span> rY){
+	<span style="color:#ff79c6">if</span> (lY<span style="color:#ff79c6">==</span>rY){
+		<span style="color:#ff79c6">if</span> (lX<span style="color:#ff79c6">==</span>rX){
+			t[idX][idY] <span style="color:#ff79c6">=</span> a[lX][lY];
+		} <span style="color:#ff79c6">else</span>{
+			t[idX][idY] <span style="color:#ff79c6">=</span> max(t[idX<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span>][idY], t[idX<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>][idY]);
+		}
+		<span style="color:#ff79c6">return</span>;
+	}
+
+	<span style="color:#8be9fd">int</span> mid <span style="color:#ff79c6">=</span> (lY<span style="color:#ff79c6">+</span>rY)<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>;
+	BuildY(idX, lX, rX, idY<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span>, lY, mid);
+	BuildY(idX, lX, rX, idY<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, mid<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, rY);
+	t[idX][idY] <span style="color:#ff79c6">=</span> max(t[idX][idY<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span>], t[idX][idY<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>]);
+}
+
+<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">BuildX</span>(<span style="color:#8be9fd">int</span> id, <span style="color:#8be9fd">int</span> l, <span style="color:#8be9fd">int</span> r){
+	<span style="color:#ff79c6">if</span> (l<span style="color:#ff79c6">==</span>r){
+		BuildY(id,l,r,<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">1</span>,m);
+		<span style="color:#ff79c6">return</span>;
+	}
+	<span style="color:#8be9fd">int</span> mid <span style="color:#ff79c6">=</span> (l<span style="color:#ff79c6">+</span>r)<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>;
+	BuildX(id<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span>, l, mid);
+	BuildX(id<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, mid<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, r);
+
+	BuildY(id,l,r,<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">1</span>,m);
+}
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">QueryY</span>(<span style="color:#8be9fd">int</span> idX, <span style="color:#8be9fd">int</span> id, <span style="color:#8be9fd">int</span> l, <span style="color:#8be9fd">int</span> r, <span style="color:#8be9fd">int</span> L, <span style="color:#8be9fd">int</span> R){
+	<span style="color:#ff79c6">if</span> (r<span style="color:#ff79c6">&lt;</span>L <span style="color:#ff79c6">||</span> R<span style="color:#ff79c6">&lt;</span>l) <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+	<span style="color:#ff79c6">if</span> (L<span style="color:#ff79c6">&lt;=</span>l <span style="color:#ff79c6">&amp;&amp;</span> r<span style="color:#ff79c6">&lt;=</span>R){
+		<span style="color:#ff79c6">return</span> t[idX][id];
+	}
+	<span style="color:#8be9fd">int</span> mid <span style="color:#ff79c6">=</span> (l<span style="color:#ff79c6">+</span>r)<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>;
+	<span style="color:#ff79c6">return</span> max(QueryY(idX,id<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span>, l, mid, L, R), QueryY(idX, id<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, mid<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, r, L, R));
+}
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">Query</span>(<span style="color:#8be9fd">int</span> id, <span style="color:#8be9fd">int</span> l, <span style="color:#8be9fd">int</span> r, <span style="color:#8be9fd">int</span> L, <span style="color:#8be9fd">int</span> R, <span style="color:#8be9fd">int</span> lY, <span style="color:#8be9fd">int</span> rY){
+	<span style="color:#ff79c6">if</span> (r <span style="color:#ff79c6">&lt;</span> L <span style="color:#ff79c6">||</span> R <span style="color:#ff79c6">&lt;</span> l) <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+	<span style="color:#ff79c6">if</span> (L<span style="color:#ff79c6">&lt;=</span>l <span style="color:#ff79c6">&amp;&amp;</span> r <span style="color:#ff79c6">&lt;=</span>R){
+		<span style="color:#ff79c6">return</span> QueryY(id, <span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, m, lY, rY);
+	}
+	<span style="color:#8be9fd">int</span> mid <span style="color:#ff79c6">=</span> (l<span style="color:#ff79c6">+</span>r)<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>;
+	<span style="color:#ff79c6">return</span> max(Query(id<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span>, l, mid, L, R, lY, rY), Query(id<span style="color:#ff79c6">*</span><span style="color:#bd93f9">2</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, mid<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, r, L, R, lY, rY));
+}
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">Sum</span>(<span style="color:#8be9fd">int</span> x, <span style="color:#8be9fd">int</span> y, <span style="color:#8be9fd">int</span> u, <span style="color:#8be9fd">int</span> v){
+	<span style="color:#ff79c6">return</span> s[u][v] <span style="color:#ff79c6">-</span> s[u][y<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">-</span> s[x<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>][v] <span style="color:#ff79c6">+</span> s[x<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>][y<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>];
+}
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>(<span style="color:#8be9fd">int</span> argc, <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">const</span> <span style="color:#ff79c6">*</span>argv[])
+{
+	ios_base<span style="color:#ff79c6">::</span>sync_with_stdio(<span style="color:#bd93f9">0</span>);
+	cin.tie(<span style="color:#bd93f9">0</span>); cout.tie(<span style="color:#bd93f9">0</span>);
+	
+	<span style="color:#ff79c6">#ifndef ONLINE_JUDGE
+</span><span style="color:#ff79c6"></span>	    freopen(<span style="color:#f1fa8c">&#34;input.txt&#34;</span>,<span style="color:#f1fa8c">&#34;r&#34;</span>,stdin);
+	<span style="color:#ff79c6">#endif
+</span><span style="color:#ff79c6"></span>	
+	cin <span style="color:#ff79c6">&gt;&gt;</span> n <span style="color:#ff79c6">&gt;&gt;</span> m;
+	<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>n; i<span style="color:#ff79c6">++</span>){
+		<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; j<span style="color:#ff79c6">&lt;=</span>m; j<span style="color:#ff79c6">++</span>){
+			cin <span style="color:#ff79c6">&gt;&gt;</span> a[i][j];
+			s[i][j] <span style="color:#ff79c6">=</span> s[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>][j] <span style="color:#ff79c6">+</span> s[i][j<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">+</span> a[i][j] <span style="color:#ff79c6">-</span> s[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>][j<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>];
+		}
+	}
+
+	BuildX(<span style="color:#bd93f9">1</span>,<span style="color:#bd93f9">1</span>,n);
+
+	cin <span style="color:#ff79c6">&gt;&gt;</span> Q;
+	<span style="color:#ff79c6">while</span> (Q<span style="color:#ff79c6">--</span>){
+		<span style="color:#8be9fd">int</span> u, v;
+		<span style="color:#8be9fd">int</span> res <span style="color:#ff79c6">=</span> INT_MAX;
+		cin <span style="color:#ff79c6">&gt;&gt;</span> u <span style="color:#ff79c6">&gt;&gt;</span> v;
+		<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span>u; i<span style="color:#ff79c6">&lt;=</span>n ;i<span style="color:#ff79c6">++</span>){
+			<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j<span style="color:#ff79c6">=</span>v; j<span style="color:#ff79c6">&lt;=</span>m; j<span style="color:#ff79c6">++</span>){
+				<span style="color:#8be9fd">int</span> x <span style="color:#ff79c6">=</span> i<span style="color:#ff79c6">-</span>u<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>, y <span style="color:#ff79c6">=</span> j<span style="color:#ff79c6">-</span>v<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>;
+				<span style="color:#8be9fd">int</span> Mx <span style="color:#ff79c6">=</span> Query(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">1</span>, n, x, i, y, j);
+				res <span style="color:#ff79c6">=</span> min(res, Mx<span style="color:#ff79c6">*</span>u<span style="color:#ff79c6">*</span>v <span style="color:#ff79c6">-</span> Sum(x, y, i , j));
+			}
+		}
+		cout <span style="color:#ff79c6">&lt;&lt;</span> res <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>;
+	}
+
+	<span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+}
+</code></pre></div><h2 id="tham-khảo">Tham khảo</h2>
+<p><a href="https://cp-algorithms.com/data_structures/segment_tree.html">Link</a>.</p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'v4ngtr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tham-khảo">Tham khảo</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&text=2d%20Segment%20tree">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&is_video=false&description=2d%20Segment%20tree">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=2d%20Segment%20tree&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&title=2d%20Segment%20tree">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&name=2d%20Segment%20tree&description=%23include%20%26lt%3bbits%2fstdc%2b%2b.h%26gt%3b%23define%20ii%20vector%26lt%3bint%2c%20int%26gt%3b%20%23define%20fi%20first%20%23define%20se%20second%20using%20namespace%20std%3b%20const%20int%20MAX%20%3d%201111%3b%20int%20n%2c%20m%2c%20a%5bMAX%5d%5bMAX%5d%2c%20t%5bMAX%2a4%5d%5bMAX%2a4%5d%2c%20s%5bMAX%5d%5bMAX%5d%2c%20Q%3b%20void%20BuildY%28int%20idX%2c%20int%20lX%2c%20int%20rX%2c%20int%20idY%2c%20int%20lY%2c%20int%20rY%29%7b%20if%20%28lY%3d%3drY%29%7b%20if%20%28lX%3d%3drX%29%7b%20t%5bidX%5d%5bidY%5d%20%3d%20a%5blX%5d%5blY%5d%3b%20%7d%20else%7b%20t%5bidX%5d%5bidY%5d%20%3d%20max%28t%5bidX%2a2%5d%5bidY%5d%2c%20t%5bidX%2a2%2b1%5d%5bidY%5d%29%3b%20%7d%20return%3b%20%7d%20int%20mid%20%3d%20%28lY%2brY%29%2f2%3b%20BuildY%28idX%2c%20lX%2c%20rX%2c%20idY%2a2%2c%20lY%2c%20mid%29%3b%20BuildY%28idX%2c%20lX%2c%20rX%2c%20idY%2a2%2b1%2c%20mid%2b1%2c%20rY%29%3b%20t%5bidX%5d%5bidY%5d%20%3d%20max%28t%5bidX%5d%5bidY%2a2%5d%2c%20t%5bidX%5d%5bidY%2a2%2b1%5d%29%3b%20%7d%20void%20BuildX%28int%20id%2c%20int%20l%2c%20int%20r%29%7b%20if%20%28l%3d%3dr%29%7b%20BuildY%28id%2cl%2cr%2c1%2c1%2cm%29%3b%20return%3b%20%7d%20int%20mid%20%3d%20%28l%2br%29%2f2%3b%20BuildX%28id%2a2%2c%20l%2c%20mid%29%3b%20BuildX%28id%2a2%2b1%2c%20mid%2b1%2c%20r%29%3b%20BuildY%28id%2cl%2cr%2c1%2c1%2cm%29%3b%20%7d%20int%20QueryY%28int%20idX%2c%20int%20id%2c%20int%20l%2c%20int%20r%2c%20int%20L%2c%20int%20R%29%7b%20if%20%28r%26lt%3bL%20%7c%7c%20R%26lt%3bl%29%20return%20-1%3b%20if%20%28L%26lt%3b%3dl%20%26amp%3b%26amp%3b%20r%26lt%3b%3dR%29%7b%20return%20t%5bidX%5d%5bid%5d%3b%20%7d%20int%20mid%20%3d%20%28l%2br%29%2f2%3b%20return%20max%28QueryY%28idX%2cid%2a2%2c%20l%2c%20mid%2c%20L%2c%20R%29%2c%20QueryY%28idX%2c%20id%2a2%2b1%2c%20mid%2b1%2c%20r%2c%20L%2c%20R%29%29%3b%20%7d%20int%20Query%28int%20id%2c%20int%20l%2c%20int%20r%2c%20int%20L%2c%20int%20R%2c%20int%20lY%2c%20int%20rY%29%7b%20if%20%28r%20%26lt%3b%20L%20%7c%7c%20R%20%26lt%3b%20l%29%20return%20-1%3b%20if%20%28L%26lt%3b%3dl%20%26amp%3b%26amp%3b%20r%20%26lt%3b%3dR%29%7b%20return%20QueryY%28id%2c%201%2c%201%2c%20m%2c%20lY%2c%20rY%29%3b%20%7d%20int%20mid%20%3d%20%28l%2br%29%2f2%3b%20return%20max%28Query%28id%2a2%2c%20l%2c%20mid%2c%20L%2c%20R%2c%20lY%2c%20rY%29%2c%20Query%28id%2a2%2b1%2c%20mid%2b1%2c%20r%2c%20L%2c%20R%2c%20lY%2c%20rY%29%29%3b%20%7d%20int%20Sum%28int%20x%2c%20int%20y%2c%20int%20u%2c%20int%20v%29%7b%20return%20s%5bu%5d%5bv%5d%20-%20s%5bu%5d%5by-1%5d%20-%20s%5bx-1%5d%5bv%5d%20%2b%20s%5bx-1%5d%5by-1%5d%3b%20%7d%20int%20main%28int%20argc%2c%20char%20const%20%2aargv%5b%5d%29%20%7b%20ios_base%3a%3async_with_stdio%280%29%3b%20cin.">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-11-19-it2d%2f&t=2d%20Segment%20tree">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2020  v4ngtr 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+  
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</html>

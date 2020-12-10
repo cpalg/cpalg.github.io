@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> CJ tới San Fierro - LQDOJ. </title>
+  <meta name="description" content="Trang web mình lưu trữ lại các kiến thức lập trình mình đã học.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="CJ tới San Fierro - LQDOJ." />
+<meta property="og:description" content="Link đề bài:  http://lqdoj.edu.vn/problem/cjsanfierro.  Hướng dẫn:  Đầu tiên ta tìm tuyến đường có độ cao cho phép lớn nhất, có thể tìm bằng nhiều cách: Dijkstra, DFS kết hợp với tìm nhị phân, xây dựng cây khung nhỏ nhất.. Giả sử độ cao tối đa là H, để tìm kiếm con đường có độ cao H và ngắn nhất, thì ta chỉ xét những con đường có độ cao &gt;= H (Những con đường còn lại sẽ làm cho độ cao nhỏ hơn H), Dijkstra tìm đường đi ngắn nhất trên tập cạnh mới này, ta thu được kết quả bài toán." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cpalg.github.io/posts/2020-09-25-cjsanfierro/" />
+<meta property="article:published_time" content="2020-09-24T07:55:22+00:00" />
+<meta property="article:modified_time" content="2020-09-24T07:55:22+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CJ tới San Fierro - LQDOJ."/>
+<meta name="twitter:description" content="Link đề bài:  http://lqdoj.edu.vn/problem/cjsanfierro.  Hướng dẫn:  Đầu tiên ta tìm tuyến đường có độ cao cho phép lớn nhất, có thể tìm bằng nhiều cách: Dijkstra, DFS kết hợp với tìm nhị phân, xây dựng cây khung nhỏ nhất.. Giả sử độ cao tối đa là H, để tìm kiếm con đường có độ cao H và ngắn nhất, thì ta chỉ xét những con đường có độ cao &gt;= H (Những con đường còn lại sẽ làm cho độ cao nhỏ hơn H), Dijkstra tìm đường đi ngắn nhất trên tập cạnh mới này, ta thu được kết quả bài toán."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://cpalg.github.io/css/style-white.css">
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://cpalg.github.io/images/favicon.ico" />
+
+  
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://cpalg.github.io/posts/2020-09-25-cjandcatalina/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://cpalg.github.io/posts/2020-09-25-sgame7/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&text=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&is_video=false&description=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&name=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.&description=Link%20%c4%91%e1%bb%81%20b%c3%a0i%3a%20%20http%3a%2f%2flqdoj.edu.vn%2fproblem%2fcjsanfierro.%20%20H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%3a%20%20%c4%90%e1%ba%a7u%20ti%c3%aan%20ta%20t%c3%acm%20tuy%e1%ba%bfn%20%c4%91%c6%b0%e1%bb%9dng%20c%c3%b3%20%c4%91%e1%bb%99%20cao%20cho%20ph%c3%a9p%20l%e1%bb%9bn%20nh%e1%ba%a5t%2c%20c%c3%b3%20th%e1%bb%83%20t%c3%acm%20b%e1%ba%b1ng%20nhi%e1%bb%81u%20c%c3%a1ch%3a%20Dijkstra%2c%20DFS%20k%e1%ba%bft%20h%e1%bb%a3p%20v%e1%bb%9bi%20t%c3%acm%20nh%e1%bb%8b%20ph%c3%a2n%2c%20x%c3%a2y%20d%e1%bb%b1ng%20c%c3%a2y%20khung%20nh%e1%bb%8f%20nh%e1%ba%a5t..%20Gi%e1%ba%a3%20s%e1%bb%ad%20%c4%91%e1%bb%99%20cao%20t%e1%bb%91i%20%c4%91a%20l%c3%a0%20H%2c%20%c4%91%e1%bb%83%20t%c3%acm%20ki%e1%ba%bfm%20con%20%c4%91%c6%b0%e1%bb%9dng%20c%c3%b3%20%c4%91%e1%bb%99%20cao%20H%20v%c3%a0%20ng%e1%ba%afn%20nh%e1%ba%a5t%2c%20th%c3%ac%20ta%20ch%e1%bb%89%20x%c3%a9t%20nh%e1%bb%afng%20con%20%c4%91%c6%b0%e1%bb%9dng%20c%c3%b3%20%c4%91%e1%bb%99%20cao%20%26gt%3b%3d%20H%20%28Nh%e1%bb%afng%20con%20%c4%91%c6%b0%e1%bb%9dng%20c%c3%b2n%20l%e1%ba%a1i%20s%e1%ba%bd%20l%c3%a0m%20cho%20%c4%91%e1%bb%99%20cao%20nh%e1%bb%8f%20h%c6%a1n%20H%29%2c%20Dijkstra%20t%c3%acm%20%c4%91%c6%b0%e1%bb%9dng%20%c4%91i%20ng%e1%ba%afn%20nh%e1%ba%a5t%20tr%c3%aan%20t%e1%ba%adp%20c%e1%ba%a1nh%20m%e1%bb%9bi%20n%c3%a0y%2c%20ta%20thu%20%c4%91%c6%b0%e1%bb%a3c%20k%e1%ba%bft%20qu%e1%ba%a3%20b%c3%a0i%20to%c3%a1n.">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&t=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#link-đề-bài">Link đề bài:</a></li>
+    <li><a href="#hướng-dẫn">Hướng dẫn:</a></li>
+    <li><a href="#code-mẫu">Code mẫu:</a></li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        CJ tới San Fierro - LQDOJ.
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2020-09-24 07:55:22 &#43;0000 UTC" itemprop="datePublished">2020-09-24</time>
+          
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/lqdoj" rel="tag">LQDOJ</a>
+            
+            
+            <a class="tag-link" href="/tags/%C4%91%E1%BB%93-th%E1%BB%8B" rel="tag">Đồ thị</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/%C4%91%C6%B0%E1%BB%9Dng-%C4%91i-ng%E1%BA%AFn-nh%E1%BA%A5t" rel="tag">Đường đi ngắn nhất</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/dfs" rel="tag">DFS</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/c%C3%A2y-khung-nh%E1%BB%8F-nh%E1%BA%A5t" rel="tag">Cây khung nhỏ nhất</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/t%C3%ACm-ki%E1%BA%BFm-nh%E1%BB%8B-ph%C3%A2n" rel="tag">Tìm kiếm nhị phân</a>
+            
+        </div> 
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <h2 id="link-đề-bài">Link đề bài:</h2>
+<ul>
+<li><a href="http://lqdoj.edu.vn/problem/cjsanfierro">http://lqdoj.edu.vn/problem/cjsanfierro</a>.</li>
+</ul>
+<h2 id="hướng-dẫn">Hướng dẫn:</h2>
+<ul>
+<li>Đầu tiên ta tìm tuyến đường có độ cao cho phép lớn nhất, có thể tìm bằng nhiều cách: Dijkstra, DFS kết hợp với tìm nhị phân, xây dựng cây khung nhỏ nhất..</li>
+<li>Giả sử độ cao tối đa là H, để tìm kiếm con đường có độ cao H và ngắn nhất, thì ta chỉ xét những con đường có độ cao &gt;= H (Những con đường còn lại sẽ làm cho độ cao nhỏ hơn H), Dijkstra tìm đường đi ngắn nhất trên tập cạnh mới này, ta thu được kết quả bài toán.</li>
+</ul>
+<h2 id="code-mẫu">Code mẫu:</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;bits/stdc++.h&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#define ll long long
+</span><span style="color:#ff79c6">#define ii pair&lt;ll, ll&gt;
+</span><span style="color:#ff79c6">#define fi first
+</span><span style="color:#ff79c6">#define se second
+</span><span style="color:#ff79c6"></span><span style="color:#ff79c6">using</span> <span style="color:#ff79c6">namespace</span> std;
+
+<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int</span> MAX <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2e5</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">6</span>;
+
+<span style="color:#ff79c6">struct</span> <span style="color:#50fa7b">Data</span>{
+    ll v, d, h;
+    Data(ll vv<span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>, ll dd <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>, ll hh <span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>){
+         v <span style="color:#ff79c6">=</span> vv; d<span style="color:#ff79c6">=</span> dd; h <span style="color:#ff79c6">=</span> hh;
+    }
+};
+
+ll n, m, vs[MAX], dem, LM, st, en, ok, d[MAX], Pre[MAX];
+vector<span style="color:#ff79c6">&lt;</span>Data<span style="color:#ff79c6">&gt;</span> g[MAX];
+
+<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">DFS</span>(ll u, ll Lim){
+    vs[u] <span style="color:#ff79c6">=</span> dem;
+    <span style="color:#ff79c6">if</span> (u <span style="color:#ff79c6">==</span> en){
+        ok <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">true</span>;
+        <span style="color:#ff79c6">return</span>;
+    }
+    <span style="color:#ff79c6">for</span>(Data <span style="color:#8be9fd;font-style:italic">t</span>: g[u]){
+        <span style="color:#ff79c6">if</span> (t.h <span style="color:#ff79c6">&lt;</span> Lim) <span style="color:#ff79c6">continue</span>;
+        ll v <span style="color:#ff79c6">=</span> t.v;
+        <span style="color:#ff79c6">if</span> (vs[v]<span style="color:#ff79c6">!=</span> dem) {
+            DFS(v, Lim);
+        }
+    }
+}
+
+<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">Trace</span>(ll u){
+    stack<span style="color:#ff79c6">&lt;</span>ll<span style="color:#ff79c6">&gt;</span> st;
+    <span style="color:#ff79c6">while</span> (u<span style="color:#ff79c6">&gt;</span><span style="color:#bd93f9">0</span>){
+        st.push(u);
+        u <span style="color:#ff79c6">=</span> Pre[u];
+    }
+    <span style="color:#ff79c6">while</span> (st.size()) cout <span style="color:#ff79c6">&lt;&lt;</span> st.top() <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34; &#34;</span>, st.pop();
+}
+
+<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">Dijkstra</span>(){
+    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>n; i<span style="color:#ff79c6">++</span>) d[i] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1e16</span>;
+    d[st] <span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>;
+    priority_queue<span style="color:#ff79c6">&lt;</span>ii, vector<span style="color:#ff79c6">&lt;</span>ii<span style="color:#ff79c6">&gt;</span>, greater<span style="color:#ff79c6">&lt;</span>ii<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">&gt;</span> pq;
+    pq.push(ii(<span style="color:#bd93f9">0</span>,st));
+    <span style="color:#ff79c6">while</span> (<span style="color:#ff79c6">!</span>pq.empty()){
+        ll u <span style="color:#ff79c6">=</span> pq.top().se, du <span style="color:#ff79c6">=</span> pq.top().fi; pq.pop();
+        <span style="color:#ff79c6">if</span> (du <span style="color:#ff79c6">!=</span> d[u]) <span style="color:#ff79c6">continue</span>;
+        <span style="color:#ff79c6">for</span>(Data <span style="color:#8be9fd;font-style:italic">x</span>: g[u]){
+            ll v <span style="color:#ff79c6">=</span> x.v, uv <span style="color:#ff79c6">=</span> x.d, hh <span style="color:#ff79c6">=</span> x.h;
+            <span style="color:#ff79c6">if</span> (hh <span style="color:#ff79c6">&lt;</span> LM) <span style="color:#ff79c6">continue</span>;
+            <span style="color:#ff79c6">if</span> (du <span style="color:#ff79c6">+</span> uv <span style="color:#ff79c6">&lt;</span> d[v]){
+                d[v] <span style="color:#ff79c6">=</span> d[u] <span style="color:#ff79c6">+</span> uv;
+                Pre[v] <span style="color:#ff79c6">=</span> u;
+                pq.push(ii(d[v],v));
+            }
+        }
+    }
+}
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>(){
+    ios_base<span style="color:#ff79c6">::</span>sync_with_stdio(<span style="color:#bd93f9">0</span>); cin.tie(<span style="color:#bd93f9">0</span>); cout.tie(<span style="color:#bd93f9">0</span>);
+    cin <span style="color:#ff79c6">&gt;&gt;</span> n <span style="color:#ff79c6">&gt;&gt;</span> m <span style="color:#ff79c6">&gt;&gt;</span> st <span style="color:#ff79c6">&gt;&gt;</span> en;
+    <span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>m; i<span style="color:#ff79c6">++</span>){
+        ll u , v, dd, hh;
+        cin <span style="color:#ff79c6">&gt;&gt;</span> u <span style="color:#ff79c6">&gt;&gt;</span> v <span style="color:#ff79c6">&gt;&gt;</span> dd <span style="color:#ff79c6">&gt;&gt;</span> hh;
+        g[u].push_back(Data(v,dd,hh));
+        g[v].push_back(Data(u,dd,hh));
+    }
+
+    ll l <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>, r<span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1e16</span>;
+    <span style="color:#ff79c6">while</span> (l<span style="color:#ff79c6">&lt;=</span>r){
+        ll mid <span style="color:#ff79c6">=</span> (l<span style="color:#ff79c6">+</span>r)<span style="color:#ff79c6">/</span><span style="color:#bd93f9">2</span>;
+        dem<span style="color:#ff79c6">++</span>;
+        ok <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">false</span>;
+        DFS(st, mid);
+        <span style="color:#ff79c6">if</span> (ok) {
+            LM <span style="color:#ff79c6">=</span> mid;
+            l <span style="color:#ff79c6">=</span> mid<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>;
+        }
+        <span style="color:#ff79c6">else</span> r <span style="color:#ff79c6">=</span> mid<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+    }
+    Dijkstra();
+    cout <span style="color:#ff79c6">&lt;&lt;</span> LM <span style="color:#ff79c6">&lt;&lt;</span> endl;
+    Trace(en);
+    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+}
+</code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'v4ngtr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#link-đề-bài">Link đề bài:</a></li>
+    <li><a href="#hướng-dẫn">Hướng dẫn:</a></li>
+    <li><a href="#code-mẫu">Code mẫu:</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&text=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&is_video=false&description=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&title=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&name=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.&description=Link%20%c4%91%e1%bb%81%20b%c3%a0i%3a%20%20http%3a%2f%2flqdoj.edu.vn%2fproblem%2fcjsanfierro.%20%20H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%3a%20%20%c4%90%e1%ba%a7u%20ti%c3%aan%20ta%20t%c3%acm%20tuy%e1%ba%bfn%20%c4%91%c6%b0%e1%bb%9dng%20c%c3%b3%20%c4%91%e1%bb%99%20cao%20cho%20ph%c3%a9p%20l%e1%bb%9bn%20nh%e1%ba%a5t%2c%20c%c3%b3%20th%e1%bb%83%20t%c3%acm%20b%e1%ba%b1ng%20nhi%e1%bb%81u%20c%c3%a1ch%3a%20Dijkstra%2c%20DFS%20k%e1%ba%bft%20h%e1%bb%a3p%20v%e1%bb%9bi%20t%c3%acm%20nh%e1%bb%8b%20ph%c3%a2n%2c%20x%c3%a2y%20d%e1%bb%b1ng%20c%c3%a2y%20khung%20nh%e1%bb%8f%20nh%e1%ba%a5t..%20Gi%e1%ba%a3%20s%e1%bb%ad%20%c4%91%e1%bb%99%20cao%20t%e1%bb%91i%20%c4%91a%20l%c3%a0%20H%2c%20%c4%91%e1%bb%83%20t%c3%acm%20ki%e1%ba%bfm%20con%20%c4%91%c6%b0%e1%bb%9dng%20c%c3%b3%20%c4%91%e1%bb%99%20cao%20H%20v%c3%a0%20ng%e1%ba%afn%20nh%e1%ba%a5t%2c%20th%c3%ac%20ta%20ch%e1%bb%89%20x%c3%a9t%20nh%e1%bb%afng%20con%20%c4%91%c6%b0%e1%bb%9dng%20c%c3%b3%20%c4%91%e1%bb%99%20cao%20%26gt%3b%3d%20H%20%28Nh%e1%bb%afng%20con%20%c4%91%c6%b0%e1%bb%9dng%20c%c3%b2n%20l%e1%ba%a1i%20s%e1%ba%bd%20l%c3%a0m%20cho%20%c4%91%e1%bb%99%20cao%20nh%e1%bb%8f%20h%c6%a1n%20H%29%2c%20Dijkstra%20t%c3%acm%20%c4%91%c6%b0%e1%bb%9dng%20%c4%91i%20ng%e1%ba%afn%20nh%e1%ba%a5t%20tr%c3%aan%20t%e1%ba%adp%20c%e1%ba%a1nh%20m%e1%bb%9bi%20n%c3%a0y%2c%20ta%20thu%20%c4%91%c6%b0%e1%bb%a3c%20k%e1%ba%bft%20qu%e1%ba%a3%20b%c3%a0i%20to%c3%a1n.">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-25-cjsanfierro%2f&t=CJ%20t%e1%bb%9bi%20San%20Fierro%20-%20LQDOJ.">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2020  v4ngtr 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+  
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</html>

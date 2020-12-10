@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Chia kẹo - LQDOJ </title>
+  <meta name="description" content="Trang web mình lưu trữ lại các kiến thức lập trình mình đã học.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Chia kẹo - LQDOJ" />
+<meta property="og:description" content="Link đề bài:  https://lqdoj.edu.vn/problem/sharecandies/.  Hướng dẫn:  Gọi f[i][j] là số cách chia kẹo cho i người, và đã chia được j viên kẹo.  Code mẫu: #include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;vector&gt;#include &lt;string.h&gt;#define ii pair&lt;int, int&gt; #define fi first #define se second using namespace std; const int MAX = 1e5&#43;6; const int MOD = 1e9&#43;7; int n, k, f[101][MAX], a[MAX]; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.tie(0); cout." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cpalg.github.io/posts/2020-10-30-chiakeo/" />
+<meta property="article:published_time" content="2020-10-30T01:02:22+00:00" />
+<meta property="article:modified_time" content="2020-10-30T01:02:22+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Chia kẹo - LQDOJ"/>
+<meta name="twitter:description" content="Link đề bài:  https://lqdoj.edu.vn/problem/sharecandies/.  Hướng dẫn:  Gọi f[i][j] là số cách chia kẹo cho i người, và đã chia được j viên kẹo.  Code mẫu: #include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;vector&gt;#include &lt;string.h&gt;#define ii pair&lt;int, int&gt; #define fi first #define se second using namespace std; const int MAX = 1e5&#43;6; const int MOD = 1e9&#43;7; int n, k, f[101][MAX], a[MAX]; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.tie(0); cout."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://cpalg.github.io/css/style-white.css">
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://cpalg.github.io/images/favicon.ico" />
+
+  
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://cpalg.github.io/posts/2020-10-30-sgame8/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://cpalg.github.io/posts/2020-10-30-mulbig/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&text=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&is_video=false&description=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Chia%20k%e1%ba%b9o%20-%20LQDOJ&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&name=Chia%20k%e1%ba%b9o%20-%20LQDOJ&description=Link%20%c4%91%e1%bb%81%20b%c3%a0i%3a%20%20https%3a%2f%2flqdoj.edu.vn%2fproblem%2fsharecandies%2f.%20%20H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%3a%20%20G%e1%bb%8di%20f%5bi%5d%5bj%5d%20l%c3%a0%20s%e1%bb%91%20c%c3%a1ch%20chia%20k%e1%ba%b9o%20cho%20i%20ng%c6%b0%e1%bb%9di%2c%20v%c3%a0%20%c4%91%c3%a3%20chia%20%c4%91%c6%b0%e1%bb%a3c%20j%20vi%c3%aan%20k%e1%ba%b9o.%20%20Code%20m%e1%ba%abu%3a%20%23include%20%26lt%3biostream%26gt%3b%23include%20%26lt%3balgorithm%26gt%3b%23include%20%26lt%3bvector%26gt%3b%23include%20%26lt%3bstring.h%26gt%3b%23define%20ii%20pair%26lt%3bint%2c%20int%26gt%3b%20%23define%20fi%20first%20%23define%20se%20second%20using%20namespace%20std%3b%20const%20int%20MAX%20%3d%201e5%2b6%3b%20const%20int%20MOD%20%3d%201e9%2b7%3b%20int%20n%2c%20k%2c%20f%5b101%5d%5bMAX%5d%2c%20a%5bMAX%5d%3b%20int%20main%28int%20argc%2c%20char%20const%20%2aargv%5b%5d%29%20%7b%20ios_base%3a%3async_with_stdio%280%29%3b%20cin.tie%280%29%3b%20cout.">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&t=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#link-đề-bài">Link đề bài:</a></li>
+    <li><a href="#hướng-dẫn">Hướng dẫn:</a></li>
+    <li><a href="#code-mẫu">Code mẫu:</a></li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Chia kẹo - LQDOJ
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2020-10-30 01:02:22 &#43;0000 UTC" itemprop="datePublished">2020-10-30</time>
+          
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/lqdoj" rel="tag">LQDOJ</a>
+            
+            
+            <a class="tag-link" href="/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng" rel="tag">Quy hoạch động</a>
+            
+        </div> 
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <h2 id="link-đề-bài">Link đề bài:</h2>
+<ul>
+<li><a href="https://lqdoj.edu.vn/problem/sharecandies/">https://lqdoj.edu.vn/problem/sharecandies/</a>.</li>
+</ul>
+<h2 id="hướng-dẫn">Hướng dẫn:</h2>
+<ul>
+<li>Gọi <code>f[i][j]</code> là số cách chia kẹo cho <code>i</code> người, và đã chia được <code>j</code> viên kẹo.</li>
+</ul>
+<h2 id="code-mẫu">Code mẫu:</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;iostream&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;algorithm&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;vector&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;string.h&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#define ii pair&lt;int, int&gt;
+</span><span style="color:#ff79c6">#define fi first
+</span><span style="color:#ff79c6">#define se second
+</span><span style="color:#ff79c6"></span><span style="color:#ff79c6">using</span> <span style="color:#ff79c6">namespace</span> std;
+
+<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int</span> MAX <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1e5</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">6</span>;
+<span style="color:#ff79c6">const</span> <span style="color:#8be9fd">int</span> MOD <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1e9</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">7</span>;
+
+<span style="color:#8be9fd">int</span> n, k, f[<span style="color:#bd93f9">101</span>][MAX], a[MAX];
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>(<span style="color:#8be9fd">int</span> argc, <span style="color:#8be9fd">char</span> <span style="color:#ff79c6">const</span> <span style="color:#ff79c6">*</span>argv[])
+{
+	ios_base<span style="color:#ff79c6">::</span>sync_with_stdio(<span style="color:#bd93f9">0</span>);
+	cin.tie(<span style="color:#bd93f9">0</span>); cout.tie(<span style="color:#bd93f9">0</span>);
+	
+	<span style="color:#ff79c6">#ifndef ONLINE_JUDGE
+</span><span style="color:#ff79c6"></span>	    freopen(<span style="color:#f1fa8c">&#34;input.txt&#34;</span>,<span style="color:#f1fa8c">&#34;r&#34;</span>,stdin);
+	<span style="color:#ff79c6">#endif
+</span><span style="color:#ff79c6"></span>	
+	cin <span style="color:#ff79c6">&gt;&gt;</span> n <span style="color:#ff79c6">&gt;&gt;</span> k;
+	<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>n; i<span style="color:#ff79c6">++</span>){
+		cin <span style="color:#ff79c6">&gt;&gt;</span> a[i];
+	}
+
+	f[<span style="color:#bd93f9">0</span>][<span style="color:#bd93f9">0</span>] <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>;
+	<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">1</span>; i<span style="color:#ff79c6">&lt;=</span>n; i<span style="color:#ff79c6">++</span>){
+		<span style="color:#8be9fd">int</span> l <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>, sum <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+		<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> j<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>; j<span style="color:#ff79c6">&lt;=</span>k; j<span style="color:#ff79c6">++</span>){
+			<span style="color:#6272a4">// f[i][j]+= f[i-1][j- (0-&gt;a[i]]);
+</span><span style="color:#6272a4"></span>			<span style="color:#ff79c6">if</span> (j<span style="color:#ff79c6">-</span>a[i] <span style="color:#ff79c6">&gt;</span> l) {
+				sum<span style="color:#ff79c6">-=</span>f[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>][l];
+				<span style="color:#ff79c6">if</span> (sum<span style="color:#ff79c6">&lt;</span><span style="color:#bd93f9">0</span>) sum<span style="color:#ff79c6">+=</span> MOD;
+				l<span style="color:#ff79c6">++</span>;
+			}
+			sum<span style="color:#ff79c6">+=</span>f[i<span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>][j];
+			sum<span style="color:#ff79c6">%=</span> MOD;
+			f[i][j]<span style="color:#ff79c6">=</span> sum;
+		}
+	}
+	cout <span style="color:#ff79c6">&lt;&lt;</span> f[n][k];	
+	<span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+}
+</code></pre></div>
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'v4ngtr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#link-đề-bài">Link đề bài:</a></li>
+    <li><a href="#hướng-dẫn">Hướng dẫn:</a></li>
+    <li><a href="#code-mẫu">Code mẫu:</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&text=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&is_video=false&description=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Chia%20k%e1%ba%b9o%20-%20LQDOJ&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&title=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&name=Chia%20k%e1%ba%b9o%20-%20LQDOJ&description=Link%20%c4%91%e1%bb%81%20b%c3%a0i%3a%20%20https%3a%2f%2flqdoj.edu.vn%2fproblem%2fsharecandies%2f.%20%20H%c6%b0%e1%bb%9bng%20d%e1%ba%abn%3a%20%20G%e1%bb%8di%20f%5bi%5d%5bj%5d%20l%c3%a0%20s%e1%bb%91%20c%c3%a1ch%20chia%20k%e1%ba%b9o%20cho%20i%20ng%c6%b0%e1%bb%9di%2c%20v%c3%a0%20%c4%91%c3%a3%20chia%20%c4%91%c6%b0%e1%bb%a3c%20j%20vi%c3%aan%20k%e1%ba%b9o.%20%20Code%20m%e1%ba%abu%3a%20%23include%20%26lt%3biostream%26gt%3b%23include%20%26lt%3balgorithm%26gt%3b%23include%20%26lt%3bvector%26gt%3b%23include%20%26lt%3bstring.h%26gt%3b%23define%20ii%20pair%26lt%3bint%2c%20int%26gt%3b%20%23define%20fi%20first%20%23define%20se%20second%20using%20namespace%20std%3b%20const%20int%20MAX%20%3d%201e5%2b6%3b%20const%20int%20MOD%20%3d%201e9%2b7%3b%20int%20n%2c%20k%2c%20f%5b101%5d%5bMAX%5d%2c%20a%5bMAX%5d%3b%20int%20main%28int%20argc%2c%20char%20const%20%2aargv%5b%5d%29%20%7b%20ios_base%3a%3async_with_stdio%280%29%3b%20cin.tie%280%29%3b%20cout.">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-30-chiakeo%2f&t=Chia%20k%e1%ba%b9o%20-%20LQDOJ">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2020  v4ngtr 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+  
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</html>

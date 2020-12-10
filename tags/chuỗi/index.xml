@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chuỗi on CP notebook</title>
+    <link>https://cpalg.github.io/tags/chu%E1%BB%97i/</link>
+    <description>Recent content in Chuỗi on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Sat, 17 Oct 2020 07:05:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/chu%E1%BB%97i/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Thuật toán KMP - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-10-17-kmp/</link>
+      <pubDate>Sat, 17 Oct 2020 07:05:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-17-kmp/</guid>
+      <description>#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;using namespace std; string s, t; int p[2000005]; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); cin &amp;gt;&amp;gt; s; cin &amp;gt;&amp;gt; t; s= &amp;#39;#&amp;#39; + t + &amp;#34;#&amp;#34; + s; //kmp 	int k = 0; for(int i=2; i&amp;lt;(int)s.size(); i++){ while (k &amp;amp;&amp;amp; s[i]!= s[k+1]) k = p[k]; if (s[i] == s[k+1]) k++; p[i] = k; } // 	int res = 0; for(int i=1; i&amp;lt;(int) s.</description>
+    </item>
+    
+    <item>
+      <title>Thuật toán Z - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-10-17-thuat-toan-z/</link>
+      <pubDate>Sat, 17 Oct 2020 07:05:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-17-thuat-toan-z/</guid>
+      <description>cp handbook
+#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;using namespace std; string s; std::vector&amp;lt;int&amp;gt; z; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #ifndef ONLINE_JUDGE 	// freopen(&amp;#34;input.txt&amp;#34;,&amp;#34;r&amp;#34;,stdin); 	#endif 	cin &amp;gt;&amp;gt; s; int n = s.size(); z.resize(n,0); z[0] = n; int l =0, r= 0 ; for(int i=1; i&amp;lt;n; i++){ int x = max(0, min(r-i+1, z[i-l])); while (i+x &amp;lt; n &amp;amp;&amp;amp; s[x] == s[i+x]) x++; z[i] = x; if (x + i -1&amp;gt; r){ l = i; r = i + x -1; } } for(int i=1; i&amp;lt; n; i++){ if (z[i] + i == n) cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#34; &amp;#34;; } cout &amp;lt;&amp;lt; n; return 0; } </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quy hoạch động trạng thái on CP notebook</title>
+    <link>https://cpalg.github.io/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng-tr%E1%BA%A1ng-th%C3%A1i/</link>
+    <description>Recent content in Quy hoạch động trạng thái on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Thu, 24 Sep 2020 07:55:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng-tr%E1%BA%A1ng-th%C3%A1i/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CJ và Catalina - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-cjandcatalina/</link>
+      <pubDate>Thu, 24 Sep 2020 07:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-cjandcatalina/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjandcatalina.  Hướng dẫn:  Đầu tiên ta dùng thuật toán Dijkstra để tìm đường đi ngắn nhất giữa mọi cặp đỉnh trong k cặp đề bài cho. (\( k &amp;lt;=20 \)). Sử dụng quy hoạch động trạng thái:  Gọi f[mask][i] là đường đi ngắn nhất đi qua tất cả các đỉnh thuộc trạng thái mask, và kết thúc tại đỉnh i Trạng thái ban đầu: f[1 &amp;lt;&amp;lt; i][i] = 0 Ta xét mỗi trạng thái và cập nhật trạng thái như sau: f[j][newmask] = min(f[j][newmask], f[i][mask] + d[i][j])    Code mẫu: #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
+  </channel>
+</rss>

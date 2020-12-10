@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quy hoạch động bao lồi on CP notebook</title>
+    <link>https://cpalg.github.io/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng-bao-l%E1%BB%93i/</link>
+    <description>Recent content in Quy hoạch động bao lồi on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Mon, 05 Oct 2020 02:36:54 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng-bao-l%E1%BB%93i/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cats Transport - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-05-cf185b/</link>
+      <pubDate>Mon, 05 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-05-cf185b/</guid>
+      <description>Link đề bài:  https://codeforces.com/contest/311/problem/B.  Hướng dẫn: Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;algorithm&amp;gt;#define ll long long #define ii pair&amp;lt;ll, ll&amp;gt; #define fi first #define se second using namespace std; const int MAX = 1e5+6; std::vector&amp;lt;ll&amp;gt; A; std::vector&amp;lt;ll&amp;gt; B; int n, m, k, pt; ll a[MAX], c[MAX], f[MAX][123], s[MAX]; ii b[MAX]; bool Bad(int l1, int l2, int l3){ return (B[l3] - B[l1]) * (A[l1] - A[l2]) &amp;lt; (B[l2] - B[l1]) * (A[l1] - A[l3]); } void Add(ll a, ll b){ A.</description>
+    </item>
+    
+    <item>
+      <title>Bear and Bowling 4 - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-04-cf660f/</link>
+      <pubDate>Sun, 04 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-04-cf660f/</guid>
+      <description>Link đề bài:  https://codeforces.com/problemset/problem/660/F.  Hướng dẫn:  Gọi:  \(dp_i\) là giá trị lớn nhất tạo được khi ta chọn dãy kết thúc tại vị trí \(i\). \(s_i\) là \(\sum\limits_{x = 1}^i {a_x * x}\). \(p_i\) là \(\sum\limits_{x = 1}^i {a_x}\).   Ta có công thức quy hoạch động: \(dp_i = s_i - j * p_i + s_j - j * p_j\) Hàm có dạng \(a*x+b\) nên dùng qhd bao lồi.</description>
+    </item>
+    
+    <item>
+      <title>Product Sum - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-04-cf631e/</link>
+      <pubDate>Sun, 04 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-04-cf631e/</guid>
+      <description>Link đề bài:  https://codeforces.com/problemset/problem/631/E.  Hướng dẫn:  Ta xét 2 trường hợp:   TH1: Di chuyển một khối từ vị trí \(i\) tới vị trí \(j\) \((i &amp;lt; j)\).
+ Tất cả các khối ở vị trí thứ \(k\) \((i+1 &amp;lt;= k &amp;lt;= j)\) sẽ bị giảm đi \(a_k\). Giá trị của khối \(i\) sẽ tăng từ \(i * a_i\) lên thành \(j * a_j\). Ta có công thức qhđ: \(dp_j = c - \sum\limits_{k = i+1}^j {a_k} + j * a_i - i * a_i\).</description>
+    </item>
+    
+    <item>
+      <title>The Fair Nut and Rectangles - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-03-cf1083e/</link>
+      <pubDate>Sat, 03 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-03-cf1083e/</guid>
+      <description>Link đề bài:  https://codeforces.com/contest/1083/problem/E/.  Hướng dẫn:  Đầu tiên ta sắp xếp các hình chữ nhật theo chiều dài tăng dần, mà đề nói không có hình chữ nhật nào chứa hình khác \(-&amp;gt;\) Chiều rộng các hình chữ nhật sau khi sắp xếp sẽ giảm dần. Gọi f[i] là cách chọn tối ưu để chọn một số hình chữ nhật từ 1 tới i:  Ta có: f[i] = max(f[j] + h[i]*w[i] - h[i]*w[j] - a[i]) \((0 &amp;lt;j &amp;lt; i)\) (hcn thứ \(j\) là hình cuối cùng ta chọn trước khi chọn hcn thứ \(i\)).</description>
+    </item>
+    
+    <item>
+      <title>Land Acquisition - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-03-acquire/</link>
+      <pubDate>Sat, 03 Oct 2020 02:35:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-03-acquire/</guid>
+      <description>Link đề bài:  https://www.spoj.com/problems/ACQUIRE/.  Hướng dẫn:  Ta có một nhận xét rằng: Giả sử tồn tại hai hình chữ nhật với kích thước \((a,b)\) và \((x,y)\). nếu \(a&amp;lt;=x\) và \(b&amp;lt;=y \) thì ta có thể bỏ luôn hình chữ nhật kích thước \((a,b)\) bởi vì chỉ cần gộp hình chữ nhật kích thước \((a,b)\) vào hình chữ nhật kích thước \((x,y)\) thì sẽ không mất phí, do đó ta loại bỏ tất cả các hình chữ nhật thừa.</description>
+    </item>
+    
+    <item>
+      <title>Quy hoạch động bao lồi - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-10-02-qhd-bao-loi/</link>
+      <pubDate>Fri, 02 Oct 2020 02:35:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-02-qhd-bao-loi/</guid>
+      <description>Kĩ thuật qhd bao lồi là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với thuật toán bao lồi của hình học tính toán. Ngoài ra có một kĩ thuật liên quan đến kĩ thuật bao lồi là IT đoạn thẳng.</description>
+    </item>
+    
+  </channel>
+</rss>

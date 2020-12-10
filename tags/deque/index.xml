@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deque on CP notebook</title>
+    <link>https://cpalg.github.io/tags/deque/</link>
+    <description>Recent content in Deque on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Tue, 06 Oct 2020 03:36:54 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/deque/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pictures with Kittens - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-06-cf1077f2/</link>
+      <pubDate>Tue, 06 Oct 2020 03:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-06-cf1077f2/</guid>
+      <description>Link đề bài:  https://codeforces.com/contest/1077/problem/F2.  Hướng dẫn: Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;queue&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX= 5005; ll n, k, x, a[MAX], f[MAX][MAX]; deque&amp;lt;int&amp;gt; pq; void Insert(int col, int row){ while (pq.</description>
+    </item>
+    
+    <item>
+      <title>Boredom - Codeforces</title>
+      <link>https://cpalg.github.io/posts/2020-10-06-cf445a/</link>
+      <pubDate>Tue, 06 Oct 2020 02:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-06-cf445a/</guid>
+      <description>Link đề bài:  https://codeforces.com/contest/455/problem/A.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX= 1e5+6; ll n, a[MAX], Mx, cnt[MAX], f[MAX], pi; int main() { #ifndef ONLINE_JUDGE  READFILE; #endif  FAST; cin &amp;gt;&amp;gt; n; for(int i=1; i&amp;lt;=n; i++) cin &amp;gt;&amp;gt; a[i]; for(int i=1; i&amp;lt;=n; i++){ cnt[a[i]]++; Mx = max(Mx, a[i]); } for(int i=1; i&amp;lt;=Mx; i++){ f[i] = max(f[i-1], f[pi] + cnt[i]*i); if (f[i-1] &amp;gt; f[pi]) pi = i-1; } cout&amp;lt;&amp;lt; f[Mx]; return 0; } Tham khảo:  https://robert1003.</description>
+    </item>
+    
+  </channel>
+</rss>

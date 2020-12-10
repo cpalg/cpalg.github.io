@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Tìm bao lồi trong mặt phẳng - Lý thuyết </title>
+  <meta name="description" content="Trang web mình lưu trữ lại các kiến thức lập trình mình đã học.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Tìm bao lồi trong mặt phẳng - Lý thuyết" />
+<meta property="og:description" content="Định nghĩa:  Trong hình học tính toán (computational geometry), bao lồi (convex hull) của một tập điểm là tập lồi nhỏ nhất (theo diện tích, thể tích, …) mà tất cả các điểm đều nằm trong tập đó.
+ Thuật toán tìm bao lồi trong mặt phẳng: Thuật toán Graham:   Chọn đỉnh dưới trái cùng làm gốc, đỉnh này chắc chắn thuộc bao lồi.
+  Sắp xếp các đỉnh còn lại theo chiều kim đồng hồ tính từ đỉnh đó ( các đỉnh nằm trong một nửa mặt phẳng) (Nếu 2 đỉnh này cùng một tạo một góc so với đỉnh trái cùng thì ta xếp theo xa dần)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cpalg.github.io/posts/2020-09-23-bao-loi/" />
+<meta property="article:published_time" content="2020-09-23T07:35:54+00:00" />
+<meta property="article:modified_time" content="2020-09-23T07:35:54+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Tìm bao lồi trong mặt phẳng - Lý thuyết"/>
+<meta name="twitter:description" content="Định nghĩa:  Trong hình học tính toán (computational geometry), bao lồi (convex hull) của một tập điểm là tập lồi nhỏ nhất (theo diện tích, thể tích, …) mà tất cả các điểm đều nằm trong tập đó.
+ Thuật toán tìm bao lồi trong mặt phẳng: Thuật toán Graham:   Chọn đỉnh dưới trái cùng làm gốc, đỉnh này chắc chắn thuộc bao lồi.
+  Sắp xếp các đỉnh còn lại theo chiều kim đồng hồ tính từ đỉnh đó ( các đỉnh nằm trong một nửa mặt phẳng) (Nếu 2 đỉnh này cùng một tạo một góc so với đỉnh trái cùng thì ta xếp theo xa dần)."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://cpalg.github.io/css/style-white.css">
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://cpalg.github.io/images/favicon.ico" />
+
+  
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://cpalg.github.io/posts/2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://cpalg.github.io/posts/2020-09-23-cjxaydung/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&text=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&is_video=false&description=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&name=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft&description=%c4%90%e1%bb%8bnh%20ngh%c4%a9a%3a%20%20Trong%20h%c3%acnh%20h%e1%bb%8dc%20t%c3%adnh%20to%c3%a1n%20%28computational%20geometry%29%2c%20bao%20l%e1%bb%93i%20%28convex%20hull%29%20c%e1%bb%a7a%20m%e1%bb%99t%20t%e1%ba%adp%20%c4%91i%e1%bb%83m%20l%c3%a0%20t%e1%ba%adp%20l%e1%bb%93i%20nh%e1%bb%8f%20nh%e1%ba%a5t%20%28theo%20di%e1%bb%87n%20t%c3%adch%2c%20th%e1%bb%83%20t%c3%adch%2c%20%e2%80%a6%29%20m%c3%a0%20t%e1%ba%a5t%20c%e1%ba%a3%20c%c3%a1c%20%c4%91i%e1%bb%83m%20%c4%91%e1%bb%81u%20n%e1%ba%b1m%20trong%20t%e1%ba%adp%20%c4%91%c3%b3.%0a%20Thu%e1%ba%adt%20to%c3%a1n%20t%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%3a%20Thu%e1%ba%adt%20to%c3%a1n%20Graham%3a%20%20%20Ch%e1%bb%8dn%20%c4%91%e1%bb%89nh%20d%c6%b0%e1%bb%9bi%20tr%c3%a1i%20c%c3%b9ng%20l%c3%a0m%20g%e1%bb%91c%2c%20%c4%91%e1%bb%89nh%20n%c3%a0y%20ch%e1%ba%afc%20ch%e1%ba%afn%20thu%e1%bb%99c%20bao%20l%e1%bb%93i.%0a%20%20S%e1%ba%afp%20x%e1%ba%bfp%20c%c3%a1c%20%c4%91%e1%bb%89nh%20c%c3%b2n%20l%e1%ba%a1i%20theo%20chi%e1%bb%81u%20kim%20%c4%91%e1%bb%93ng%20h%e1%bb%93%20t%c3%adnh%20t%e1%bb%ab%20%c4%91%e1%bb%89nh%20%c4%91%c3%b3%20%28%20c%c3%a1c%20%c4%91%e1%bb%89nh%20n%e1%ba%b1m%20trong%20m%e1%bb%99t%20n%e1%bb%ada%20m%e1%ba%b7t%20ph%e1%ba%b3ng%29%20%28N%e1%ba%bfu%202%20%c4%91%e1%bb%89nh%20n%c3%a0y%20c%c3%b9ng%20m%e1%bb%99t%20t%e1%ba%a1o%20m%e1%bb%99t%20g%c3%b3c%20so%20v%e1%bb%9bi%20%c4%91%e1%bb%89nh%20tr%c3%a1i%20c%c3%b9ng%20th%c3%ac%20ta%20x%e1%ba%bfp%20theo%20xa%20d%e1%ba%a7n%29.">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&t=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#định-nghĩa">Định nghĩa:</a></li>
+    <li><a href="#thuật-toán-tìm-bao-lồi-trong-mặt-phẳng">Thuật toán tìm bao lồi trong mặt phẳng:</a>
+      <ul>
+        <li><a href="#thuật-toán-graham">Thuật toán Graham:</a>
+          <ul>
+            <li><a href="#code-tham-khảo">Code tham khảo:</a></li>
+          </ul>
+        </li>
+        <li><a href="#thuật-toán-2-đường">Thuật toán 2 đường:</a>
+          <ul>
+            <li><a href="#tham-khảo">Tham khảo:</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Tìm bao lồi trong mặt phẳng - Lý thuyết
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2020-09-23 07:35:54 &#43;0000 UTC" itemprop="datePublished">2020-09-23</time>
+          
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/to%C3%A1n" rel="tag">Toán</a>
+            
+            
+            <a class="tag-link" href="/tags/h%C3%ACnh-h%E1%BB%8Dc" rel="tag">Hình học</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/l%C3%BD-thuy%E1%BA%BFt" rel="tag">Lý thuyết</a>
+            
+        </div> 
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <h2 id="định-nghĩa">Định nghĩa:</h2>
+<blockquote>
+<p>Trong hình học tính toán (computational geometry), bao lồi (convex hull) của một tập điểm là tập lồi nhỏ nhất (theo diện tích, thể tích, …) mà tất cả các điểm đều nằm trong tập đó.</p>
+</blockquote>
+<h2 id="thuật-toán-tìm-bao-lồi-trong-mặt-phẳng">Thuật toán tìm bao lồi trong mặt phẳng:</h2>
+<h3 id="thuật-toán-graham">Thuật toán Graham:</h3>
+<ul>
+<li>
+<p>Chọn đỉnh dưới trái cùng làm gốc, đỉnh này chắc chắn thuộc bao lồi.</p>
+</li>
+<li>
+<p>Sắp xếp các đỉnh còn lại theo chiều kim đồng hồ tính từ đỉnh đó ( các đỉnh nằm trong một nửa mặt phẳng) (Nếu 2 đỉnh này cùng một tạo một góc so với đỉnh trái cùng thì ta xếp theo xa dần).
+<img src="/images/contents/bao-loi/1.png" alt="sap xep cac dinh theo vi tri xa dan."></p>
+</li>
+<li>
+<p>Ta xét lần lượt các đỉnh theo thứ tự, 2 đỉnh cuối cùng của tập là p3 và p2, đỉnh đang xét là p1, xét 2 vector v1(p3,p2) và v2(p2,p1), Nếu vector v2 hướng theo chiều kim đồng hồ so với v1 thì có thể chấp nhận điểm đó, còn nếu 2 vectỏr thẳng hàng hoặc hướng ngược chiều kim đồng hồ thì điểm p2 chắc chắn không thuộc bao lồi, nên ta lấy điểm p2 ra khỏi tập.
+<img src="/images/contents/bao-loi/2.png" alt="loai bo cac dinh khong thoa man."></p>
+</li>
+<li>
+<p>Có thể dùng tích chéo để xét chiều 2 vector(tham khảo tại đây: <a href="https://www.quora.com/What-is-the-CCW-function">Link</a>).</p>
+<ol>
+<li>Nếu \(\vec{u} * \vec{v} &lt; 0 \) thì  \(\vec{v} \)  nằm theo chiều kim đồng hồ so với  \(\vec{u} \) .
+<img src="/images/contents/bao-loi/3.png" alt="ccw."></li>
+<li>Nếu \(\vec{u} * \vec{v} = 0 \) thì \(\vec{u} \), \(\vec{v} \) thẳng hàng.</li>
+<li>Ngược lại thì \(\vec{v} \) nằm ngược chiều kim đồng hồ so với \(\vec{u} \).
+<img src="/images/contents/bao-loi/4.png" alt="ccw."></li>
+</ol>
+</li>
+</ul>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/B2AJoQSZf4M" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<h4 id="code-tham-khảo">Code tham khảo:</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#ff79c6">#include</span> <span style="color:#ff79c6">&lt;bits/stdc++.h&gt;</span><span style="color:#ff79c6">
+</span><span style="color:#ff79c6">#define pb push_back
+</span><span style="color:#ff79c6">#define FOR(i, a, b) for(int i = int(a); i &lt;= int(b); i++)
+</span><span style="color:#ff79c6">#define FORD(i, a, b) for(int i = int(a); i &gt;= int(b); i--)
+</span><span style="color:#ff79c6">#define REP(i, r) for(int i = 0; i &lt; r; i++)
+</span><span style="color:#ff79c6">#define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+</span><span style="color:#ff79c6">#define READFILE freopen(&#34;input.txt&#34;, &#34;r&#34;, stdin)
+</span><span style="color:#ff79c6">#define WRITEFILE freopen(&#34;output.txt&#34;, &#34;w&#34;, stdout);
+</span><span style="color:#ff79c6">#define ll long long
+</span><span style="color:#ff79c6">#define ii pair&lt;ll, ll&gt;
+</span><span style="color:#ff79c6">#define fi first
+</span><span style="color:#ff79c6">#define se second
+</span><span style="color:#ff79c6">#define x first
+</span><span style="color:#ff79c6">#define y second
+</span><span style="color:#ff79c6"></span><span style="color:#ff79c6">using</span> <span style="color:#ff79c6">namespace</span> std;
+
+ii root; <span style="color:#6272a4">// = d[0] de de sap xep
+</span><span style="color:#6272a4"></span>
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">getMin</span>(<span style="color:#8be9fd">int</span> i, <span style="color:#8be9fd">int</span> j, vector<span style="color:#ff79c6">&lt;</span>ii<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">&amp;</span>d){
+	<span style="color:#ff79c6">if</span> (d[i].x <span style="color:#ff79c6">==</span> d[j].x){
+		<span style="color:#ff79c6">if</span> (d[i].y <span style="color:#ff79c6">&lt;</span> d[j].y) <span style="color:#ff79c6">return</span> i;
+		<span style="color:#ff79c6">else</span> <span style="color:#ff79c6">return</span> j;
+	}
+	<span style="color:#ff79c6">if</span> (d[i].x <span style="color:#ff79c6">&lt;</span> d[j].x) <span style="color:#ff79c6">return</span> i;
+	<span style="color:#ff79c6">return</span> j;
+}
+
+ii <span style="color:#50fa7b">nextToTop</span>(stack<span style="color:#ff79c6">&lt;</span>ii<span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">&amp;</span>st){
+	ii tmp <span style="color:#ff79c6">=</span> st.top();
+	st.pop();
+	ii ret <span style="color:#ff79c6">=</span> st.top();
+	st.push(tmp);
+	<span style="color:#ff79c6">return</span> ret;
+}
+
+ll <span style="color:#50fa7b">Mul</span>(ii a, ii b, ii c){ <span style="color:#6272a4">// Tich cheo
+</span><span style="color:#6272a4"></span>	ii v1 <span style="color:#ff79c6">=</span> ii(b.fi <span style="color:#ff79c6">-</span> a.fi, b.se <span style="color:#ff79c6">-</span> a.se);
+	ii v2 <span style="color:#ff79c6">=</span> ii(c.fi <span style="color:#ff79c6">-</span> b.fi, c.se <span style="color:#ff79c6">-</span> b.se);
+	<span style="color:#ff79c6">return</span> v1.x <span style="color:#ff79c6">*</span> v2.y <span style="color:#ff79c6">-</span> v2.x <span style="color:#ff79c6">*</span> v1.y;
+}
+ 
+<span style="color:#8be9fd">double</span> <span style="color:#50fa7b">kCach</span>(ii a, ii b)
+{
+	<span style="color:#ff79c6">return</span> hypot(a.x<span style="color:#ff79c6">-</span>b.x, a.y <span style="color:#ff79c6">-</span> b.y);
+}
+
+<span style="color:#8be9fd">bool</span> <span style="color:#50fa7b">cmp</span>(ii a, ii b){
+	ii v1 <span style="color:#ff79c6">=</span> ii(a.x <span style="color:#ff79c6">-</span> root.x, a.y <span style="color:#ff79c6">-</span> root.y);
+	ii v2 <span style="color:#ff79c6">=</span> ii(b.x <span style="color:#ff79c6">-</span> root.x, b.y <span style="color:#ff79c6">-</span> root.y);
+	<span style="color:#ff79c6">if</span> (v1.x <span style="color:#ff79c6">*</span> v2.y <span style="color:#ff79c6">==</span> v1.y <span style="color:#ff79c6">*</span> v2.x){<span style="color:#6272a4">// neu 2 diem cung kcach thi sap theo xa dan
+</span><span style="color:#6272a4"></span>		<span style="color:#ff79c6">return</span> kCach(root,a) <span style="color:#ff79c6">&lt;</span> kCach(root,b);
+	}
+	<span style="color:#ff79c6">return</span> (v1.x <span style="color:#ff79c6">*</span> v2.y <span style="color:#ff79c6">-</span> v1.y <span style="color:#ff79c6">*</span> v2.x) <span style="color:#ff79c6">&lt;</span> <span style="color:#bd93f9">0</span>;
+}
+
+<span style="color:#8be9fd">int</span> <span style="color:#50fa7b">main</span>()
+{
+    <span style="color:#ff79c6">#ifndef ONLINE_JUDGE
+</span><span style="color:#ff79c6"></span>        READFILE;
+    <span style="color:#ff79c6">#endif
+</span><span style="color:#ff79c6"></span>    FAST;
+    
+ 	<span style="color:#8be9fd">int</span> n;
+ 	<span style="color:#ff79c6">while</span> (cin <span style="color:#ff79c6">&gt;&gt;</span> n){
+ 		<span style="color:#ff79c6">if</span> (n<span style="color:#ff79c6">==</span><span style="color:#bd93f9">0</span>) <span style="color:#ff79c6">break</span>;
+
+ 		<span style="color:#8be9fd">int</span> pMin <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>;
+ 		set<span style="color:#ff79c6">&lt;</span>ii<span style="color:#ff79c6">&gt;</span> S;
+
+ 		<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span> ;i<span style="color:#ff79c6">&lt;</span>n; i<span style="color:#ff79c6">++</span>){
+ 			ii tmp;
+ 			cin <span style="color:#ff79c6">&gt;&gt;</span> tmp.x <span style="color:#ff79c6">&gt;&gt;</span> tmp.y;
+ 			S.insert(tmp);
+ 		}
+
+ 		vector<span style="color:#ff79c6">&lt;</span>ii<span style="color:#ff79c6">&gt;</span> d(S.begin(), S.end());
+ 		n <span style="color:#ff79c6">=</span> d.size();
+
+ 		<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">0</span>; i<span style="color:#ff79c6">&lt;</span>n; i<span style="color:#ff79c6">++</span>){
+ 			pMin <span style="color:#ff79c6">=</span> getMin(pMin, i, d); <span style="color:#6272a4">// chon dinh trai duoi cung chac chan se thuoc bao loi
+</span><span style="color:#6272a4"></span> 		}
+ 		swap(d[pMin], d[<span style="color:#bd93f9">0</span>]);
+ 		root <span style="color:#ff79c6">=</span> d[<span style="color:#bd93f9">0</span>]; 		
+ 		sort(d.begin()<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>,d.end(), cmp); <span style="color:#6272a4">// sap xep cac diem theo chieu kim dong ho 
+</span><span style="color:#6272a4"></span>
+ 		stack<span style="color:#ff79c6">&lt;</span>ii<span style="color:#ff79c6">&gt;</span> st;
+ 		<span style="color:#ff79c6">if</span> (n<span style="color:#ff79c6">&gt;</span><span style="color:#bd93f9">0</span>) st.push(d[<span style="color:#bd93f9">0</span>]);
+ 		<span style="color:#ff79c6">if</span> (n<span style="color:#ff79c6">&gt;</span><span style="color:#bd93f9">1</span>) st.push(d[<span style="color:#bd93f9">1</span>]);
+
+ 		<span style="color:#ff79c6">for</span>(<span style="color:#8be9fd">int</span> i<span style="color:#ff79c6">=</span><span style="color:#bd93f9">2</span>; i<span style="color:#ff79c6">&lt;</span>n; i<span style="color:#ff79c6">++</span>){ <span style="color:#6272a4">// xet lan luot cac diem theo chieu kim dong ho
+</span><span style="color:#6272a4"></span>	 		<span style="color:#ff79c6">while</span> (st.size() <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">2</span> <span style="color:#ff79c6">&amp;&amp;</span> Mul(nextToTop(st), st.top(), d[i]) <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">0ll</span>) st.pop();
+	 		<span style="color:#6272a4">// Neu 3 diem cuoi cung tao duong lom (re trai)
+</span><span style="color:#6272a4"></span>	 		st.push(d[i]);
+	 	}
+
+	 	cout <span style="color:#ff79c6">&lt;&lt;</span> st.size() <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>;
+	 	<span style="color:#ff79c6">while</span> (<span style="color:#ff79c6">!</span>st.empty()){
+	 		cout <span style="color:#ff79c6">&lt;&lt;</span> st.top().x <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34; &#34;</span> <span style="color:#ff79c6">&lt;&lt;</span> st.top().y <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>;
+	 		st.pop();
+	 	}
+ 	}
+    <span style="color:#ff79c6">return</span> <span style="color:#bd93f9">0</span>;
+}
+</code></pre></div><h3 id="thuật-toán-2-đường">Thuật toán 2 đường:</h3>
+<h4 id="tham-khảo">Tham khảo:</h4>
+<ul>
+<li><a href="https://www.commonlounge.com/discussion/a8f953d33c4547b8863b79b18f1795cd">https://www.commonlounge.com/discussion/a8f953d33c4547b8863b79b18f1795cd</a></li>
+<li><a href="https://www.bernardosulzbach.com/algorithms/monotone-chain-for-convex-hulls/">https://www.bernardosulzbach.com/algorithms/monotone-chain-for-convex-hulls/</a></li>
+<li><a href="https://pastebin.com/w7ykXp4Z">https://pastebin.com/w7ykXp4Z</a></li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'v4ngtr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#định-nghĩa">Định nghĩa:</a></li>
+    <li><a href="#thuật-toán-tìm-bao-lồi-trong-mặt-phẳng">Thuật toán tìm bao lồi trong mặt phẳng:</a>
+      <ul>
+        <li><a href="#thuật-toán-graham">Thuật toán Graham:</a>
+          <ul>
+            <li><a href="#code-tham-khảo">Code tham khảo:</a></li>
+          </ul>
+        </li>
+        <li><a href="#thuật-toán-2-đường">Thuật toán 2 đường:</a>
+          <ul>
+            <li><a href="#tham-khảo">Tham khảo:</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&text=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&is_video=false&description=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&title=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&name=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft&description=%c4%90%e1%bb%8bnh%20ngh%c4%a9a%3a%20%20Trong%20h%c3%acnh%20h%e1%bb%8dc%20t%c3%adnh%20to%c3%a1n%20%28computational%20geometry%29%2c%20bao%20l%e1%bb%93i%20%28convex%20hull%29%20c%e1%bb%a7a%20m%e1%bb%99t%20t%e1%ba%adp%20%c4%91i%e1%bb%83m%20l%c3%a0%20t%e1%ba%adp%20l%e1%bb%93i%20nh%e1%bb%8f%20nh%e1%ba%a5t%20%28theo%20di%e1%bb%87n%20t%c3%adch%2c%20th%e1%bb%83%20t%c3%adch%2c%20%e2%80%a6%29%20m%c3%a0%20t%e1%ba%a5t%20c%e1%ba%a3%20c%c3%a1c%20%c4%91i%e1%bb%83m%20%c4%91%e1%bb%81u%20n%e1%ba%b1m%20trong%20t%e1%ba%adp%20%c4%91%c3%b3.%0a%20Thu%e1%ba%adt%20to%c3%a1n%20t%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%3a%20Thu%e1%ba%adt%20to%c3%a1n%20Graham%3a%20%20%20Ch%e1%bb%8dn%20%c4%91%e1%bb%89nh%20d%c6%b0%e1%bb%9bi%20tr%c3%a1i%20c%c3%b9ng%20l%c3%a0m%20g%e1%bb%91c%2c%20%c4%91%e1%bb%89nh%20n%c3%a0y%20ch%e1%ba%afc%20ch%e1%ba%afn%20thu%e1%bb%99c%20bao%20l%e1%bb%93i.%0a%20%20S%e1%ba%afp%20x%e1%ba%bfp%20c%c3%a1c%20%c4%91%e1%bb%89nh%20c%c3%b2n%20l%e1%ba%a1i%20theo%20chi%e1%bb%81u%20kim%20%c4%91%e1%bb%93ng%20h%e1%bb%93%20t%c3%adnh%20t%e1%bb%ab%20%c4%91%e1%bb%89nh%20%c4%91%c3%b3%20%28%20c%c3%a1c%20%c4%91%e1%bb%89nh%20n%e1%ba%b1m%20trong%20m%e1%bb%99t%20n%e1%bb%ada%20m%e1%ba%b7t%20ph%e1%ba%b3ng%29%20%28N%e1%ba%bfu%202%20%c4%91%e1%bb%89nh%20n%c3%a0y%20c%c3%b9ng%20m%e1%bb%99t%20t%e1%ba%a1o%20m%e1%bb%99t%20g%c3%b3c%20so%20v%e1%bb%9bi%20%c4%91%e1%bb%89nh%20tr%c3%a1i%20c%c3%b9ng%20th%c3%ac%20ta%20x%e1%ba%bfp%20theo%20xa%20d%e1%ba%a7n%29.">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-23-bao-loi%2f&t=T%c3%acm%20bao%20l%e1%bb%93i%20trong%20m%e1%ba%b7t%20ph%e1%ba%b3ng%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2020  v4ngtr 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+  
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</html>

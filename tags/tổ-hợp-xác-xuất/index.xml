@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tổ hợp, xác Xuất on CP notebook</title>
+    <link>https://cpalg.github.io/tags/t%E1%BB%95-h%E1%BB%A3p-x%C3%A1c-xu%E1%BA%A5t/</link>
+    <description>Recent content in Tổ hợp, xác Xuất on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Tue, 22 Sep 2020 05:56:54 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/t%E1%BB%95-h%E1%BB%A3p-x%C3%A1c-xu%E1%BA%A5t/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cách đếm số hoán vị mà không có phần tử nào nằm đúng vị trí. - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri/</link>
+      <pubDate>Tue, 22 Sep 2020 05:56:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-22-cach-dem-so-hoan-vi-khong-dung-vi-tri/</guid>
+      <description>Bài toán:  Cho môt dãy n phần tử gồm các hoán vị của dãy từ 1 tới n, đếm số hoán vị mà trong các phần tử, không có phần tử nào nằm đúng vị trí.
+ Cách làm:  Gọi C[i] là số hoán vị gồm i phần tử mà không có phần tử đúng vị trí. Ta có: C[i] = (i-1) * (C[i-1] + C[i-2]) . Với C[1] = 0, C[2] = 1  Chứng minh: Giả sử ta đã tạo được dãy hoán vị với i-1 phần tử, giờ ta sẽ đặt phần tử thứ i vào tập có tất cả n-1 cách thêm phần tử i:</description>
+    </item>
+    
+  </channel>
+</rss>

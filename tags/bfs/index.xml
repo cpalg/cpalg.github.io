@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BFS on CP notebook</title>
+    <link>https://cpalg.github.io/tags/bfs/</link>
+    <description>Recent content in BFS on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Sat, 17 Oct 2020 03:36:54 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Swap Game - CSES</title>
+      <link>https://cpalg.github.io/posts/2020-10-17-swap-game/</link>
+      <pubDate>Sat, 17 Oct 2020 03:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-17-swap-game/</guid>
+      <description>Link đề bài:  https://cses.fi/problemset/task/1670/.  Hướng dẫn:  Tạo đồ thị mỗi đỉnh chính là mỗi trạng thái của bảng, có 9! trạng thái, mỗi cạnh chính là một bước di chuyển 2 ô kề nhau. Sau đó BFS từ đỉnh gốc đề bài cho đến đỉnh đích (123456789).  Code mẫu: #include &amp;lt;unordered_map&amp;gt;#include &amp;lt;queue&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;string.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; string s; std::vector&amp;lt;ii&amp;gt; g; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+  </channel>
+</rss>

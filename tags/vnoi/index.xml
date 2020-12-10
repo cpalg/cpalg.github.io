@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VNOI on CP notebook</title>
+    <link>https://cpalg.github.io/tags/vnoi/</link>
+    <description>Recent content in VNOI on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Thu, 29 Oct 2020 07:02:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/vnoi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bội số chung nhỏ nhất - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-29-ctnown/</link>
+      <pubDate>Thu, 29 Oct 2020 07:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-29-ctnown/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/FINDNUM/.  Hướng dẫn: Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;string.h&amp;gt;#define int unsigned long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 355; int n, Prime[MAX], f[MAX][MAX], r[MAX], T; std::vector&amp;lt;int&amp;gt; pr; void Eratos(){ memset(Prime, 1, sizeof Prime); Prime[0] = Prime[1] = 0; for(int i=2; i*i &amp;lt; MAX; i++){ if (Prime[i]) for(int j=i*2; j&amp;lt;MAX; j+=i){ Prime[j] = false; } } pr.</description>
+    </item>
+    
+    <item>
+      <title>Tìm số - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-29-findnum/</link>
+      <pubDate>Thu, 29 Oct 2020 06:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-29-findnum/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/FINDNUM/.  Hướng dẫn:  Gọi f[i][j] là số nhỏ nhất có i ước, tạo từ j số nguyên tố đầu tiên, Số có 1000 ước ta chỉ xét khoảng 10 số nguyên tố đầu tiên là đủ. Ta có thể phân tích số tự nhiên x thành dãy x1^k1 * x2^k2 * ... *xn^kn. Với mỗi xi có (ki+1) cách chọn. Từ nhận xét trên, ta có công thức qhđ: f[i][j] = min(f[i/(k+1)][j-1] * prime[j]^k, f[i][j-1]).</description>
+    </item>
+    
+    <item>
+      <title>Query on a tree - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-07-qtree/</link>
+      <pubDate>Wed, 07 Oct 2020 03:36:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-07-qtree/</guid>
+      <description>Link đề bài:  https://www.spoj.com/problems/QTREE/.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 2e4+6; int n, T, cnt, Pos[MAX], Par[MAX], Deep[MAX]; int t[MAX*4], nChild[MAX], Head[MAX]; std::vector&amp;lt;ii&amp;gt; g[MAX]; ii Edges[MAX]; void Update(int id, int l, int r, int pos, int val){ if (l==r){ t[id] = val; return; }	int mid = (l+r)/2; if (pos &amp;lt;= mid) Update(id*2, l , mid, pos, val); else Update(id*2+1, mid+1, r, pos, val); t[id] = max(t[id*2], t[id*2+1]); } int ITQuery(int id, int l, int r, int L, int R){ if (R&amp;lt;l || r&amp;lt;L) return -999999; if (L&amp;lt;=l &amp;amp;&amp;amp; r&amp;lt;=R){ return t[id]; } int mid =(l+r)/2; return max(ITQuery(id*2, l, mid, L,R), ITQuery(id*2+1, mid+1, r, L, R)); } int Query(int u, int v){ int res = -999999; // di len toi khi nao cung mot nhanh 	while (Head[u]!</description>
+    </item>
+    
+    <item>
+      <title>Land Acquisition - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-10-03-acquire/</link>
+      <pubDate>Sat, 03 Oct 2020 02:35:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-03-acquire/</guid>
+      <description>Link đề bài:  https://www.spoj.com/problems/ACQUIRE/.  Hướng dẫn:  Ta có một nhận xét rằng: Giả sử tồn tại hai hình chữ nhật với kích thước \((a,b)\) và \((x,y)\). nếu \(a&amp;lt;=x\) và \(b&amp;lt;=y \) thì ta có thể bỏ luôn hình chữ nhật kích thước \((a,b)\) bởi vì chỉ cần gộp hình chữ nhật kích thước \((a,b)\) vào hình chữ nhật kích thước \((x,y)\) thì sẽ không mất phí, do đó ta loại bỏ tất cả các hình chữ nhật thừa.</description>
+    </item>
+    
+    <item>
+      <title>Sửa cầu - VNOI.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-kbuild/</link>
+      <pubDate>Sun, 27 Sep 2020 07:06:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-kbuild/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/KBUILD/.  Hướng dẫn:  Để giải quyết bài toán này ta đặt ra 2 vấn đề chính:  Làm thế nào để tìm đường đi giữa q cặp đỉnh (u, v) (Tìm đường đi từ u tới LCA(u,v) và đường đi từ v tới LCA(u,v))/ Làm thế nào để câp nhật các đường đi từ u tới v trong đpt &amp;lt; log2(n).   Để giải quyết hai vấn đề trên ta dùng Heavy-Light Decomposition để phân rã cây thành các chuỗi thẳng từ đó áp dụng segment tree cập nhật đoạn và tìm LCA giữa các cặp đỉnh (u, v).</description>
+    </item>
+    
+    <item>
+      <title>Heavy-Light Decomposition - Lý thuyết</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-heavy-light-decomposition/</link>
+      <pubDate>Sun, 27 Sep 2020 07:05:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-heavy-light-decomposition/</guid>
+      <description>Heavy-light decomposition (HLD) là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
+ Thuật toán phân tách cây Trước hết, chúng ta có các định nghĩa như sau:</description>
+    </item>
+    
+    <item>
+      <title>Làm quen bạn mới - VNOI</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-fselect/</link>
+      <pubDate>Thu, 24 Sep 2020 09:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-fselect/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/FSELECT/.  Hướng dẫn:  Để tính khoảng cách giữa 2 đỉnh bất kỳ trong cây ta có thể sử dụng công thức: Distance(u, v) = d[u] + d[v] - 2*d[LCA(u,v)]. Để tìm khoảng cách xa nhất giữa 2 trong k đỉnh bất kỳ trong k ta áp dụng thuật toán sau (tương tự thuật toán tìm đường kính của cây):  Chọn một đỉnh bât kỳ làm gốc, sau đó tìm đỉnh có khoảng cách xa nhất từ đỉnh gốc, lấy đỉnh xa nhất này làm gốc mới.</description>
+    </item>
+    
+  </channel>
+</rss>

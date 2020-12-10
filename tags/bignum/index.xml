@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bignum on CP notebook</title>
+    <link>https://cpalg.github.io/tags/bignum/</link>
+    <description>Recent content in Bignum on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Fri, 30 Oct 2020 01:03:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/bignum/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chia quà - ntucoder</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-divide/</link>
+      <pubDate>Fri, 30 Oct 2020 01:03:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-divide/</guid>
+      <description>Link đề bài:  http://ntucoder.net/Problem/Details/4414.  Hướng dẫn:  Gọi f[i][j] là số cách chia các món quà từ 1 tới i món quà, vào j túi. Nếu chia món quà thứ i vào một túi mới thì f[i][j] = f[i-1][j-1] Nếu bỏ món quà đó vào các túi sẵn có f[i][j] = f[i-1][j] * j  Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define JN Jonasngyn #define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+    <item>
+      <title>MULBIG - ntucoder</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-mulbig/</link>
+      <pubDate>Fri, 30 Oct 2020 01:03:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-mulbig/</guid>
+      <description>Link đề bài:  http://ntucoder.net/Problem/Details/5683.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define JN Jonasngyn #define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; typedef vector&amp;lt;ll&amp;gt; bigNum; const int MOD=1e9; bigNum a, b; bool Neg=0; bigNum toBig(int a) { bigNum ret; ret.</description>
+    </item>
+    
+    <item>
+      <title>SGAME8 - LQDOJ</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-sgame8/</link>
+      <pubDate>Fri, 30 Oct 2020 01:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-sgame8/</guid>
+      <description>Link đề bài:  https://lqdoj.edu.vn/problem/sgame8/.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; typedef vector&amp;lt;int&amp;gt; bigNum; const int MAX = -1; const int BASE = 1000000000; bigNum Fix(bigNum a){ a.push_back(0); for(int i=0; i&amp;lt;(int)a.size(); i++){ a[i+1]+= a[i]/BASE; a[i]%= BASE; while (a[i] &amp;lt; 0) a[i]+= BASE, a[i+1]--; } while (a.size()&amp;gt;1 &amp;amp;&amp;amp; a.back()==0) a.pop_back(); return a; } void Print(bigNum a){ printf(&amp;#34;%d&amp;#34;, a.back()); for(int i=a.</description>
+    </item>
+    
+  </channel>
+</rss>

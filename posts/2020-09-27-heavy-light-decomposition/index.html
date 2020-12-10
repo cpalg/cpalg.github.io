@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Heavy-Light Decomposition - Lý thuyết </title>
+  <meta name="description" content="Trang web mình lưu trữ lại các kiến thức lập trình mình đã học.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Heavy-Light Decomposition - Lý thuyết" />
+<meta property="og:description" content="Heavy-light decomposition (HLD) là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
+ Thuật toán phân tách cây Trước hết, chúng ta có các định nghĩa như sau:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cpalg.github.io/posts/2020-09-27-heavy-light-decomposition/" />
+<meta property="article:published_time" content="2020-09-27T07:05:22+00:00" />
+<meta property="article:modified_time" content="2020-09-27T07:05:22+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Heavy-Light Decomposition - Lý thuyết"/>
+<meta name="twitter:description" content="Heavy-light decomposition (HLD) là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
+ Thuật toán phân tách cây Trước hết, chúng ta có các định nghĩa như sau:"/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://cpalg.github.io/css/style-white.css">
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://cpalg.github.io/images/favicon.ico" />
+
+  
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://cpalg.github.io/posts/2020-09-27-stones/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://cpalg.github.io/posts/2020-09-27-kbuild/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&text=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&is_video=false&description=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&name=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft&description=Heavy-light%20decomposition%20%28HLD%29%20l%c3%a0%20k%c4%a9%20thu%e1%ba%adt%20ph%c3%a2n%20t%c3%a1ch%20m%e1%bb%99t%20c%c3%a2y%20th%c3%a0nh%20nhi%e1%bb%81u%20chu%e1%bb%97i%20%c4%91%e1%bb%89nh%20%28chain%29%20r%e1%bb%9di%20nhau.%20Sau%20%c4%91%c3%b3%2c%20ch%c3%bang%20ta%20c%c3%b3%20th%e1%bb%83%20%c3%a1p%20d%e1%bb%a5ng%20c%c3%a1c%20c%e1%ba%a5u%20tr%c3%bac%20d%e1%bb%af%20li%e1%bb%87u%20nh%c6%b0%20Interval%20Tree%20hay%20Binary-Indexed%20Tree%20l%c3%aan%20nh%e1%bb%afng%20chu%e1%bb%97i%20n%c3%a0y%20%c4%91%e1%bb%83%20c%c3%b3%20th%e1%bb%83%20c%e1%ba%adp%20nh%e1%ba%adt%20d%e1%bb%af%20li%e1%bb%87u%20ho%e1%ba%b7c%20tr%e1%ba%a3%20l%e1%bb%9di%20c%c3%a1c%20truy%20v%e1%ba%a5n%20tr%c3%aan%20m%e1%bb%99t%20%c4%91%c6%b0%e1%bb%9dng%20%c4%91i%20gi%e1%bb%afa%202%20%c4%91%e1%bb%89nh%20trong%20c%c3%a2y.%0a%20Thu%e1%ba%adt%20to%c3%a1n%20ph%c3%a2n%20t%c3%a1ch%20c%c3%a2y%20Tr%c6%b0%e1%bb%9bc%20h%e1%ba%bft%2c%20ch%c3%bang%20ta%20c%c3%b3%20c%c3%a1c%20%c4%91%e1%bb%8bnh%20ngh%c4%a9a%20nh%c6%b0%20sau%3a">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&t=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#thuật-toán-phân-tách-cây">Thuật toán phân tách cây</a></li>
+    <li><a href="#cập-nhật-và-truy-vấn-một-đường-đi-trên-cây">Cập nhật và truy vấn một đường đi trên cây</a></li>
+    <li><a href="#độ-phức-tạp">Độ phức tạp</a></li>
+    <li><a href="#bài-tập-áp-dụng">Bài tập áp dụng</a></li>
+    <li><a href="#nguồn">Nguồn:</a></li>
+    <li><a href="#tham-khảo">Tham khảo:</a></li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Heavy-Light Decomposition - Lý thuyết
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2020-09-27 07:05:22 &#43;0000 UTC" itemprop="datePublished">2020-09-27</time>
+          
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/l%C3%BD-thuy%E1%BA%BFt" rel="tag">Lý thuyết</a>
+            
+            
+            <a class="tag-link" href="/tags/vnoi" rel="tag">VNOI</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/heavy-light-decomposition" rel="tag">Heavy-Light Decomposition</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/c%C3%A2y" rel="tag">Cây</a>
+            
+        </div> 
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <blockquote>
+<p>Heavy-light decomposition (HLD) là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.</p>
+</blockquote>
+<h2 id="thuật-toán-phân-tách-cây">Thuật toán phân tách cây</h2>
+<p>Trước hết, chúng ta có các định nghĩa như sau:</p>
+<ul>
+<li>Đỉnh con đặc biệt <strong>(heavy vertex)</strong>: Trong số những đỉnh con của một đỉnh u không phải là lá, đỉnh đặc biệt v là gốc của cây con có kích thước lớn nhất.</li>
+<li>Cạnh đặc biệt <strong>(heavy edge)</strong>: Là cạnh nối giữa <strong>u</strong> và <strong>v</strong>, với <strong>v</strong> là đỉnh đặc biệt và <strong>u</strong> là cha của <strong>v</strong>.
+Những đỉnh con còn lại của <strong>u</strong> gọi là đỉnh thường <strong>(light vertex)</strong> và những cạnh nối giữa <strong>u</strong> đến các đỉnh đó gọi là cạnh thường <strong>(light edge)</strong>.</li>
+</ul>
+<p>Dễ thấy là với mỗi đỉnh không phải là lá đều có thể chọn được đúng một cạnh và một đỉnh con đặc biệt của nó. Để tạo các chuỗi đỉnh, chúng ta làm như sau: bắt đầu từ đỉnh gốc, di chuyển xuống đỉnh con đặc biệt của nó và tiếp tục di chuyển xuống các đỉnh con tiếp theo đến khi gặp đỉnh lá thì kết thúc. Đường đi từ đỉnh gốc đến đỉnh lá này tạo thành một chuỗi đỉnh. Chúng ta lại lặp lại thao tác này với các đỉnh còn lại đến khi tất cả các đỉnh đều thuộc đúng một chuỗi nào đó.</p>
+<p>Để cho dễ hiểu, chúng ta có ví dụ sau:</p>
+<p><img src="/images/contents/HLD/1.jpg" alt="image">
+Từ đỉnh 1 di chuyển xuống đỉnh 2. Đỉnh đặc biệt của đỉnh 1 là đỉnh 2 vì cây con có đỉnh 2 làm gốc có kích thước lớn nhất.</p>
+<p><img src="/images/contents/HLD/2.jpg" alt="image">
+Từ đỉnh 2 di chuyển xuống đỉnh 4 vì cây con có gốc là đỉnh 4 có kích thước lớn nhất.</p>
+<p><img src="/images/contents/HLD/3.jpg" alt="image">
+Từ đỉnh 4 di chuyển xuống đỉnh số 7. Tại đây 2 cây con có gốc là đỉnh 7 và đỉnh 5 đều có kích thước như nhau nên ta có thể chọn bất kì đỉnh nào.</p>
+<p><img src="/images/contents/HLD/4.jpg" alt="image">
+Tiếp tục thực hiện cho đến khi gặp đỉnh lá. Như vậy là chúng ta đã có được một chuỗi đỉnh.</p>
+<p><img src="/images/contents/HLD/5.jpg" alt="image">
+Chúng ta bắt đầu chuỗi mới ở một đỉnh gần nhất và lặp lại quá trình trên.</p>
+<p><img src="/images/contents/HLD/6.jpg" alt="image">
+Cuối cùng chúng ta sẽ có một tập các chuỗi đỉnh rời nhau. Những cạnh được tô màu là cạnh đặc biệt và cạnh không được tô màu là cạnh thường.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">
+<span style="color:#6272a4">// nChain chuỗi hiện tại. Sau khi kết thúc việc phân tách thì đây sẽ là tổng số chuỗi.
+</span><span style="color:#6272a4">// chainHead[c] đỉnh đầu của chuỗi c
+</span><span style="color:#6272a4">// chainInd[u] chuỗi mà đỉnh u nằm trong.
+</span><span style="color:#6272a4"></span>
+<span style="color:#8be9fd">void</span> <span style="color:#50fa7b">hld</span>(<span style="color:#8be9fd">int</span> u) {
+
+    <span style="color:#6272a4">// Nếu chuỗi hiện tại chưa có đỉnh đầu (đỉnh gần gốc nhất) thì đặt u làm đỉnh đầu của nó.
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">if</span> (chainHead[nChain] <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>) chainHead[nChain] <span style="color:#ff79c6">=</span> u;
+
+    <span style="color:#6272a4">// Gán chuỗi hiện tại cho u
+</span><span style="color:#6272a4"></span>	chainInd[u] <span style="color:#ff79c6">=</span> nChain;
+
+    <span style="color:#6272a4">// Giải thích bên dưới
+</span><span style="color:#6272a4"></span>	posInBase[u] <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">++</span>nBase;
+
+    <span style="color:#6272a4">// Biến lưu đỉnh con đặc biệt của u
+</span><span style="color:#6272a4"></span>	<span style="color:#8be9fd">int</span> mxVtx <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>;
+
+    <span style="color:#6272a4">// Tìm đỉnh con đặc biệt trong số những đỉnh con của u
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> adj[u].size(); i<span style="color:#ff79c6">++</span>) {
+		<span style="color:#8be9fd">int</span> v <span style="color:#ff79c6">=</span> adj[u][i];
+		<span style="color:#ff79c6">if</span> (v <span style="color:#ff79c6">!=</span> parent[u]) {
+			<span style="color:#ff79c6">if</span> (mxVtx <span style="color:#ff79c6">==</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">||</span> nChild[v] <span style="color:#ff79c6">&gt;</span> nChild[mxVtx]) {
+				mxVtx <span style="color:#ff79c6">=</span> v;
+			}
+		}	
+	}
+
+    <span style="color:#6272a4">// Nếu tìm ra đỉnh con đặc biệt (u không phải là đỉnh lá) thì di chuyển đến đỉnh đó
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">if</span> (mxVtx <span style="color:#ff79c6">&gt;</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>)
+		hld(mxVtx);
+
+    <span style="color:#6272a4">// Sau khi đi hết một chuỗi thì tăng nChain lên và bắt đầu một chuỗi mới
+</span><span style="color:#6272a4"></span>	<span style="color:#ff79c6">for</span> (<span style="color:#8be9fd">int</span> i <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>; i <span style="color:#ff79c6">&lt;</span> adj[u].size(); i<span style="color:#ff79c6">++</span>) {
+		<span style="color:#8be9fd">int</span> v <span style="color:#ff79c6">=</span> adj[u][i];
+		<span style="color:#ff79c6">if</span> (v <span style="color:#ff79c6">!=</span> parent[u] <span style="color:#ff79c6">&amp;&amp;</span> v <span style="color:#ff79c6">!=</span> mxVtx) {
+			nChain<span style="color:#ff79c6">++</span>;
+			hld(v);
+		}
+	}
+}
+</code></pre></div><p>Để có thể tiếp tục, chúng ta cần biết ít nhất các thông tin sau:</p>
+<ul>
+<li>Với một chuỗi, đỉnh đầu (đỉnh gần đỉnh gốc nhất) của nó là đỉnh nào.</li>
+<li>Với một đỉnh, chuỗi mà nó nằm trong là chuỗi nào.</li>
+<li>Ngoài ra chúng ta còn có mảng posInBase[]. Đây là mảng lưu lại vị trí của các đỉnh sau khi chúng ta &ldquo;trải&rdquo; các chuỗi trên lên một đường thẳng. Điều này sẽ giúp cho việc cài đặt các cấu trúc dữ liệu như Interval Tree hoặc Binary Indexed Tree một cách gọn gàng hơn.</li>
+</ul>
+<p><img src="/images/contents/HLD/7.jpg" alt="image">
+Giả sử với hình trên thì <code>posInBase[7] = 4</code>; <code>posInBase[14] = 8</code> …</p>
+<h2 id="cập-nhật-và-truy-vấn-một-đường-đi-trên-cây">Cập nhật và truy vấn một đường đi trên cây</h2>
+<p>Thay vì cập nhật hoặc truy vấn một đường đi từ đỉnh u đến đỉnh v trên cây, chúng ta có thể thực hiện các thao tác này trên 2 đường đi từ <strong>u</strong> đến <strong>lca(u,v)</strong> và từ <strong>v</strong> đến <strong>lca(u,v)</strong> (lca là hàm tìm cha chung gần nhất của 2 đỉnh).</p>
+<p>Giả sử chúng ta cần cập nhật đường đi từ <strong>u</strong> đến <strong>lca(u,v)</strong> (gọi tắt là <strong>a</strong>). Nếu <strong>a</strong> và <strong>u</strong> không cùng một chuỗi, chúng ta thực hiện thao tác cập nhật lên đường đi từ đỉnh <strong>u</strong> đến đỉnh đầu của chuỗi hiện tại. Sau đó cho <strong>u</strong> nhảy lên đỉnh cha của đỉnh đầu này rồi lặp lại thao tác cập nhật. Đến khi u và a nằm trên cùng một chuỗi, chúng ta chỉ cần cập nhật đoạn từ <strong>u</strong> đến <strong>a</strong> và kết thúc. Thao tác truy vấn được thực hiện tương tự.</p>
+<p>Ví dụ:</p>
+<p>Chúng ta cần thực hiện cập nhật trên đường đi từ u=16 đến a=1.</p>
+<p><img src="/images/contents/HLD/8.jpg" alt="image">
+Gọi hàm update interval tree cho đoạn từ đỉnh 8 đến đỉnh 16.</p>
+<p><img src="/images/contents/HLD/9.jpg" alt="image">
+Nhảy lên đỉnh cha của đỉnh đầu của chuỗi hiện tại. Lúc này u = 11.</p>
+<p><img src="/images/contents/HLD/10.jpg" alt="image">
+Gọi hàm update interval tree cho đoạn từ đỉnh 11 đến đỉnh 5.</p>
+<p><img src="/images/contents/HLD/11.jpg" alt="image">
+Nhảy lên đỉnh cha của đỉnh đầu của chuỗi hiện tại. Lúc này u = 4.</p>
+<p><img src="/images/contents/HLD/12.jpg" alt="image">
+Gọi hàm update interval tree cho đoạn từ đỉnh 4 đến đỉnh 1 và kết thúc.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8be9fd">void</span> <span style="color:#50fa7b">update</span>(<span style="color:#8be9fd">int</span> u, <span style="color:#8be9fd">int</span> a) {
+    <span style="color:#6272a4">// uchain chuỗi hiện tại của u 
+</span><span style="color:#6272a4"></span>    <span style="color:#6272a4">// achain chuỗi của a
+</span><span style="color:#6272a4"></span>     <span style="color:#8be9fd">int</span> uchain <span style="color:#ff79c6">=</span> chainInd[u], achain <span style="color:#ff79c6">=</span> chainInd[a];
+
+     <span style="color:#ff79c6">while</span> (<span style="color:#bd93f9">1</span>) {
+        <span style="color:#6272a4">// Nếu u và a cùng nằm trên một chuỗi thì update đoạn từ u đến a và kết thúc.
+</span><span style="color:#6272a4"></span>          <span style="color:#ff79c6">if</span> (uchain <span style="color:#ff79c6">==</span> achain) {
+               updateIntervalTree(..., posInBase[a], posInBase[u], ...);
+               <span style="color:#ff79c6">break</span>;
+          }
+        <span style="color:#6272a4">// Nếu u và a không nằm trên cùng một chuỗi thì update đoạn từ u đến đỉnh đầu của chuỗi hiện tại.
+</span><span style="color:#6272a4"></span>          updateIntervalTree(..., posInBase[chainHead[uchain]], posInBase[u], ...);
+
+        <span style="color:#6272a4">// Nhảy lên đỉnh cha của đỉnh đầu hiện tại.
+</span><span style="color:#6272a4"></span>          u <span style="color:#ff79c6">=</span> parent[chainHead[uchain]];
+          uchain <span style="color:#ff79c6">=</span> chainInd[u];
+     }
+}
+</code></pre></div><h2 id="độ-phức-tạp">Độ phức tạp</h2>
+<p>Với một cây có <strong>n</strong> đỉnh, khi đi từ đỉnh gốc đến một đỉnh lá bằng một đường đi bất kì thì số lần chúng ta phải nhảy chuỗi sẽ không vượt quá <strong>log(n)</strong>. Để chứng minh điều này, chúng ta có thể thấy rằng, khi nhảy từ một đỉnh bất kì đến đỉnh con thường của nó thông qua cạnh thường thì số lượng đỉnh con có thể đi được sẽ giảm đi xuống còn tối đa một nửa so với ban đầu (nếu số đỉnh con còn lại nhiều hơn một nửa số đỉnh ban đầu thì đỉnh chúng ta nhảy tới đã là đỉnh con đặc biệt). Và nếu chúng ta tiếp tục nhảy qua nhiều chuỗi mới thì số lượng đỉnh sẽ giảm theo bội của 2. Bên cạnh đó, chúng ta sử dụng cấu trúc dữ liệu đặc biệt cho việc cập nhật hoặc truy vấn thông tin các đỉnh trong cùng một chuỗi nên độ phức tạp của thao tác này cũng là <strong>O(log(n))</strong>.</p>
+<p>Như vậy độ phức tạp của một thao tác cập nhật hoặc truy vấn một đường đi trên cây sẽ là <strong>O(log(n))</strong>.</p>
+<h2 id="bài-tập-áp-dụng">Bài tập áp dụng</h2>
+<ul>
+<li>HLD có thể áp dụng để giải bài toán LCA</li>
+<li><a href="http://vnoi.info/problems/show/QTREE">QTREE</a></li>
+<li><a href="http://vnoi.info/problems/show/QTREE3/">QTREE3</a></li>
+<li><a href="http://vnoi.info/problems/show/QTREEX">QTREEX</a></li>
+<li><a href="https://www.hackerrank.com/contests/epiccode/challenges/epic-tree">EpicTree</a></li>
+</ul>
+<h2 id="nguồn">Nguồn:</h2>
+<p>Copy từ <a href="https://vnoi.info/wiki/algo/data-structures/heavy-light-decomposition.md">vnoi-wiki</a></p>
+<h2 id="tham-khảo">Tham khảo:</h2>
+<ul>
+<li><a href="https://robert1003.github.io/2020/09/04/heavy-light-decomposition.html">https://robert1003.github.io/2020/09/04/heavy-light-decomposition.html</a>.</li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'v4ngtr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#thuật-toán-phân-tách-cây">Thuật toán phân tách cây</a></li>
+    <li><a href="#cập-nhật-và-truy-vấn-một-đường-đi-trên-cây">Cập nhật và truy vấn một đường đi trên cây</a></li>
+    <li><a href="#độ-phức-tạp">Độ phức tạp</a></li>
+    <li><a href="#bài-tập-áp-dụng">Bài tập áp dụng</a></li>
+    <li><a href="#nguồn">Nguồn:</a></li>
+    <li><a href="#tham-khảo">Tham khảo:</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&text=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&is_video=false&description=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&title=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&name=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft&description=Heavy-light%20decomposition%20%28HLD%29%20l%c3%a0%20k%c4%a9%20thu%e1%ba%adt%20ph%c3%a2n%20t%c3%a1ch%20m%e1%bb%99t%20c%c3%a2y%20th%c3%a0nh%20nhi%e1%bb%81u%20chu%e1%bb%97i%20%c4%91%e1%bb%89nh%20%28chain%29%20r%e1%bb%9di%20nhau.%20Sau%20%c4%91%c3%b3%2c%20ch%c3%bang%20ta%20c%c3%b3%20th%e1%bb%83%20%c3%a1p%20d%e1%bb%a5ng%20c%c3%a1c%20c%e1%ba%a5u%20tr%c3%bac%20d%e1%bb%af%20li%e1%bb%87u%20nh%c6%b0%20Interval%20Tree%20hay%20Binary-Indexed%20Tree%20l%c3%aan%20nh%e1%bb%afng%20chu%e1%bb%97i%20n%c3%a0y%20%c4%91%e1%bb%83%20c%c3%b3%20th%e1%bb%83%20c%e1%ba%adp%20nh%e1%ba%adt%20d%e1%bb%af%20li%e1%bb%87u%20ho%e1%ba%b7c%20tr%e1%ba%a3%20l%e1%bb%9di%20c%c3%a1c%20truy%20v%e1%ba%a5n%20tr%c3%aan%20m%e1%bb%99t%20%c4%91%c6%b0%e1%bb%9dng%20%c4%91i%20gi%e1%bb%afa%202%20%c4%91%e1%bb%89nh%20trong%20c%c3%a2y.%0a%20Thu%e1%ba%adt%20to%c3%a1n%20ph%c3%a2n%20t%c3%a1ch%20c%c3%a2y%20Tr%c6%b0%e1%bb%9bc%20h%e1%ba%bft%2c%20ch%c3%bang%20ta%20c%c3%b3%20c%c3%a1c%20%c4%91%e1%bb%8bnh%20ngh%c4%a9a%20nh%c6%b0%20sau%3a">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-09-27-heavy-light-decomposition%2f&t=Heavy-Light%20Decomposition%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2020  v4ngtr 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+  
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Thành phần song liên thông on CP notebook</title>
+    <link>https://cpalg.github.io/tags/th%C3%A0nh-ph%E1%BA%A7n-song-li%C3%AAn-th%C3%B4ng/</link>
+    <description>Recent content in Thành phần song liên thông on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Wed, 23 Sep 2020 11:48:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/th%C3%A0nh-ph%E1%BA%A7n-song-li%C3%AAn-th%C3%B4ng/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CJ và vùng đất mới - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjvungdatmoi/</link>
+      <pubDate>Wed, 23 Sep 2020 11:48:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjvungdatmoi/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjvungdatmoi.  Hướng dẫn:  Đây là bài toán tìm thành phần song liên thông (biconnected component). Thành phần song liên thông là một thành phần liên thông mà khi ta bỏ một đỉnh bất kì nào, thì các đỉnh còn lại vẫn cùng thuộc một thành phần liên thông. Ta có một nhận xét là các thành phần song liên thông được nối với nhau bằng các khớp.</description>
+    </item>
+    
+  </channel>
+</rss>

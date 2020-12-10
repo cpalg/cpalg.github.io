@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chu trình Euler on CP notebook</title>
+    <link>https://cpalg.github.io/tags/chu-tr%C3%ACnh-euler/</link>
+    <description>Recent content in Chu trình Euler on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Wed, 23 Sep 2020 11:50:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/chu-tr%C3%ACnh-euler/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CJ và Denise - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjandenise/</link>
+      <pubDate>Wed, 23 Sep 2020 11:50:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjandenise/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjanddenise.  Hướng dẫn:   Bài toán trên là định nghĩa về chu trình Euler: Chu trình Euler là chu trình mà xuất phát từ một đỉnh bất kì, đi qua tất cả các cạnh của đồ thị và trở về đỉnh ban đầu.
+  Một đồ thị là một chu trình Euler khi và chỉ khi nó liên thông và tất cả các đỉnh của nó đều bậc chẵn.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Quy hoạch động bao lồi - Lý thuyết </title>
+  <meta name="description" content="Trang web mình lưu trữ lại các kiến thức lập trình mình đã học.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Quy hoạch động bao lồi - Lý thuyết" />
+<meta property="og:description" content="Kĩ thuật qhd bao lồi là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với thuật toán bao lồi của hình học tính toán. Ngoài ra có một kĩ thuật liên quan đến kĩ thuật bao lồi là IT đoạn thẳng." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cpalg.github.io/posts/2020-10-02-qhd-bao-loi/" />
+<meta property="article:published_time" content="2020-10-02T02:35:54+00:00" />
+<meta property="article:modified_time" content="2020-10-02T02:35:54+00:00" />
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Quy hoạch động bao lồi - Lý thuyết"/>
+<meta name="twitter:description" content="Kĩ thuật qhd bao lồi là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với thuật toán bao lồi của hình học tính toán. Ngoài ra có một kĩ thuật liên quan đến kĩ thuật bao lồi là IT đoạn thẳng."/>
+
+  
+  
+    
+  
+  
+  <link rel="stylesheet" href="https://cpalg.github.io/css/style-white.css">
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="https://cpalg.github.io/images/favicon.ico" />
+
+  
+  
+  
+</head>
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" https://cpalg.github.io/posts/2020-09-27-kbuild/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="https://cpalg.github.io/posts/2020-10-03-acquire/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&text=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&is_video=false&description=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&name=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft&description=K%c4%a9%20thu%e1%ba%adt%20qhd%20bao%20l%e1%bb%93i%20l%c3%a0%20k%c4%a9%20thu%e1%ba%adt%20%28ho%e1%ba%b7c%20l%c3%a0%20c%e1%ba%a5u%20tr%c3%bac%20d%e1%bb%af%20li%e1%bb%87u%29%20d%c3%b9ng%20%c4%91%e1%bb%83%20x%c3%a1c%20%c4%91%e1%bb%8bnh%20hi%e1%bb%87u%20qu%e1%ba%a3%2c%20c%c3%b3%20ti%e1%bb%81n%20x%e1%bb%ad%20l%c3%bd%2c%20c%e1%bb%b1c%20tr%e1%bb%8b%20c%e1%bb%a7a%20m%e1%bb%99t%20t%e1%ba%adp%20c%c3%a1c%20h%c3%a0m%20tuy%e1%ba%bfn%20t%c3%adnh%20t%e1%ba%a1i%20m%e1%bb%99t%20gi%c3%a1%20tr%e1%bb%8b%20c%e1%bb%a7a%20bi%e1%ba%bfn%20%c4%91%e1%bb%99c%20l%e1%ba%adp.%20M%e1%ba%b7c%20d%c3%b9%20t%c3%aan%20g%e1%bb%8di%20gi%e1%bb%91ng%20nh%c6%b0ng%20k%c4%a9%20thu%e1%ba%adt%20n%c3%a0y%20l%e1%ba%a1i%20kh%c3%a1%20kh%c3%a1c%20bi%e1%bb%87t%20so%20v%e1%bb%9bi%20thu%e1%ba%adt%20to%c3%a1n%20bao%20l%e1%bb%93i%20c%e1%bb%a7a%20h%c3%acnh%20h%e1%bb%8dc%20t%c3%adnh%20to%c3%a1n.%20Ngo%c3%a0i%20ra%20c%c3%b3%20m%e1%bb%99t%20k%c4%a9%20thu%e1%ba%adt%20li%c3%aan%20quan%20%c4%91%e1%ba%bfn%20k%c4%a9%20thu%e1%ba%adt%20bao%20l%e1%bb%93i%20l%c3%a0%20IT%20%c4%91o%e1%ba%a1n%20th%e1%ba%b3ng.">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&t=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lịch-sử">Lịch sử</a></li>
+    <li><a href="#bài-toán-cơ-bản">Bài toán cơ bản</a></li>
+    <li><a href="#thuật-toán-duyệt">Thuật toán duyệt</a></li>
+    <li><a href="#kĩ-thuật">Kĩ thuật</a></li>
+    <li><a href="#ý-nghĩa-của-tên-kĩ-thuật">Ý nghĩa của tên kĩ thuật</a></li>
+    <li><a href="#thêm-một-đường-vào-tập">Thêm một đường vào tập</a></li>
+    <li><a href="#phân-tích-thuật-toán">Phân tích thuật toán</a></li>
+    <li><a href="#nguồn">Nguồn:</a></li>
+    <li><a href="#tham-khảo-thêm">Tham khảo thêm:</a></li>
+  </ul>
+</nav>
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Quy hoạch động bao lồi - Lý thuyết
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2020-10-02 02:35:54 &#43;0000 UTC" itemprop="datePublished">2020-10-02</time>
+          
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng-bao-l%E1%BB%93i" rel="tag">Quy hoạch động bao lồi</a>
+            
+            
+            <a class="tag-link" href="/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng" rel="tag">Quy hoạch động</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/to%C3%A1n" rel="tag">Toán</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/l%C3%BD-thuy%E1%BA%BFt" rel="tag">Lý thuyết</a>
+            
+        </div> 
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      <blockquote>
+<p>Kĩ thuật qhd bao lồi là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với thuật toán bao lồi của hình học tính toán.
+Ngoài ra có một kĩ thuật liên quan đến kĩ thuật bao lồi là IT đoạn thẳng.</p>
+</blockquote>
+<h2 id="lịch-sử">Lịch sử</h2>
+<p>Kĩ thuật bao lồi được biết đến nhiều nhất có lẽ vì nó cần để ăn trọn toàn bộ số điểm trong nhiều bài toán USACO, như là bài Acquire trong bảng gold của USACO tháng 3 năm 2008. Thuật toán được đưa vào các cuộc thi lập trình một cách rộng rãi sau bài Batch Scheduling trong kì thi IOI 2002. Đây là một kĩ thuật khá lạ và ít có nguồn trên mạng về vấn đề này.</p>
+<h2 id="bài-toán-cơ-bản">Bài toán cơ bản</h2>
+<p>Cho một tập lớn các hàm tuyến tính có dạng \(y = m_i x + b_i \) và một số lượng lớn truy vấn. Mỗi truy vấn là một số \(x\)  và hỏi giá trị cực tiểu \(y\) có thể đạt được nếu chúng ta thế \(x\) vào một trong những phương trình đã cho. Ví dụ, cho các phương trình \(y=4\), \(y=\frac{4}{3}+\frac{2}{3}x\), \(y=12-3x\) và \(y=3-\frac{1}{2}x\) và truy vấn \(x=1\). Chúng ta phải tìm phương trình mà trả về giá trị cực tiểu hoặc giá trị cực tiểu đó (trong trường hợp này là phương trình \(y=\frac{4}{3}+\frac{2}{3}x\) và giá trị cực tiểu đó là 2).</p>
+<p>Biến thể của bài toán có thể là tìm giá trị cực đại có thể giải quyết với một thay đổi nhỏ vì vậy trong bài viết này chỉ tập trung vào bài toán tìm giá trị cực tiểu.</p>
+<p>Sau khi ta vẽ các đường thẳng lên hệ trục tọa độ, dễ thấy rằng: chúng ta muốn xác định, tại \(x=1\)(đường màu đỏ) đường nào có tọa độ y nhỏ nhất. Ở trong trường hợp này là đường nét đứt đậm  \(y=\frac{4}{3}+\frac{2}{3}x\).</p>
+<p><img src="/images/contents/qhd-bao-loi/1.png" alt="img"></p>
+<h2 id="thuật-toán-duyệt">Thuật toán duyệt</h2>
+<p>Với mỗi truy vấn trong \(Q\) truy vấn, ta duyệt qua từng hàm số và thử từng từng hàm và xem thử hàm nào trả giá trị cực tiểu cho giá trị \(x\). Nếu có \(M\) đường thẳng và \(Q\) truy vấn, độ phức tạp của thuật toán sẽ \(\mathcal{O}(MQ)\). Kĩ thuật bao lồi sẽ giúp giảm độ phức tạp xuống còn \(\mathcal{O}((Q+M)\log M\), một độ phức tạp hiệu quá hơn nhiều.</p>
+<h2 id="kĩ-thuật">Kĩ thuật</h2>
+<p>Xét hình vẽ ở trên. Đường thẳng \(y=4\) sẽ không bao giờ là giá trị nhỏ nhất với tất cả giá trị của \(x\). Mỗi đường trong mỗi đường thẳng còn lại sẽ lại trả lại giá trị cực tiểu trong một và chỉ một đoạn liên tiếp (có thể có một biên là +∞ hoặc −∞). Đường chấm đậm sẽ cho giá trị cực tiểu với tất cả giá trị nằm bên trái điểm giao với đường đen đậm. Đường đen đậm sẽ cho giá trị cực tiểu với tất cả giá trị giữa giao điểm của nó với đường nhạt và đường chấm đậm. Và đường nhạt sẽ nhận cực tiểu cho tất cả giá trị bên phải giao điểm với đường đậm. Một nhận xét nữa là với giá trị của \(x\) càng tăng thì hệ số góc của các hàm số sẽ giảm, \(\frac{2}{3}, \frac{-1}{2}, -3\). Với một chút chứng minh dễ thấy rằng điều này luôn đúng.</p>
+<p>Điều này giúp chúng ta hiểu phần nào thuật toán:</p>
+<ol>
+<li>Bỏ đi các đường thẳng không quan trọng như \(y=4\) trong ví dụ (những đường thẳng mà không nhận giá trị cực tiểu trong bất kì đoạn nào)</li>
+<li>Sắp xếp các đoạn thẳng còn lại theo hệ số góc và được một tập \(N\) đoạn thẳng (của \(N\) đường thẳng còn lại) mà mỗi đoạn có một đường thẳng nhận giá trị cực tiểu.</li>
+<li>Dùng thuật toán tìm kiếm nhị phân cơ bản để có thể tìm kiếm đáp án cho từng truy vấn.</li>
+</ol>
+<h2 id="ý-nghĩa-của-tên-kĩ-thuật">Ý nghĩa của tên kĩ thuật</h2>
+<p>Cụm từ bao lồi được sử dụng để chỉ hình bao trên/dưới (upper / lower envelope). Trong ví dụ, nếu chúng ta coi mỗi phần đoạn thẳng tối ưu của đường thẳng (bỏ qua đường \(y=4\)), chúng ta sẽ thấy những đoạn đó tạo thành một hình bao dưới (lower envelope), một tập các đoạn thẳng chứa tất cả điểm cực tiểu cho mọi giá trị của \(x\) (hình bao dưới được tô bằng màu xanh trong hình. Cái tên kĩ thuật bao lồi xuất phát từ việc đường bao trên tạo thành một đường lồi, từ đó thành bao lồi của một tập điểm.</p>
+<h2 id="thêm-một-đường-vào-tập">Thêm một đường vào tập</h2>
+<p>Ta có thể thấy nếu ta có một tập đường thẳng đã được xác định sắp xếp, ta có thể dễ dàng trả lời bất kì truy vấn nào với độ phức tạp là \(\mathcal{O}(\log M)\) với tìm kiếm nhị phân. Vậy nếu chúng ta tìm ra cách thêm một đường thẳng vào tính toán lại một cách hiệu quả là chúng ta đã có một thuật toán hoạt động ngon lành.</p>
+<p>Giả sử chúng ta được xử lý tất cả đường thẳng trước khi làm các truy vấn thì chúng ta chỉ cần đơn giản sắp xếp các đường thẳng theo hệ số góc và thêm từng đường một vào. Sẽ có thể một số đường không quan trọng và sẽ bị bỏ đi. Chúng ta sẽ sử dụng cấu trúc dữ liệu Stack để cài đặt, bỏ từng đường thẳng vào stack và nếu đường nào không quan trọng sẽ bị bỏ ra ngoài đến khi chỉ còn một đường thẳng (đường thẳng cuối không thể bỏ)</p>
+<p>Vậy làm sao để có thể xác định đường thẳng nào sẽ bị bỏ khỏi stack? Giả sử \(l1\), \(l2\) và \(l3\) là đường thẳng áp chót (gần cuối ) trên stack, đường thẳng cuối cùng trong stack và đường thẳng được thêm vào stack. Đoạn \(l2\) không quan trọng(không có giá trị cực tiểu ở điểm nào) khi và chỉ khi giao điểm của \(l1\) và \(l3\) nằm bên trái giao điểm của \(l1\) và \(l2\) (Đoạn mà \(l3\) nhận giá trị cực tiểu đã nằm đè lên đoạn của \(l2\)). Giả sử rằng không có ba đường nào trùng hay song song với nhau (có thể giải quyết một cách đơn giản).</p>
+<h2 id="phân-tích-thuật-toán">Phân tích thuật toán</h2>
+<p>Độ phức tạp bộ nhớ sẽ là \(\mathcal{O}(M)\) chúng ta cần một danh sách lưu lại các đoạn thẳng, biểu diễn bởi hai số thực.
+Độ phức tạp thời gian cho phần tiền xây dựng:</p>
+<ul>
+<li>Để sắp xếp các đoạn thẳng theo tăng dần hệ số góc sẽ tốn \(\mathcal{O}(M\log{M})\).</li>
+<li>Duyệt qua các đường thẳng mỗi đường được cho vào stack và bỏ khỏi stack tối đa một lần vậy nên sẽ tốn \(\mathcal{O}(M)\) cho bước này.</li>
+</ul>
+<p>Vậy thời gian cho việc xây dựng sẽ là \(\mathcal{O}(M\log{M})\). Với mỗi truy vấn dùng chặt nhị phân sẽ cho độ phúc tạp tốt nhất \(\mathcal{O}(\log{M})\).</p>
+<h2 id="nguồn">Nguồn:</h2>
+<p><a href="https://vnoi.info/wiki/translate/wcipeg/Convex-Hull-Trick.md#k%C4%A9-thu%E1%BA%ADt">VNOI WIKI</a>.</p>
+<h2 id="tham-khảo-thêm">Tham khảo thêm:</h2>
+<ul>
+<li><a href="https://vnoi.info/wiki/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong.md#3-bao-l%E1%BB%93i-%C4%91%C6%B0%E1%BB%9Dng-th%E1%BA%B3ng">https://vnoi.info/wiki/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong.md#3-bao-l%E1%BB%93i-%C4%91%C6%B0%E1%BB%9Dng-th%E1%BA%B3ng</a>.</li>
+<li><a href="https://vnoi.info/wiki/translate/wcipeg/Convex-Hull-Trick.md">https://vnoi.info/wiki/translate/wcipeg/Convex-Hull-Trick.md</a>.</li>
+<li><a href="https://codeforces.com/blog/entry/63823">https://codeforces.com/blog/entry/63823</a>.</li>
+<li><a href="https://robert1003.github.io/2020/02/17/dp-opt-convex-hull-trick.html">https://robert1003.github.io/2020/02/17/dp-opt-convex-hull-trick.html</a>.</li>
+</ul>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+  
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+          <script type="text/javascript">
+          
+          (function() {
+              
+              
+              
+              
+          
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              var disqus_shortname = 'v4ngtr';
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+
+  
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lịch-sử">Lịch sử</a></li>
+    <li><a href="#bài-toán-cơ-bản">Bài toán cơ bản</a></li>
+    <li><a href="#thuật-toán-duyệt">Thuật toán duyệt</a></li>
+    <li><a href="#kĩ-thuật">Kĩ thuật</a></li>
+    <li><a href="#ý-nghĩa-của-tên-kĩ-thuật">Ý nghĩa của tên kĩ thuật</a></li>
+    <li><a href="#thêm-một-đường-vào-tập">Thêm một đường vào tập</a></li>
+    <li><a href="#phân-tích-thuật-toán">Phân tích thuật toán</a></li>
+    <li><a href="#nguồn">Nguồn:</a></li>
+    <li><a href="#tham-khảo-thêm">Tham khảo thêm:</a></li>
+  </ul>
+</nav>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&text=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&is_video=false&description=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft&body=Check out this article: https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&title=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&name=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft&description=K%c4%a9%20thu%e1%ba%adt%20qhd%20bao%20l%e1%bb%93i%20l%c3%a0%20k%c4%a9%20thu%e1%ba%adt%20%28ho%e1%ba%b7c%20l%c3%a0%20c%e1%ba%a5u%20tr%c3%bac%20d%e1%bb%af%20li%e1%bb%87u%29%20d%c3%b9ng%20%c4%91%e1%bb%83%20x%c3%a1c%20%c4%91%e1%bb%8bnh%20hi%e1%bb%87u%20qu%e1%ba%a3%2c%20c%c3%b3%20ti%e1%bb%81n%20x%e1%bb%ad%20l%c3%bd%2c%20c%e1%bb%b1c%20tr%e1%bb%8b%20c%e1%bb%a7a%20m%e1%bb%99t%20t%e1%ba%adp%20c%c3%a1c%20h%c3%a0m%20tuy%e1%ba%bfn%20t%c3%adnh%20t%e1%ba%a1i%20m%e1%bb%99t%20gi%c3%a1%20tr%e1%bb%8b%20c%e1%bb%a7a%20bi%e1%ba%bfn%20%c4%91%e1%bb%99c%20l%e1%ba%adp.%20M%e1%ba%b7c%20d%c3%b9%20t%c3%aan%20g%e1%bb%8di%20gi%e1%bb%91ng%20nh%c6%b0ng%20k%c4%a9%20thu%e1%ba%adt%20n%c3%a0y%20l%e1%ba%a1i%20kh%c3%a1%20kh%c3%a1c%20bi%e1%bb%87t%20so%20v%e1%bb%9bi%20thu%e1%ba%adt%20to%c3%a1n%20bao%20l%e1%bb%93i%20c%e1%bb%a7a%20h%c3%acnh%20h%e1%bb%8dc%20t%c3%adnh%20to%c3%a1n.%20Ngo%c3%a0i%20ra%20c%c3%b3%20m%e1%bb%99t%20k%c4%a9%20thu%e1%ba%adt%20li%c3%aan%20quan%20%c4%91%e1%ba%bfn%20k%c4%a9%20thu%e1%ba%adt%20bao%20l%e1%bb%93i%20l%c3%a0%20IT%20%c4%91o%e1%ba%a1n%20th%e1%ba%b3ng.">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fcpalg.github.io%2fposts%2f2020-10-02-qhd-bao-loi%2f&t=Quy%20ho%e1%ba%a1ch%20%c4%91%e1%bb%99ng%20bao%20l%e1%bb%93i%20-%20L%c3%bd%20thuy%e1%ba%bft">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2020  v4ngtr 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+  
+
+
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</html>

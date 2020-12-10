@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LQDOJ on CP notebook</title>
+    <link>https://cpalg.github.io/tags/lqdoj/</link>
+    <description>Recent content in LQDOJ on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Fri, 30 Oct 2020 01:02:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/lqdoj/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chia kẹo - LQDOJ</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-chiakeo/</link>
+      <pubDate>Fri, 30 Oct 2020 01:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-chiakeo/</guid>
+      <description>Link đề bài:  https://lqdoj.edu.vn/problem/sharecandies/.  Hướng dẫn:  Gọi f[i][j] là số cách chia kẹo cho i người, và đã chia được j viên kẹo.  Code mẫu: #include &amp;lt;iostream&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;string.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 1e5+6; const int MOD = 1e9+7; int n, k, f[101][MAX], a[MAX]; int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.tie(0); cout.</description>
+    </item>
+    
+    <item>
+      <title>SGAME8 - LQDOJ</title>
+      <link>https://cpalg.github.io/posts/2020-10-30-sgame8/</link>
+      <pubDate>Fri, 30 Oct 2020 01:02:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-10-30-sgame8/</guid>
+      <description>Link đề bài:  https://lqdoj.edu.vn/problem/sgame8/.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; typedef vector&amp;lt;int&amp;gt; bigNum; const int MAX = -1; const int BASE = 1000000000; bigNum Fix(bigNum a){ a.push_back(0); for(int i=0; i&amp;lt;(int)a.size(); i++){ a[i+1]+= a[i]/BASE; a[i]%= BASE; while (a[i] &amp;lt; 0) a[i]+= BASE, a[i+1]--; } while (a.size()&amp;gt;1 &amp;amp;&amp;amp; a.back()==0) a.pop_back(); return a; } void Print(bigNum a){ printf(&amp;#34;%d&amp;#34;, a.back()); for(int i=a.</description>
+    </item>
+    
+    <item>
+      <title>Trò chơi với những viên đá - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-stones/</link>
+      <pubDate>Sun, 27 Sep 2020 06:58:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-stones/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/stones.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second #define ENDL &amp;#34;\n&amp;#34; using namespace std; const int MAX= 111; const int MAXK = 1e5+6; int a[MAX], n, k; int f[MAXK][2]; int DP(int len, bool player){ if (len &amp;lt; 0) return 0; if (f[len][player]!</description>
+    </item>
+    
+    <item>
+      <title>Phép toán với ngăn xếp hai đầu - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-deque/</link>
+      <pubDate>Sun, 27 Sep 2020 06:45:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-deque/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/deque.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second #define ENDL &amp;#34;\n&amp;#34; using namespace std; const int MAX= 3003; long long a[MAX], n, f[MAX][MAX]; long long DP(int l, int r){ if (l &amp;gt; r) return 0; if (f[l][r] !</description>
+    </item>
+    
+    <item>
+      <title>SGAME6 - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-sgame6/</link>
+      <pubDate>Sun, 27 Sep 2020 06:45:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-sgame6/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/sgame6.  Hướng dẫn: Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.txt&amp;#34;, &amp;#34;r&amp;#34;, stdin) #define WRITEFILE freopen(&amp;#34;output.txt&amp;#34;, &amp;#34;w&amp;#34;, stdout); #define ll long long #define ii pair&amp;lt;int, int&amp;gt; #define fi first #define se second #define ENDL &amp;#34;\n&amp;#34; using namespace std; const int MAX= 311; int f[MAX][MAX], a[MAX], n, sum; int DP(int l, int r){ if (r-l+1 &amp;gt;= n) return 0; if (f[l][r]!</description>
+    </item>
+    
+    <item>
+      <title>SGAME7 - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-sgame7/</link>
+      <pubDate>Thu, 24 Sep 2020 08:58:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-sgame7/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/sgame7.  Hướng dẫn: Có 2 vấn đề cân sử lý:
+1. Đếm số các số có tổng bằng k trong đoạn từ A tới B  Ta sử dụng phương pháp quy hoạch động chữ số để giải quyết bài toán này (Xài top down cho nhanh):  Gọi DP(S, id, sum, prefixMatch) là số cách tạo ra tổng sum từ id chữ số đầu nhỏ hơn hoặc bằng số S(Dạng string), và prefixMatch = true nếu tiền tố của số đang xét tới vị trí id khớp với tiền tố của S.</description>
+    </item>
+    
+    <item>
+      <title>CJ tới San Fierro - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-cjsanfierro/</link>
+      <pubDate>Thu, 24 Sep 2020 07:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-cjsanfierro/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjsanfierro.  Hướng dẫn:  Đầu tiên ta tìm tuyến đường có độ cao cho phép lớn nhất, có thể tìm bằng nhiều cách: Dijkstra, DFS kết hợp với tìm nhị phân, xây dựng cây khung nhỏ nhất.. Giả sử độ cao tối đa là H, để tìm kiếm con đường có độ cao H và ngắn nhất, thì ta chỉ xét những con đường có độ cao &amp;gt;= H (Những con đường còn lại sẽ làm cho độ cao nhỏ hơn H), Dijkstra tìm đường đi ngắn nhất trên tập cạnh mới này, ta thu được kết quả bài toán.</description>
+    </item>
+    
+    <item>
+      <title>CJ và Catalina - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-cjandcatalina/</link>
+      <pubDate>Thu, 24 Sep 2020 07:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-cjandcatalina/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjandcatalina.  Hướng dẫn:  Đầu tiên ta dùng thuật toán Dijkstra để tìm đường đi ngắn nhất giữa mọi cặp đỉnh trong k cặp đề bài cho. (\( k &amp;lt;=20 \)). Sử dụng quy hoạch động trạng thái:  Gọi f[mask][i] là đường đi ngắn nhất đi qua tất cả các đỉnh thuộc trạng thái mask, và kết thúc tại đỉnh i Trạng thái ban đầu: f[1 &amp;lt;&amp;lt; i][i] = 0 Ta xét mỗi trạng thái và cập nhật trạng thái như sau: f[j][newmask] = min(f[j][newmask], f[i][mask] + d[i][j])    Code mẫu: #include &amp;lt;bits/stdc++.</description>
+    </item>
+    
+    <item>
+      <title>CJ dự tiệc - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjdutiec/</link>
+      <pubDate>Wed, 23 Sep 2020 11:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjdutiec/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjdutiec.  Hướng dẫn:  Bài toán tìm đường đi ngắn nhất cơ bản.  Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define int long long #define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.</description>
+    </item>
+    
+    <item>
+      <title>CJ và Denise - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjandenise/</link>
+      <pubDate>Wed, 23 Sep 2020 11:50:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjandenise/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjanddenise.  Hướng dẫn:   Bài toán trên là định nghĩa về chu trình Euler: Chu trình Euler là chu trình mà xuất phát từ một đỉnh bất kì, đi qua tất cả các cạnh của đồ thị và trở về đỉnh ban đầu.
+  Một đồ thị là một chu trình Euler khi và chỉ khi nó liên thông và tất cả các đỉnh của nó đều bậc chẵn.</description>
+    </item>
+    
+    <item>
+      <title>CJ và vùng đất mới - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjvungdatmoi/</link>
+      <pubDate>Wed, 23 Sep 2020 11:48:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjvungdatmoi/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjvungdatmoi.  Hướng dẫn:  Đây là bài toán tìm thành phần song liên thông (biconnected component). Thành phần song liên thông là một thành phần liên thông mà khi ta bỏ một đỉnh bất kì nào, thì các đỉnh còn lại vẫn cùng thuộc một thành phần liên thông. Ta có một nhận xét là các thành phần song liên thông được nối với nhau bằng các khớp.</description>
+    </item>
+    
+    <item>
+      <title>CJ Phản công - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-23-cjphancong/</link>
+      <pubDate>Wed, 23 Sep 2020 08:06:00 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-23-cjphancong/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjxaydung.  Hướng dẫn:  Đây là bài toán tìm khớp cơ bản. Xét 2 trường hợp:  u là không gốc:  Nếu có một nhánh con v không lên được trên đỉnh u thì u là khớp (Nếu xóa u thì v và các con của nhánh con này không kết nối được với những đỉnh trên u).   u là gốc:  Nếu đồ thị có trên 2 nhánh con v&#39; và v&#39;&#39;, &amp;hellip; thì u là khớp.</description>
+    </item>
+    
+    <item>
+      <title>Xây dựng vùng LS Vagos - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-23-cjxaydung/</link>
+      <pubDate>Wed, 23 Sep 2020 07:56:54 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-23-cjxaydung/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjxaydung.  Hướng dẫn:  Đây là bài toán tìm cầu cơ bản, với mỗi cạnh u,v ta đang xét với u là cha của v, nếu từ v chỉ đi được các đỉnh thấp hơn u thì (u,v) là cầu.   Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+  </channel>
+</rss>

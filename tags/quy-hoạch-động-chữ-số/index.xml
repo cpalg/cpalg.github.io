@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quy hoạch động chữ số on CP notebook</title>
+    <link>https://cpalg.github.io/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng-ch%E1%BB%AF-s%E1%BB%91/</link>
+    <description>Recent content in Quy hoạch động chữ số on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Thu, 24 Sep 2020 08:58:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/quy-ho%E1%BA%A1ch-%C4%91%E1%BB%99ng-ch%E1%BB%AF-s%E1%BB%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SGAME7 - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-sgame7/</link>
+      <pubDate>Thu, 24 Sep 2020 08:58:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-sgame7/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/sgame7.  Hướng dẫn: Có 2 vấn đề cân sử lý:
+1. Đếm số các số có tổng bằng k trong đoạn từ A tới B  Ta sử dụng phương pháp quy hoạch động chữ số để giải quyết bài toán này (Xài top down cho nhanh):  Gọi DP(S, id, sum, prefixMatch) là số cách tạo ra tổng sum từ id chữ số đầu nhỏ hơn hoặc bằng số S(Dạng string), và prefixMatch = true nếu tiền tố của số đang xét tới vị trí id khớp với tiền tố của S.</description>
+    </item>
+    
+  </channel>
+</rss>

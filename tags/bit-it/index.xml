@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BIT, IT on CP notebook</title>
+    <link>https://cpalg.github.io/tags/bit-it/</link>
+    <description>Recent content in BIT, IT on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Sun, 27 Sep 2020 07:06:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/bit-it/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sửa cầu - VNOI.</title>
+      <link>https://cpalg.github.io/posts/2020-09-27-kbuild/</link>
+      <pubDate>Sun, 27 Sep 2020 07:06:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-27-kbuild/</guid>
+      <description>Link đề bài:  http://vnoi.info/problems/KBUILD/.  Hướng dẫn:  Để giải quyết bài toán này ta đặt ra 2 vấn đề chính:  Làm thế nào để tìm đường đi giữa q cặp đỉnh (u, v) (Tìm đường đi từ u tới LCA(u,v) và đường đi từ v tới LCA(u,v))/ Làm thế nào để câp nhật các đường đi từ u tới v trong đpt &amp;lt; log2(n).   Để giải quyết hai vấn đề trên ta dùng Heavy-Light Decomposition để phân rã cây thành các chuỗi thẳng từ đó áp dụng segment tree cập nhật đoạn và tìm LCA giữa các cặp đỉnh (u, v).</description>
+    </item>
+    
+  </channel>
+</rss>

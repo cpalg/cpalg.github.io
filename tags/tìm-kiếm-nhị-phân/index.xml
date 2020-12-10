@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tìm kiếm nhị phân on CP notebook</title>
+    <link>https://cpalg.github.io/tags/t%C3%ACm-ki%E1%BA%BFm-nh%E1%BB%8B-ph%C3%A2n/</link>
+    <description>Recent content in Tìm kiếm nhị phân on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Thu, 24 Sep 2020 08:58:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/t%C3%ACm-ki%E1%BA%BFm-nh%E1%BB%8B-ph%C3%A2n/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SGAME7 - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-sgame7/</link>
+      <pubDate>Thu, 24 Sep 2020 08:58:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-sgame7/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/sgame7.  Hướng dẫn: Có 2 vấn đề cân sử lý:
+1. Đếm số các số có tổng bằng k trong đoạn từ A tới B  Ta sử dụng phương pháp quy hoạch động chữ số để giải quyết bài toán này (Xài top down cho nhanh):  Gọi DP(S, id, sum, prefixMatch) là số cách tạo ra tổng sum từ id chữ số đầu nhỏ hơn hoặc bằng số S(Dạng string), và prefixMatch = true nếu tiền tố của số đang xét tới vị trí id khớp với tiền tố của S.</description>
+    </item>
+    
+    <item>
+      <title>CJ tới San Fierro - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-25-cjsanfierro/</link>
+      <pubDate>Thu, 24 Sep 2020 07:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-25-cjsanfierro/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjsanfierro.  Hướng dẫn:  Đầu tiên ta tìm tuyến đường có độ cao cho phép lớn nhất, có thể tìm bằng nhiều cách: Dijkstra, DFS kết hợp với tìm nhị phân, xây dựng cây khung nhỏ nhất.. Giả sử độ cao tối đa là H, để tìm kiếm con đường có độ cao H và ngắn nhất, thì ta chỉ xét những con đường có độ cao &amp;gt;= H (Những con đường còn lại sẽ làm cho độ cao nhỏ hơn H), Dijkstra tìm đường đi ngắn nhất trên tập cạnh mới này, ta thu được kết quả bài toán.</description>
+    </item>
+    
+  </channel>
+</rss>

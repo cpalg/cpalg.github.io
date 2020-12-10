@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dijkstra on CP notebook</title>
+    <link>https://cpalg.github.io/tags/dijkstra/</link>
+    <description>Recent content in Dijkstra on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Wed, 23 Sep 2020 11:55:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/dijkstra/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CJ dự tiệc - LQDOJ.</title>
+      <link>https://cpalg.github.io/posts/2020-09-24-cjdutiec/</link>
+      <pubDate>Wed, 23 Sep 2020 11:55:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-09-24-cjdutiec/</guid>
+      <description>Link đề bài:  http://lqdoj.edu.vn/problem/cjdutiec.  Hướng dẫn:  Bài toán tìm đường đi ngắn nhất cơ bản.  Code mẫu: #include &amp;lt;bits/stdc++.h&amp;gt;#define int long long #define pb push_back #define FOR(i, a, b) for(int i = int(a); i &amp;lt;= int(b); i++) #define FORD(i, a, b) for(int i = int(a); i &amp;gt;= int(b); i--) #define REP(i, r) for(int i = 0; i &amp;lt; r; i++) #define FAST ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0); #define READFILE freopen(&amp;#34;input.</description>
+    </item>
+    
+  </channel>
+</rss>

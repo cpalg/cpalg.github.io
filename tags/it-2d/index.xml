@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IT 2d on CP notebook</title>
+    <link>https://cpalg.github.io/tags/it-2d/</link>
+    <description>Recent content in IT 2d on CP notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>v4ngtr</copyright>
+    <lastBuildDate>Wed, 18 Nov 2020 07:05:22 +0000</lastBuildDate><atom:link href="https://cpalg.github.io/tags/it-2d/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2d Segment tree</title>
+      <link>https://cpalg.github.io/posts/2020-11-19-it2d/</link>
+      <pubDate>Wed, 18 Nov 2020 07:05:22 +0000</pubDate>
+      
+      <guid>https://cpalg.github.io/posts/2020-11-19-it2d/</guid>
+      <description>#include &amp;lt;bits/stdc++.h&amp;gt;#define ii vector&amp;lt;int, int&amp;gt; #define fi first #define se second using namespace std; const int MAX = 1111; int n, m, a[MAX][MAX], t[MAX*4][MAX*4], s[MAX][MAX], Q; void BuildY(int idX, int lX, int rX, int idY, int lY, int rY){ if (lY==rY){ if (lX==rX){ t[idX][idY] = a[lX][lY]; } else{ t[idX][idY] = max(t[idX*2][idY], t[idX*2+1][idY]); } return; } int mid = (lY+rY)/2; BuildY(idX, lX, rX, idY*2, lY, mid); BuildY(idX, lX, rX, idY*2+1, mid+1, rY); t[idX][idY] = max(t[idX][idY*2], t[idX][idY*2+1]); } void BuildX(int id, int l, int r){ if (l==r){ BuildY(id,l,r,1,1,m); return; } int mid = (l+r)/2; BuildX(id*2, l, mid); BuildX(id*2+1, mid+1, r); BuildY(id,l,r,1,1,m); } int QueryY(int idX, int id, int l, int r, int L, int R){ if (r&amp;lt;L || R&amp;lt;l) return -1; if (L&amp;lt;=l &amp;amp;&amp;amp; r&amp;lt;=R){ return t[idX][id]; } int mid = (l+r)/2; return max(QueryY(idX,id*2, l, mid, L, R), QueryY(idX, id*2+1, mid+1, r, L, R)); } int Query(int id, int l, int r, int L, int R, int lY, int rY){ if (r &amp;lt; L || R &amp;lt; l) return -1; if (L&amp;lt;=l &amp;amp;&amp;amp; r &amp;lt;=R){ return QueryY(id, 1, 1, m, lY, rY); } int mid = (l+r)/2; return max(Query(id*2, l, mid, L, R, lY, rY), Query(id*2+1, mid+1, r, L, R, lY, rY)); } int Sum(int x, int y, int u, int v){ return s[u][v] - s[u][y-1] - s[x-1][v] + s[x-1][y-1]; } int main(int argc, char const *argv[]) { ios_base::sync_with_stdio(0); cin.</description>
+    </item>
+    
+  </channel>
+</rss>
